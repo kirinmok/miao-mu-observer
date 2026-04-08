@@ -3299,7 +3299,7 @@
     var candleSeries = null;
     var sideFilter = 'all';
     var overlaySeries = {};
-    var chartOverlays = { ma5: false, ma20: false, ma60: true, bb: false, rsi: false, macd: false, trendline: false, patterns: false, high52w: false, risk: false };
+    var chartOverlays = { ma5: false, ma20: false, ma60: true, bb: false, rsi: false, macd: false, trendline: false, patterns: false, high52w: false, risk: false, foreign: true };
 
     // Chart interactivity state
     var _chartDrawMode = false;
@@ -4541,7 +4541,8 @@
         { key: 'trendline', label: '趨勢線', color: '#f472b6' },
         { key: 'patterns', label: '型態', color: '#c084fc' },
         { key: 'high52w', label: '52W高', color: '#f87171' },
-        { key: 'risk', label: '風險區', color: '#ef4444' }
+        { key: 'risk', label: '風險區', color: '#ef4444' },
+        { key: 'foreign', label: '外資', color: '#a78bfa' }
       ];
 
       if (isMobile) {
@@ -4869,6 +4870,51 @@
       } else {
         var ppDiv = document.getElementById('patternPanel');
         if (ppDiv) ppDiv.style.display = 'none';
+      }
+
+      // v48 外資線：外資每日買賣超柱狀圖（紫色買超 / 琥珀色賣超）
+      if (chartOverlays.foreign) {
+        var fh = s.foreign_history || [];
+        if (fh.length > 0) {
+          overlaySeries.foreign = chart.addHistogramSeries({
+            priceFormat: { type: 'volume' },
+            priceScaleId: 'foreign',
+            title: '外資',
+            lastValueVisible: true,
+            priceLineVisible: false,
+          });
+          chart.priceScale('foreign').applyOptions({
+            scaleMargins: { top: 0.7, bottom: 0.02 },
+            drawTicks: false,
+            borderVisible: false,
+          });
+          overlaySeries.foreign.setData(fh.map(function (f) {
+            return {
+              time: f.time,
+              value: f.foreign_net || 0,
+              color: (f.foreign_net || 0) >= 0 ? 'rgba(167,139,250,0.55)' : 'rgba(251,191,36,0.55)'
+            };
+          }));
+          // 外資累計線（趨勢意圖比單日噪音更有判斷價值）
+          overlaySeries.foreignCum = chart.addLineSeries({
+            color: '#c084fc',
+            lineWidth: 1.5,
+            lineStyle: 0,
+            priceScaleId: 'foreignCum',
+            priceLineVisible: false,
+            lastValueVisible: true,
+            title: '外資累計',
+          });
+          chart.priceScale('foreignCum').applyOptions({
+            scaleMargins: { top: 0.7, bottom: 0.02 },
+            drawTicks: false,
+            borderVisible: false,
+            visible: false,
+          });
+          overlaySeries.foreignCum.setData(fh.map(function (f) {
+            return { time: f.time, value: f.foreign_cumulative || 0 };
+          }));
+        }
       }
 
       // Sort markers by time (required by LightweightCharts)
@@ -5304,6 +5350,8 @@
         volSeries.setData(ph.map(function (p) { return { time: p.time, value: p.volume || 0, color: p.close >= p.open ? 'rgba(239,68,68,0.25)' : 'rgba(34,197,94,0.25)' }; }));
       }
 
+      // v48 外資線：透過 applyOverlays 控制顯示（見 chartOverlays.foreign）
+
       // Stop loss line
       if (s.stop_loss_price) {
         candleSeries.createPriceLine({ price: s.stop_loss_price, color: '#f87171', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '停損' });
@@ -5334,7 +5382,19 @@
         var chg = (o && c) ? ((c - o) / o * 100).toFixed(2) : '0.00';
         var color = parseFloat(chg) >= 0 ? 'var(--green)' : 'var(--red)';
         var volStr = v > 1000000 ? (v / 1000000).toFixed(1) + 'M' : (v > 1000 ? (v / 1000).toFixed(0) + 'K' : v.toString());
-        infoEl.innerHTML = '<span style="color:var(--sub);">' + timeStr + '</span> O:' + o.toFixed(2) + ' H:' + h.toFixed(2) + ' L:' + l.toFixed(2) + ' C:<span style="color:' + color + ';">' + c.toFixed(2) + '</span> <span style="color:' + color + ';">' + (parseFloat(chg) >= 0 ? '+' : '') + chg + '%</span> V:' + volStr;
+        var foreignStr = '';
+        if (overlaySeries.foreign && chartOverlays.foreign) {
+          var fd = param.seriesData.get(overlaySeries.foreign);
+          if (fd && fd.value) {
+            var fv = fd.value;
+            var fColor = fv >= 0 ? 'var(--purple)' : 'var(--amber)';
+            var fLabel = fv >= 0 ? '買超' : '賣超';
+            var fAbs = Math.abs(fv);
+            var fStr = fAbs > 1000000 ? (fAbs / 1000000).toFixed(1) + 'M' : (fAbs > 1000 ? (fAbs / 1000).toFixed(0) + 'K' : fAbs.toString());
+            foreignStr = ' <span style="color:' + fColor + ';">外資' + fLabel + fStr + '張</span>';
+          }
+        }
+        infoEl.innerHTML = '<span style="color:var(--sub);">' + timeStr + '</span> O:' + o.toFixed(2) + ' H:' + h.toFixed(2) + ' L:' + l.toFixed(2) + ' C:<span style="color:' + color + ';">' + c.toFixed(2) + '</span> <span style="color:' + color + ';">' + (parseFloat(chg) >= 0 ? '+' : '') + chg + '%</span> V:' + volStr + foreignStr;
       });
 
       // Chart interactivity: click to draw price line or show detail
@@ -5889,7 +5949,7 @@
       var ra = stockData.role_analysis || {};
       var confRaw = ra.confidence;
       var conf = typeof confRaw === 'number' ? confRaw :
-                 confRaw === 'HIGH' ? 75 : confRaw === 'MED' ? 55 : confRaw === 'LOW' ? 35 : 0;
+                 confRaw === 'HIGH' ? 75 : (confRaw === 'MEDIUM' || confRaw === 'MED') ? 55 : confRaw === 'LOW' ? 35 : 0;
       var scoreConf = isNaN(score) ? 0 : Math.min(95, Math.round(score * 10));
       var displayConf = Math.max(conf, scoreConf) || 0;
 
@@ -6071,7 +6131,7 @@
       // ra.confidence is a STRING ("LOW"/"MED"/"HIGH"), convert to number
       var confRaw = ra.confidence;
       var conf = typeof confRaw === 'number' ? confRaw :
-                 confRaw === 'HIGH' ? 75 : confRaw === 'MED' ? 55 : confRaw === 'LOW' ? 35 : 0;
+                 confRaw === 'HIGH' ? 75 : (confRaw === 'MEDIUM' || confRaw === 'MED') ? 55 : confRaw === 'LOW' ? 35 : 0;
       // Synthesize displayConf from score & analyst confidence, guarantee no NaN
       var scoreConf = isNaN(score) ? 0 : Math.min(95, Math.round(score * 10));
       var displayConf = Math.max(conf, scoreConf) || 0;
@@ -6083,14 +6143,14 @@
       var actionText, actionClass, heroClass;
       var act = s['建議類別'] || '';
       // Score-first logic: score is the ultimate synthesized verdict
-      if (act === 'action-sell' || score <= 4) {
-        actionText = '⚠️ 建議賣出'; actionClass = 'bearish'; heroClass = 'bearish';
-      } else if (act === 'action-hold' || (score > 4 && score < 7)) {
-        actionText = '⏳ 觀望等待'; actionClass = 'neutral'; heroClass = 'neutral';
+      if (act === 'sell' || act === 'action-sell' || score <= 4) {
+        actionText = '⚠️ 訊號偏空'; actionClass = 'bearish'; heroClass = 'bearish';
+      } else if (act === 'wait' || act === 'action-hold' || (score > 4 && score < 7)) {
+        actionText = '⏳ 訊號中性'; actionClass = 'neutral'; heroClass = 'neutral';
       } else if (score >= 9) {
-        actionText = '🚀 強力買進'; actionClass = 'bullish'; heroClass = '';
+        actionText = '🚀 訊號強多'; actionClass = 'bullish'; heroClass = '';
       } else {
-        actionText = '👍 建議買進'; actionClass = 'bullish'; heroClass = '';
+        actionText = '👍 訊號偏多'; actionClass = 'bullish'; heroClass = '';
       }
 
       var confLevel = displayConf >= 65 ? 'high' : displayConf >= 40 ? 'mid' : 'low';
@@ -6103,9 +6163,28 @@
         '<div class="vh-stat"><div class="vh-num" style="color:var(--' + (actionClass === 'bearish' ? 'red' : 'green') + ')">' + score + '</div><div class="vh-lbl">評分</div></div>' +
         '<div class="vh-stat"><div class="vh-num" style="color:var(--cyan)">' + displayConf + '%</div><div class="vh-lbl">AI 信心（參考）</div></div>' +
         '<div class="vh-stat"><div class="vh-num" style="color:var(--' + (actionClass === 'bearish' ? 'red' : 'green') + ')">' + bullCount + '/' + ro.length + '</div><div class="vh-lbl">看多</div></div>' +
+        '<div class="vh-stat"><div class="vh-num" style="color:' + ((s.valid_dimension_count || 0) >= 5 ? 'var(--green)' : (s.valid_dimension_count || 0) >= 3 ? 'var(--amber)' : 'var(--red)') + '">' + (s.valid_dimension_count || '?') + '/' + (s.total_dimension_count || '7') + '</div><div class="vh-lbl">真實維度</div></div>' +
         '</div>' +
         '<div class="vh-conf"><div class="vh-conf-track"><div class="vh-conf-fill ' + confLevel + '" style="width:' + displayConf + '%"></div></div>' +
-        '<div class="vh-conf-text">' + ro.length + ' 位分析師 ' + bullCount + ' 位偏多 · 衝突度 ' + Math.round((ra.conflict_intensity || 0) * 100) + '%</div></div>';
+        '<div class="vh-conf-text">' + ro.length + ' 位分析師 ' + bullCount + ' 位偏多 · 衝突度 ' + Math.round((ra.conflict_intensity || 0) * 100) + '%</div></div>' +
+        (function() {
+          var vc = s.valid_dimension_count || 0;
+          var tc = s.total_dimension_count || 7;
+          var prov = s.data_provenance || {};
+          var fb = prov.fallback_dimensions || [];
+          if (vc < tc && fb.length > 0) {
+            return '<div style="margin-top:6px;padding:4px 8px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:6px;font-size:10px;color:var(--amber);">⚠ 此分析基於 ' + vc + '/' + tc + ' 維真實數據｜空缺：' + fb.join('、') + '</div>';
+          }
+          return '';
+        })();
+
+      // v48.1: 一句話行動建議（給普通人的）
+      var actionHint = s.action_hint || '';
+      if (actionHint) {
+        document.getElementById('verdictHero').innerHTML +=
+          '<div style="margin-top:8px;padding:8px 14px;background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:8px;font-size:13px;color:var(--text);line-height:1.6;">' +
+          '<span style="color:var(--cyan);font-weight:600;">💡 </span>' + actionHint + '</div>';
+      }
 
       // V37 Task 5: 恐慌/貪婪自動提示
       var rsi = s['RSI'] || 0;
@@ -6643,6 +6722,29 @@
         h += '<div style="display:flex;justify-content:space-between;padding:6px 0;">';
         h += '<span style="color:var(--sub)">連續買超天數</span>';
         h += '<span style="color:var(--cyan);font-weight:700">' + pd + ' 天</span></div>';
+      }
+
+      // v48: 外資期貨 vs 個股外資交叉比對
+      var mh = window._marketHistory || {};
+      var ff = mh.foreign_futures || {};
+      var netOI = ff.net_oi || 0;
+      if (fn !== null && netOI !== 0) {
+        var stockBuy = fn > 0;
+        var futuresLong = netOI > 0;
+        var crossColor, crossIcon, crossText;
+        if (stockBuy && futuresLong) {
+          crossColor = 'var(--green)'; crossIcon = '✅'; crossText = '個股買超 + 期貨偏多 → 真實看好';
+        } else if (stockBuy && !futuresLong) {
+          crossColor = 'var(--amber)'; crossIcon = '⚠️'; crossText = '個股買超但期貨偏空 → 可能是避險性換股';
+        } else if (!stockBuy && futuresLong) {
+          crossColor = 'var(--amber)'; crossIcon = '🔄'; crossText = '個股賣超但期貨偏多 → 資金輪動中';
+        } else {
+          crossColor = 'var(--red)'; crossIcon = '🚨'; crossText = '個股賣超 + 期貨偏空 → 全面撤退訊號';
+        }
+        h += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">';
+        h += '<span style="color:var(--sub)">外資期貨淨部位</span>';
+        h += '<span style="color:' + (netOI > 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:700">' + (netOI > 0 ? '+' : '') + (netOI/1000).toFixed(0) + 'K 口</span></div>';
+        h += '<div style="padding:6px 8px;margin-top:4px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:6px;font-size:11px;color:' + crossColor + ';">' + crossIcon + ' ' + crossText + '</div>';
       }
 
       // Task 2: 教學提示

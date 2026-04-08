@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喵母今日精選 Top 3 — 2026年2月27日 (五)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+  }
+  .header {
+    text-align: center;
+    padding: 24px 0 20px;
+    border-bottom: 1px solid #1e293b;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .header .date { color: #94a3b8; font-size: 0.9rem; }
+  .header .subtitle { color: #64748b; font-size: 0.8rem; margin-top: 4px; }
+  .stats { display: flex; gap: 12px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat-box {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 140px;
+  }
+  .stat-label { color: #64748b; font-size: 0.75rem; margin-bottom: 4px; }
+  .stat-value { color: #f59e0b; font-size: 1.5rem; font-weight: 700; }
+  .stat-sub { color: #475569; font-size: 0.7rem; margin-top: 2px; }
+  .cards { display: flex; flex-direction: column; gap: 16px; max-width: 480px; margin: 0 auto; }
+  .card {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid #334155;
+    transition: transform 0.15s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card-rank {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-size: 1.6rem;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .card-title { font-size: 1.1rem; font-weight: 700; flex: 1; }
+  .card-code { color: #64748b; font-size: 0.85rem; font-weight: 400; }
+  .card-badge {
+    color: white;
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .card-price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .price { font-size: 1.5rem; font-weight: 700; color: #f1f5f9; }
+  .change { font-size: 0.9rem; font-weight: 600; }
+  .card-score { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .score-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .score-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b, #22c55e);
+    border-radius: 3px;
+  }
+  .score-label { color: #94a3b8; font-size: 0.8rem; white-space: nowrap; }
+  .card-summary {
+    color: #94a3b8;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .card-targets {
+    font-size: 0.82rem;
+    color: #64748b;
+    border-top: 1px solid #334155;
+    padding-top: 10px;
+  }
+  .card-targets strong { color: #cbd5e1; }
+  .card-trend {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #1e293b;
+  }
+  .trend-overall {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .trend-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .trend-label-sm {
+    color: #475569;
+    min-width: 42px;
+    font-size: 0.72rem;
+  }
+  .trend-val { color: #cbd5e1; }
+  .trend-val.muted { color: #64748b; }
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+    color: #475569;
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+  .footer a { color: #64748b; text-decoration: none; }
+  .footer a:hover { color: #94a3b8; }
+  @media (min-width: 600px) {
+    .cards { flex-direction: row; flex-wrap: wrap; max-width: 900px; }
+    .card { flex: 1; min-width: 260px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>🐱 喵母今日精選</h1>
+    <div class="date">2026年2月27日 (五)</div>
+    <div class="subtitle">AI 自動篩選 Top 3 潛力標的 · 僅供參考，投資有風險</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-label">今日分析股數</div>
+      <div class="stat-value">33</div>
+      <div class="stat-sub">支股票</div>
+    </div>
+        <div class="stat-box">
+          <div class="stat-label">近30日推薦潛力勝率</div>
+          <div class="stat-value">100.0%</div>
+          <div class="stat-sub">基於 32 次推薦紀錄</div>
+        </div>
+    <div class="stat-box">
+      <div class="stat-label">產出時間</div>
+      <div class="stat-value" style="font-size:1rem;">07:30</div>
+      <div class="stat-sub">2026-02-27</div>
+    </div>
+  </div>
+
+  <div class="cards">
+      <div class="card">
+        <div class="card-rank">🥇</div>
+        <div class="card-header">
+          <div class="card-title">鴻海 <span class="card-code">2317</span></div>
+          <div class="card-badge" style="background:#22c55e;">🚀 強力買進</div>
+        </div>
+        <div class="card-price">
+          <span class="price">$243.0</span>
+          <span class="change" style="color:#ef4444;">-1.42%</span>
+        </div>
+        <div class="card-score">
+          <div class="score-bar-bg"><div class="score-bar" style="width:100%;"></div></div>
+          <span class="score-label">評分 10/10</span>
+        </div>
+        <div class="card-summary">股價目前在季線（60日均線 $226.3）之上，代表中期趨勢偏多。法人積極進場（外資近5日買超 126339 張，投信買超 10262 張），代表專業機構看好。技術指標 MACD 呈現金叉（短期動能向…</div>
+        <div class="card-trend"><div class="trend-overall">📈 部分成長</div><div class="trend-row">
+                  <span class="trend-label-sm">EPS趨勢</span>
+                  <span class="trend-val">📊 震盪整理 (+8%) · 連漲2季</span>
+                  <svg width="60" height="20" viewBox="0 0 60 20" style="display:inline-block;vertical-align:middle;margin-left:6px;"><polyline points="0.0,2.5 8.6,20.0 17.1,12.7 25.7,4.7 34.3,6.3 42.9,8.8 51.4,7.4 60.0,0.0" fill="none" stroke="#22c55e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </div><div class="trend-row">
+                  <span class="trend-label-sm">月營收</span>
+                  <span class="trend-val" style="color:#22c55e;">YoY +35.5% 2026-01</span> &nbsp;<span style="color:#ef4444;font-size:0.72rem;">月增-15.4%</span>
+                </div><div class="trend-row"><span class="trend-label-sm">即時估值</span><span class="trend-val muted">PE 16.9 · PB 1.70 · 殖利率 2.88%</span></div></div>
+        <div class="card-targets">
+          🎯 目標 <strong>$267.3</strong> &nbsp;|&nbsp; 🛑 停損 <strong>$219.5</strong>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-rank">🥈</div>
+        <div class="card-header">
+          <div class="card-title">南亞 <span class="card-code">1303</span></div>
+          <div class="card-badge" style="background:#22c55e;">🚀 強力買進</div>
+        </div>
+        <div class="card-price">
+          <span class="price">$91.8</span>
+          <span class="change" style="color:#ef4444;">-3.27%</span>
+        </div>
+        <div class="card-score">
+          <div class="score-bar-bg"><div class="score-bar" style="width:100%;"></div></div>
+          <span class="score-label">評分 10/10</span>
+        </div>
+        <div class="card-summary">股價目前在季線（60日均線 $67.4）之上，代表中期趨勢偏多。法人積極進場（外資近5日買超 138011 張，投信買超 2731 張），代表專業機構看好。技術指標 MACD 呈現金叉（短期動能向上）…</div>
+        <div class="card-trend"><div class="trend-overall">📈 部分成長</div><div class="trend-row">
+                  <span class="trend-label-sm">EPS趨勢</span>
+                  <span class="trend-val">📈 多頭趨勢 (+1950%)</span>
+                  <svg width="60" height="20" viewBox="0 0 60 20" style="display:inline-block;vertical-align:middle;margin-left:6px;"><polyline points="0.0,8.4 8.6,5.4 17.1,4.1 25.7,8.8 34.3,8.0 42.9,7.5 51.4,20.0 60.0,0.0" fill="none" stroke="#22c55e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </div><div class="trend-row">
+                  <span class="trend-label-sm">月營收</span>
+                  <span class="trend-val" style="color:#22c55e;">YoY +11.8% 2026-01</span> &nbsp;<span style="color:#22c55e;font-size:0.72rem;">月增+3.5%</span>
+                </div><div class="trend-row"><span class="trend-label-sm">即時估值</span><span class="trend-val muted">PE 48.9 · PB 0.99 · 殖利率 1.52%</span></div></div>
+        <div class="card-targets">
+          🎯 目標 <strong>$101.0</strong> &nbsp;|&nbsp; 🛑 停損 <strong>$65.4</strong>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-rank">🥉</div>
+        <div class="card-header">
+          <div class="card-title">開發金 <span class="card-code">2883</span></div>
+          <div class="card-badge" style="background:#22c55e;">🚀 強力買進</div>
+        </div>
+        <div class="card-price">
+          <span class="price">$21.9</span>
+          <span class="change" style="color:#22c55e;">+5.02%</span>
+        </div>
+        <div class="card-score">
+          <div class="score-bar-bg"><div class="score-bar" style="width:100%;"></div></div>
+          <span class="score-label">評分 10/10</span>
+        </div>
+        <div class="card-summary">股價目前在季線（60日均線 $17.6）之上，代表中期趨勢偏多。法人積極進場（外資近5日買超 235736 張，投信買超 21285 張），代表專業機構看好。技術指標 MACD 呈現金叉（短期動能向上…</div>
+        <div class="card-trend"><div class="trend-overall">🔻 基本面疑慮</div><div class="trend-row">
+                  <span class="trend-label-sm">EPS趨勢</span>
+                  <span class="trend-val">📊 震盪整理 (+900%)</span>
+                  <svg width="60" height="20" viewBox="0 0 60 20" style="display:inline-block;vertical-align:middle;margin-left:6px;"><polyline points="0.0,14.0 8.6,6.0 17.1,6.0 25.7,1.4 34.3,10.5 42.9,5.4 51.4,20.0 60.0,0.0" fill="none" stroke="#22c55e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </div><div class="trend-row">
+                  <span class="trend-label-sm">月營收</span>
+                  <span class="trend-val" style="color:#ef4444;">YoY -741.7%</span>
+                </div><div class="trend-row"><span class="trend-label-sm">即時估值</span><span class="trend-val muted">PE 11.8 · PB 1.02 · 殖利率 3.03%</span></div></div>
+        <div class="card-targets">
+          🎯 目標 <strong>$24.1</strong> &nbsp;|&nbsp; 🛑 停損 <strong>$17.1</strong>
+        </div>
+      </div>
+  </div>
+
+  <div class="footer">
+    <p>📊 完整分析請查看 <a href="index.html">喵母看盤情報主頁</a></p>
+    <p style="margin-top:6px;">⚠️ 本頁面由 AI 自動生成，資料僅供參考，不構成投資建議。</p>
+    <p>投資有風險，請自行評估後決策。</p>
+  </div>
+</body>
+</html>

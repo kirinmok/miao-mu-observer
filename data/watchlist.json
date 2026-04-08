@@ -1,0 +1,12 @@
+[
+  {"code": "2330", "name": "台積電", "sector": "半導體"},
+  {"code": "2454", "name": "聯發科", "sector": "IC設計"},
+  {"code": "2317", "name": "鴻海", "sector": "電子代工"},
+  {"code": "3034", "name": "聯詠", "sector": "IC設計"},
+  {"code": "2382", "name": "廣達", "sector": "伺服器"},
+  {"code": "2356", "name": "英業達", "sector": "伺服器"},
+  {"code": "6669", "name": "緯穎", "sector": "伺服器"},
+  {"code": "2603", "name": "長榮", "sector": "航運"},
+  {"code": "3443", "name": "創意", "sector": "IP設計"},
+  {"code": "2308", "name": "台達電", "sector": "電源"}
+]

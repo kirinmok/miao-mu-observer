@@ -1,0 +1,668 @@
+{
+  "代號": "2002",
+  "名稱": "中鋼",
+  "收盤價": 19.95,
+  "漲跌幅": 2.31,
+  "評分": 5.2,
+  "建議": "觀望",
+  "建議類別": "wait",
+  "詳細理由": "建議先等等看（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「財報真實性」1.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+  "白話摘要": "建議先等等看（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「財報真實性」1.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+  "成交量狀態": "",
+  "停損參考": 19.65,
+  "目標價": 19.87,
+  "風險報酬比": 3.33,
+  "本益比": 0.0,
+  "本益比_is_stale": false,
+  "股價淨值比": 1.01,
+  "殖利率": 1.65,
+  "估值狀態": "✅估值合理",
+  "投信動向": "投信5日買超160,083張",
+  "外資動向": "外資5日買超20,288,362張",
+  "營收表現": "營收持平",
+  "monthly_revenue_growth": -12.9,
+  "monthly_revenue_mom": -5.8,
+  "consecutive_growth_months": 0,
+  "pe_percentile_5y": 0.5,
+  "pe_median_5y": 26.9,
+  "pe_range_5y": "6.5~198.0",
+  "分析日期": "2026-04-08",
+  "is_stale": false,
+  "stale_warning": "",
+  "data_source": "stock_updater_v48",
+  "is_realtime": false,
+  "update_time": "2026-04-08 15:37",
+  "valid_dimension_count": 4,
+  "total_dimension_count": 7,
+  "role_analysis": {
+    "final_direction": "wait",
+    "confidence": "MEDIUM",
+    "summary_human": "建議先等等看（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「財報真實性」1.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+    "summary_professional": "建議先等等看（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「財報真實性」1.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+    "integration_reason": "財報真實性嚴重異常",
+    "conflict_intensity": 0,
+    "role_outputs": [
+      {
+        "role_name": "財報真實性",
+        "score": 1.5,
+        "signal": "danger",
+        "plain_text": "公司賺的錢確實有進口袋。應收帳款異常膨脹 23%",
+        "key_finding": "現金流比 55.59｜AR超額 +23%｜業外佔比 0%",
+        "mekak": "稅前利潤連兩季為負，基本面持續惡化",
+        "raw_data": {
+          "cash_quality": 55.59,
+          "ar_excess": 22.7,
+          "inventory_danger": false,
+          "non_op_pct": 0.0
+        },
+        "is_fallback": false,
+        "confidence": 15.0
+      },
+      {
+        "role_name": "籌碼結構",
+        "score": 9.0,
+        "signal": "bullish",
+        "plain_text": "最健康上漲，大戶買散戶沒追",
+        "key_finding": "外資+20288362張｜融資0張｜價+4.2%",
+        "mekak": "外資淨買力密度 45.9%，堅定",
+        "raw_data": {
+          "density": 45.86,
+          "resonance": [
+            "buy",
+            "decrease",
+            "up"
+          ],
+          "major_holder_change": 0,
+          "insider_net_sell": 0
+        },
+        "is_fallback": false,
+        "confidence": 90.0
+      },
+      {
+        "role_name": "技術面診斷",
+        "score": 6.0,
+        "signal": "neutral",
+        "plain_text": "站上季線",
+        "key_finding": "RSI 58｜MACD 多｜多頭排列",
+        "mekak": "趨勢強度 中，關注 19.65 支撐",
+        "raw_data": {
+          "rsi": 58.33,
+          "support": 19.65,
+          "resistance": 19.87,
+          "divergences": 0
+        },
+        "is_fallback": false,
+        "confidence": 60.0
+      },
+      {
+        "role_name": "市場情緒",
+        "score": 5.0,
+        "signal": "neutral",
+        "plain_text": "情緒面中性。",
+        "key_finding": "情緒 +0.0｜stable｜法說會 +0%",
+        "mekak": "情緒面中性，無明顯眉角",
+        "raw_data": {
+          "news_sentiment": 0,
+          "uncertainty": 0
+        },
+        "is_fallback": true,
+        "confidence": 50.0
+      },
+      {
+        "role_name": "惡魔代言人",
+        "score": 4.5,
+        "signal": "neutral",
+        "plain_text": "過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+        "key_finding": "脆弱度 6/10｜2 個質疑",
+        "mekak": "如果「財報真實性」的負面信號只是暫時性的呢？",
+        "raw_data": {
+          "challenges": [
+            "過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+            "如果「財報真實性」的負面信號只是暫時性的呢？"
+          ],
+          "vulnerability": 6.5
+        },
+        "is_fallback": false,
+        "confidence": 45.0
+      },
+      {
+        "role_name": "產業結構",
+        "score": 5.0,
+        "signal": "neutral",
+        "plain_text": "產業資料不足｜以中性評估",
+        "key_finding": "無產業資料輸入｜fallback neutral",
+        "mekak": "缺乏產業資料，無法判斷護城河與敘事風險",
+        "raw_data": {
+          "fallback": true
+        },
+        "is_fallback": true,
+        "confidence": 50.0
+      },
+      {
+        "role_name": "先行指標",
+        "score": 5.0,
+        "signal": "neutral",
+        "plain_text": "先行指標中性",
+        "key_finding": "供應鏈 stable｜人才 stable｜CapEx flat",
+        "mekak": "先行指標無明顯異常",
+        "raw_data": {
+          "supply": "stable",
+          "hiring": "stable",
+          "capex": "flat",
+          "consensus": "",
+          "blind_spot": ""
+        },
+        "is_fallback": true,
+        "confidence": 50.0
+      }
+    ]
+  },
+  "triggers": [
+    "財報真實性嚴重異常"
+  ],
+  "invalidation": "若下季現金流回升至淨利 80%，解除警報",
+  "contrarian_view": "",
+  "devil_summary": "過度依賴「籌碼結構」的正面信號，而「財報真實性」嚴重拖後腿",
+  "mekak_insight": "稅前利潤連兩季為負，基本面持續惡化",
+  "price_history": [
+    {
+      "time": "2025-12-31",
+      "open": 19.3,
+      "high": 19.35,
+      "low": 19.0,
+      "close": 19.0,
+      "volume": 24063141
+    },
+    {
+      "time": "2026-01-02",
+      "open": 19.0,
+      "high": 19.05,
+      "low": 18.7,
+      "close": 18.75,
+      "volume": 34913742
+    },
+    {
+      "time": "2026-01-05",
+      "open": 18.8,
+      "high": 18.9,
+      "low": 18.55,
+      "close": 18.6,
+      "volume": 37619279
+    },
+    {
+      "time": "2026-01-06",
+      "open": 18.7,
+      "high": 18.9,
+      "low": 18.45,
+      "close": 18.5,
+      "volume": 35377879
+    },
+    {
+      "time": "2026-01-07",
+      "open": 18.65,
+      "high": 19.45,
+      "low": 18.6,
+      "close": 19.45,
+      "volume": 101684058
+    },
+    {
+      "time": "2026-01-08",
+      "open": 19.7,
+      "high": 19.8,
+      "low": 19.1,
+      "close": 19.15,
+      "volume": 66522178
+    },
+    {
+      "time": "2026-01-09",
+      "open": 19.15,
+      "high": 19.2,
+      "low": 18.9,
+      "close": 19.0,
+      "volume": 37821812
+    },
+    {
+      "time": "2026-01-12",
+      "open": 19.0,
+      "high": 19.8,
+      "low": 18.95,
+      "close": 19.55,
+      "volume": 78551494
+    },
+    {
+      "time": "2026-01-13",
+      "open": 19.75,
+      "high": 19.8,
+      "low": 19.35,
+      "close": 19.45,
+      "volume": 49327083
+    },
+    {
+      "time": "2026-01-14",
+      "open": 19.5,
+      "high": 19.65,
+      "low": 19.35,
+      "close": 19.4,
+      "volume": 32319099
+    },
+    {
+      "time": "2026-01-15",
+      "open": 19.5,
+      "high": 19.75,
+      "low": 19.35,
+      "close": 19.45,
+      "volume": 52937751
+    },
+    {
+      "time": "2026-01-16",
+      "open": 19.55,
+      "high": 19.55,
+      "low": 19.2,
+      "close": 19.25,
+      "volume": 35619206
+    },
+    {
+      "time": "2026-01-19",
+      "open": 19.25,
+      "high": 19.7,
+      "low": 19.05,
+      "close": 19.65,
+      "volume": 76962008
+    },
+    {
+      "time": "2026-01-20",
+      "open": 19.65,
+      "high": 19.65,
+      "low": 19.15,
+      "close": 19.15,
+      "volume": 60139762
+    },
+    {
+      "time": "2026-01-21",
+      "open": 19.1,
+      "high": 19.15,
+      "low": 18.9,
+      "close": 18.95,
+      "volume": 45828256
+    },
+    {
+      "time": "2026-01-22",
+      "open": 19.15,
+      "high": 19.25,
+      "low": 18.9,
+      "close": 19.0,
+      "volume": 26848265
+    },
+    {
+      "time": "2026-01-23",
+      "open": 19.1,
+      "high": 19.25,
+      "low": 18.95,
+      "close": 19.15,
+      "volume": 31336983
+    },
+    {
+      "time": "2026-01-26",
+      "open": 19.2,
+      "high": 19.7,
+      "low": 19.15,
+      "close": 19.65,
+      "volume": 84072223
+    },
+    {
+      "time": "2026-01-27",
+      "open": 19.75,
+      "high": 19.95,
+      "low": 19.35,
+      "close": 19.35,
+      "volume": 55309475
+    },
+    {
+      "time": "2026-01-28",
+      "open": 19.35,
+      "high": 19.6,
+      "low": 19.25,
+      "close": 19.6,
+      "volume": 50011925
+    },
+    {
+      "time": "2026-01-29",
+      "open": 19.85,
+      "high": 21.35,
+      "low": 19.8,
+      "close": 20.7,
+      "volume": 252713280
+    },
+    {
+      "time": "2026-01-30",
+      "open": 20.8,
+      "high": 21.55,
+      "low": 20.35,
+      "close": 20.75,
+      "volume": 236123663
+    },
+    {
+      "time": "2026-02-02",
+      "open": 21.05,
+      "high": 21.6,
+      "low": 20.8,
+      "close": 21.1,
+      "volume": 192450174
+    },
+    {
+      "time": "2026-02-03",
+      "open": 21.4,
+      "high": 21.4,
+      "low": 20.6,
+      "close": 20.65,
+      "volume": 101402876
+    },
+    {
+      "time": "2026-02-04",
+      "open": 20.65,
+      "high": 21.25,
+      "low": 20.15,
+      "close": 20.95,
+      "volume": 87524982
+    },
+    {
+      "time": "2026-02-05",
+      "open": 21.15,
+      "high": 21.3,
+      "low": 20.8,
+      "close": 20.95,
+      "volume": 45958882
+    },
+    {
+      "time": "2026-02-06",
+      "open": 20.8,
+      "high": 20.8,
+      "low": 20.25,
+      "close": 20.4,
+      "volume": 52135532
+    },
+    {
+      "time": "2026-02-09",
+      "open": 20.6,
+      "high": 20.6,
+      "low": 20.2,
+      "close": 20.35,
+      "volume": 37219118
+    },
+    {
+      "time": "2026-02-10",
+      "open": 20.45,
+      "high": 20.5,
+      "low": 20.25,
+      "close": 20.5,
+      "volume": 22843383
+    },
+    {
+      "time": "2026-02-11",
+      "open": 20.6,
+      "high": 21.1,
+      "low": 20.6,
+      "close": 20.9,
+      "volume": 59286404
+    },
+    {
+      "time": "2026-02-23",
+      "open": 20.75,
+      "high": 20.8,
+      "low": 20.35,
+      "close": 20.45,
+      "volume": 63018582
+    },
+    {
+      "time": "2026-02-24",
+      "open": 20.6,
+      "high": 20.75,
+      "low": 20.45,
+      "close": 20.7,
+      "volume": 59288807
+    },
+    {
+      "time": "2026-02-25",
+      "open": 20.7,
+      "high": 21.25,
+      "low": 20.5,
+      "close": 21.25,
+      "volume": 100937430
+    },
+    {
+      "time": "2026-02-26",
+      "open": 21.25,
+      "high": 21.25,
+      "low": 20.6,
+      "close": 20.75,
+      "volume": 78353095
+    },
+    {
+      "time": "2026-03-02",
+      "open": 20.4,
+      "high": 20.6,
+      "low": 20.15,
+      "close": 20.25,
+      "volume": 60300240
+    },
+    {
+      "time": "2026-03-03",
+      "open": 20.1,
+      "high": 20.4,
+      "low": 19.9,
+      "close": 20.05,
+      "volume": 51448686
+    },
+    {
+      "time": "2026-03-04",
+      "open": 19.8,
+      "high": 19.8,
+      "low": 19.1,
+      "close": 19.2,
+      "volume": 72826233
+    },
+    {
+      "time": "2026-03-05",
+      "open": 19.6,
+      "high": 19.6,
+      "low": 19.2,
+      "close": 19.3,
+      "volume": 42848353
+    },
+    {
+      "time": "2026-03-06",
+      "open": 19.1,
+      "high": 19.9,
+      "low": 19.1,
+      "close": 19.9,
+      "volume": 34595686
+    },
+    {
+      "time": "2026-03-09",
+      "open": 19.15,
+      "high": 19.3,
+      "low": 18.8,
+      "close": 19.15,
+      "volume": 63581338
+    },
+    {
+      "time": "2026-03-10",
+      "open": 19.4,
+      "high": 19.4,
+      "low": 19.15,
+      "close": 19.2,
+      "volume": 27186409
+    },
+    {
+      "time": "2026-03-11",
+      "open": 19.25,
+      "high": 19.65,
+      "low": 19.2,
+      "close": 19.5,
+      "volume": 32462569
+    },
+    {
+      "time": "2026-03-12",
+      "open": 19.3,
+      "high": 19.5,
+      "low": 19.25,
+      "close": 19.35,
+      "volume": 39253278
+    },
+    {
+      "time": "2026-03-13",
+      "open": 19.3,
+      "high": 19.3,
+      "low": 19.05,
+      "close": 19.1,
+      "volume": 37371335
+    },
+    {
+      "time": "2026-03-16",
+      "open": 19.2,
+      "high": 19.35,
+      "low": 19.05,
+      "close": 19.15,
+      "volume": 34663112
+    },
+    {
+      "time": "2026-03-17",
+      "open": 19.25,
+      "high": 19.4,
+      "low": 19.15,
+      "close": 19.25,
+      "volume": 26521663
+    },
+    {
+      "time": "2026-03-18",
+      "open": 19.4,
+      "high": 19.65,
+      "low": 19.3,
+      "close": 19.3,
+      "volume": 38922831
+    },
+    {
+      "time": "2026-03-19",
+      "open": 19.0,
+      "high": 19.05,
+      "low": 18.8,
+      "close": 18.8,
+      "volume": 106377004
+    },
+    {
+      "time": "2026-03-20",
+      "open": 19.1,
+      "high": 19.8,
+      "low": 19.05,
+      "close": 19.45,
+      "volume": 103794732
+    },
+    {
+      "time": "2026-03-23",
+      "open": 19.8,
+      "high": 19.85,
+      "low": 19.05,
+      "close": 19.05,
+      "volume": 79823450
+    },
+    {
+      "time": "2026-03-24",
+      "open": 19.35,
+      "high": 19.45,
+      "low": 19.1,
+      "close": 19.2,
+      "volume": 32030731
+    },
+    {
+      "time": "2026-03-25",
+      "open": 19.5,
+      "high": 19.55,
+      "low": 19.25,
+      "close": 19.3,
+      "volume": 33739623
+    },
+    {
+      "time": "2026-03-26",
+      "open": 19.45,
+      "high": 19.95,
+      "low": 19.35,
+      "close": 19.75,
+      "volume": 72875137
+    },
+    {
+      "time": "2026-03-27",
+      "open": 19.75,
+      "high": 19.85,
+      "low": 19.5,
+      "close": 19.6,
+      "volume": 25813963
+    },
+    {
+      "time": "2026-03-30",
+      "open": 19.25,
+      "high": 19.55,
+      "low": 19.1,
+      "close": 19.15,
+      "volume": 65473196
+    },
+    {
+      "time": "2026-03-31",
+      "open": 19.0,
+      "high": 19.4,
+      "low": 18.85,
+      "close": 18.9,
+      "volume": 72974061
+    },
+    {
+      "time": "2026-04-01",
+      "open": 19.25,
+      "high": 19.5,
+      "low": 19.1,
+      "close": 19.5,
+      "volume": 40566754
+    },
+    {
+      "time": "2026-04-02",
+      "open": 19.6,
+      "high": 19.6,
+      "low": 19.35,
+      "close": 19.5,
+      "volume": 28468476
+    },
+    {
+      "time": "2026-04-07",
+      "open": 19.5,
+      "high": 19.75,
+      "low": 19.4,
+      "close": 19.5,
+      "volume": 31431951
+    },
+    {
+      "time": "2026-04-08",
+      "open": 19.8,
+      "high": 19.95,
+      "low": 19.55,
+      "close": 19.95,
+      "volume": 47760443
+    }
+  ],
+  "data_provenance": {
+    "generated_at": "2026-04-08 15:37:00",
+    "updater_version": "stock_updater_v48_phase1",
+    "price_date": "2026-04-08",
+    "price_days": 75,
+    "financial_quarters": 2,
+    "chip_date": "2026-04-08",
+    "revenue_date": "2026-03-01",
+    "pe_data_points": 841,
+    "pe_is_stale": false,
+    "dividend_source": "TaiwanStockDividend",
+    "dividend_years": 5,
+    "valid_dimensions": 4,
+    "fallback_dimensions": [
+      "市場情緒",
+      "產業結構",
+      "先行指標"
+    ]
+  }
+}

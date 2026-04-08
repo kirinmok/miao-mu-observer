@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIRIN Dashboard - AI 工作台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #0f3460;
+            --accent-green: #00d4aa;
+            --accent-cyan: #00e9ff;
+            --accent-purple: #a370f0;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #2d3561;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 0;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .sidebar.collapsed .sidebar-header {
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 4px;
+            color: var(--text-secondary);
+        }
+
+        .sidebar.collapsed .logo-subtitle {
+            display: none;
+        }
+
+        .nav-section {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            padding: 0 20px 12px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar.collapsed .nav-section-title {
+            display: none;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .sidebar.collapsed .nav-item {
+            padding: 12px;
+            justify-content: center;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(0, 212, 170, 0.1);
+            color: var(--accent-green);
+        }
+
+        .nav-item.active {
+            border-left-color: var(--accent-green);
+            background-color: rgba(0, 212, 170, 0.15);
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .nav-item-text {
+            flex: 1;
+        }
+
+        .sidebar.collapsed .nav-item-text {
+            display: none;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .sidebar.collapsed .sidebar-footer {
+            padding: 12px;
+        }
+
+        .collapse-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 12px;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .collapse-btn:hover {
+            background-color: rgba(0, 212, 170, 0.1);
+            color: var(--accent-green);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== OVERVIEW PAGE ===== */
+        .welcome-section {
+            margin-bottom: 32px;
+        }
+
+        .welcome-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .welcome-name {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 20px rgba(0, 212, 170, 0.2);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .activity-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-feed {
+            space-y: 12px;
+        }
+
+        .activity-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .activity-item:hover {
+            border-color: var(--accent-green);
+            background-color: rgba(0, 212, 170, 0.05);
+        }
+
+        .activity-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== SKILLS PAGE ===== */
+        .skills-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .skill-stat {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+        }
+
+        .skill-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .skill-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .search-bar {
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 12px rgba(0, 212, 170, 0.2);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 24px rgba(0, 233, 255, 0.2);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .skill-icon {
+            font-size: 32px;
+        }
+
+        .skill-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .skill-category {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cat-education { background-color: rgba(0, 212, 170, 0.2); color: #00d4aa; }
+        .cat-document { background-color: rgba(51, 187, 255, 0.2); color: #33bbff; }
+        .cat-research { background-color: rgba(163, 112, 240, 0.2); color: #a370f0; }
+        .cat-automation { background-color: rgba(255, 165, 0, 0.2); color: #ffa500; }
+        .cat-analytics { background-color: rgba(0, 233, 255, 0.2); color: #00e9ff; }
+        .cat-marketing { background-color: rgba(255, 105, 180, 0.2); color: #ff69b4; }
+        .cat-finance { background-color: rgba(255, 215, 0, 0.2); color: #ffd700; }
+        .cat-productivity { background-color: rgba(32, 201, 201, 0.2); color: #20c9c9; }
+
+        .skill-version {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .skill-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: auto;
+        }
+
+        /* ===== TIMELINE PAGE ===== */
+        .timeline-filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: rgba(0, 212, 170, 0.2);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-green), transparent);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item {
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+            box-shadow: 0 0 0 2px var(--accent-green);
+        }
+
+        .timeline-content {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-green);
+            background-color: rgba(0, 212, 170, 0.05);
+        }
+
+        .timeline-emoji {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .timeline-text {
+            flex: 1;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .timeline-cat {
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background-color: rgba(0, 212, 170, 0.2);
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== PROJECTS PAGE ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 24px rgba(0, 233, 255, 0.2);
+        }
+
+        .project-header {
+            margin-bottom: 16px;
+        }
+
+        .project-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background-color: rgba(0, 212, 170, 0.2);
+            color: #00d4aa;
+        }
+
+        .status-completed {
+            background-color: rgba(100, 200, 100, 0.2);
+            color: #64c864;
+        }
+
+        .status-paused {
+            background-color: rgba(200, 150, 100, 0.2);
+            color: #c89664;
+        }
+
+        .progress-container {
+            margin: 16px 0;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .project-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .project-updated {
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            margin-top: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-green);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-item {
+                display: inline-block;
+                width: auto;
+            }
+
+            .sidebar-footer {
+                position: static;
+                padding: 12px;
+            }
+
+            .main {
+                height: calc(100vh - 80px);
+            }
+
+            .header {
+                padding: 16px 20px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-text">KIRIN</div>
+                <div class="logo-subtitle">AI 工作台</div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-item active" data-page="overview">
+                    <span style="font-size: 18px;">📊</span>
+                    <span class="nav-item-text">總覽</span>
+                </div>
+                <div class="nav-item" data-page="skills">
+                    <span style="font-size: 18px;">🌳</span>
+                    <span class="nav-item-text">技能樹</span>
+                </div>
+                <div class="nav-item" data-page="timeline">
+                    <span style="font-size: 18px;">📈</span>
+                    <span class="nav-item-text">進化記錄</span>
+                </div>
+                <div class="nav-item" data-page="projects">
+                    <span style="font-size: 18px;">🎯</span>
+                    <span class="nav-item-text">專案</span>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">個人資料</div>
+                <div style="padding: 0 20px; color: var(--text-secondary); font-size: 12px; line-height: 1.6;">
+                    <div style="margin-bottom: 8px;"><strong>Kirin</strong></div>
+                    <div style="font-size: 11px;">國中老師 + 自媒體創作者</div>
+                    <div style="font-size: 11px; margin-top: 4px;">嘉義市大業實驗中學</div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="collapse-btn" id="collapseBtn">收起菜單</button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+            <header class="header">
+                <h1 class="header-title" id="pageTitle">總覽</h1>
+                <p class="header-subtitle" id="pageSubtitle">歡迎回到你的 AI 工作台</p>
+            </header>
+
+            <div class="content">
+                <!-- OVERVIEW PAGE -->
+                <div class="page active" id="overview">
+                    <div class="welcome-section">
+                        <div class="welcome-text">歡迎回來，</div>
+                        <div class="welcome-name">Kirin</div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">技能總數</div>
+                            <div class="stat-value" id="totalSkills">19</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">技能分類</div>
+                            <div class="stat-value" id="totalCategories">8</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">本週完成任務</div>
+                            <div class="stat-value" id="weeklyTasks">7</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">活躍專案</div>
+                            <div class="stat-value" id="activeProjects">4</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-section">
+                        <h3>📌 最近活動</h3>
+                        <div class="activity-feed" id="activityFeed">
+                            <!-- Generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SKILLS PAGE -->
+                <div class="page" id="skills">
+                    <div class="skills-stats">
+                        <div class="skill-stat">
+                            <div class="skill-stat-value" id="skillTotal">19</div>
+                            <div class="skill-stat-label">技能總數</div>
+                        </div>
+                        <div class="skill-stat">
+                            <div class="skill-stat-value" id="categoryCount">8</div>
+                            <div class="skill-stat-label">技能分類</div>
+                        </div>
+                        <div class="skill-stat">
+                            <div class="skill-stat-value" id="avgSize">3.2</div>
+                            <div class="skill-stat-label">平均規模 (KB)</div>
+                        </div>
+                    </div>
+
+                    <div class="search-bar">
+                        <input type="text" class="search-input" id="skillSearch" placeholder="搜尋技能...">
+                    </div>
+
+                    <div class="skills-grid" id="skillsGrid">
+                        <!-- Generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- TIMELINE PAGE -->
+                <div class="page" id="timeline">
+                    <div class="timeline-filters">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="teaching">教學</button>
+                        <button class="filter-btn" data-filter="creation">創作</button>
+                        <button class="filter-btn" data-filter="research">研究</button>
+                        <button class="filter-btn" data-filter="system">系統</button>
+                    </div>
+
+                    <div class="timeline" id="timeline">
+                        <!-- Generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- PROJECTS PAGE -->
+                <div class="page" id="projects">
+                    <div class="projects-grid" id="projectsGrid">
+                        <!-- Generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                Powered by Claude Cowork | Last updated: 2026-03-15
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // DATA CONFIGURATION - 請在此編輯資料
+        // ========================================
+
+        const userData = {
+            name: "Kirin",
+            school: "嘉義市大業實驗中學",
+            role: "國中老師 (STEAM/實驗教育) + 自媒體創作者",
+        };
+
+        const skillsData = [
+            // Custom Skills
+            { id: 1, name: "drone-steam-curriculum", category: "教育", version: "v1.0.0", icon: "🚁", description: "國中無人機 STEAM 實驗教育全方位課程生成器，含推重比計算機、8 週教案、預算表三大模組" },
+            { id: 2, name: "alphaxiv-paper-lookup", category: "研究工具", version: "v1.0.0", icon: "📚", description: "查詢 arXiv 論文，取得 AI 生成的結構化摘要與分析" },
+            { id: 3, name: "docx", category: "文件處理", version: "v1.0.0", icon: "📄", description: "Word 文件建立、編輯與格式化" },
+            { id: 4, name: "pdf", category: "文件處理", version: "v1.0.0", icon: "📕", description: "PDF 讀取、擷取、合併、分割與表單處理" },
+            { id: 5, name: "pptx", category: "文件處理", version: "v1.0.0", icon: "📊", description: "簡報建立、讀取與編輯" },
+            { id: 6, name: "xlsx", category: "文件處理", version: "v1.0.0", icon: "📈", description: "Excel 試算表建立、公式、圖表與資料分析" },
+            { id: 7, name: "schedule", category: "自動化", version: "v1.0.0", icon: "⏰", description: "建立排程任務，支援定時自動執行" },
+            { id: 8, name: "skill-creator", category: "自動化", version: "v1.0.0", icon: "🛠️", description: "建立新技能、修改既有技能、測試技能效能" },
+
+            // Installed Plugins
+            { id: 9, name: "cowork-plugin-management", category: "自動化", version: "v0.2.2", icon: "🔌", description: "Plugin 管理：建立、客製化、安裝 Cowork 插件" },
+            { id: 10, name: "finance", category: "財務分析", version: "v1.0.0", icon: "💰", description: "月結管理、日記帳、對帳、財報、差異分析、SOX 稽核" },
+            { id: 11, name: "data", category: "資料分析", version: "v1.0.0", icon: "📊", description: "資料探索、視覺化、統計分析、SQL 查詢、互動式儀表板" },
+            { id: 12, name: "productivity", category: "生產力", version: "v1.0.0", icon: "⚡", description: "記憶管理系統 + 任務追蹤（TASKS.md）" },
+            { id: 13, name: "marketing", category: "行銷", version: "v1.0.0", icon: "📢", description: "品牌聲音、行銷活動、競品分析、內容創作、績效報告" },
+            { id: 14, name: "financial-analysis", category: "財務分析", version: "v0.1.0", icon: "💹", description: "DCF 估值、可比公司分析、LBO 模型、競爭分析、簡報審查" },
+            { id: 15, name: "wealth-management", category: "財務分析", version: "v0.1.0", icon: "💼", description: "客戶報告、財務規劃、投資提案、再平衡、稅損收割" },
+            { id: 16, name: "investment-banking", category: "財務分析", version: "v0.2.0", icon: "🏦", description: "CIM、Teaser、買家名單、併購模型、Deal Tracker、Pitch Deck" },
+            { id: 17, name: "private-equity", category: "財務分析", version: "v0.1.0", icon: "📑", description: "Deal Screening、IC Memo、DD Checklist、投後管理、回報分析" },
+            { id: 18, name: "lseg", category: "財務分析", version: "v1.0.0", icon: "📡", description: "債券分析、利率曲線、股票研究、外匯、選擇權、總經監控" },
+            { id: 19, name: "sp-global", category: "財務分析", version: "v1.0.0", icon: "🌐", description: "公司 Tear Sheet、Earnings Preview、Funding Digest" },
+        ];
+
+        const timelineData = [
+            { date: "2026-03-15", emoji: "🎨", description: "建立個人 Dashboard 控制台", category: "系統", filter: "system" },
+            { date: "2026-03-13", emoji: "✏️", description: "無人機課程 W6 教案定稿", category: "教學", filter: "teaching" },
+            { date: "2026-03-12", emoji: "🔬", description: "論文查詢 skill 測試完成", category: "研究", filter: "research" },
+            { date: "2026-03-11", emoji: "⚙️", description: "安裝 financial-services-plugins 套件", category: "系統", filter: "system" },
+            { date: "2026-03-10", emoji: "📝", description: "WordPress 文章發布流程測試", category: "創作", filter: "creation" },
+            { date: "2026-03-08", emoji: "🔌", description: "Cowork plugin 管理系統上線", category: "系統", filter: "system" },
+            { date: "2026-03-05", emoji: "💾", description: "無人機預算表 v2 更新", category: "教學", filter: "teaching" },
+            { date: "2026-03-02", emoji: "📊", description: "投資研究儀表板框架完成", category: "研究", filter: "research" },
+            { date: "2026-02-28", emoji: "🎬", description: "YouTube 短影音剪輯工具流程化", category: "創作", filter: "creation" },
+            { date: "2026-02-25", emoji: "📚", description: "教材資料庫分類整理", category: "教學", filter: "teaching" },
+            { date: "2026-02-20", emoji: "🤖", description: "Skill 生態系統架構設計", category: "系統", filter: "system" },
+            { date: "2026-02-15", emoji: "📖", description: "arXiv 論文自動化分析流程上線", category: "研究", filter: "research" },
+        ];
+
+        const projectsData = [
+            { name: "無人機 STEAM 課程", status: "進行中", progress: 75, description: "大業實驗中學 8 週無人機專題課程，包含基礎理論、實作、預算規劃", updated: "2026-03-14" },
+            { name: "投資研究系統", status: "進行中", progress: 40, description: "建立個人投資分析工作流，整合 LSEG、S&P、財務模型工具", updated: "2026-03-12" },
+            { name: "自媒體內容產線", status: "進行中", progress: 30, description: "WordPress + 社群內容創作流程自動化，包括選題、產製、排程", updated: "2026-03-10" },
+            { name: "Claude 技能生態系", status: "進行中", progress: 60, description: "持續擴充和優化 Skill 組合，建立完整的工作自動化體系", updated: "2026-03-15" },
+        ];
+
+        const categoryColors = {
+            "教育": "cat-education",
+            "文件處理": "cat-document",
+            "研究工具": "cat-research",
+            "自動化": "cat-automation",
+            "資料分析": "cat-analytics",
+            "行銷": "cat-marketing",
+            "財務分析": "cat-finance",
+            "生產力": "cat-productivity",
+        };
+
+        // ========================================
+        // UI RENDERING FUNCTIONS
+        // ========================================
+
+        function renderOverviewPage() {
+            const activityFeed = document.getElementById("activityFeed");
+            activityFeed.innerHTML = timelineData.slice(0, 5).map(item => `
+                <div class="activity-item">
+                    <div class="activity-icon">${item.emoji}</div>
+                    <div class="activity-content">
+                        <div class="activity-text">${item.description}</div>
+                        <div class="activity-time">${item.date}</div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function renderSkillsPage() {
+            const skillsGrid = document.getElementById("skillsGrid");
+            displaySkills(skillsData);
+        }
+
+        function displaySkills(skills) {
+            const skillsGrid = document.getElementById("skillsGrid");
+            skillsGrid.innerHTML = skills.map(skill => `
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon">${skill.icon}</div>
+                        <div>
+                            <div class="skill-name">${skill.name}</div>
+                            <span class="skill-category ${categoryColors[skill.category]}">${skill.category}</span>
+                        </div>
+                    </div>
+                    <div class="skill-version">${skill.version}</div>
+                    <div class="skill-description">${skill.description}</div>
+                </div>
+            `).join("");
+        }
+
+        function renderTimelinePage() {
+            const timeline = document.getElementById("timeline");
+            let currentDate = "";
+            let html = "";
+
+            timelineData.forEach(item => {
+                if (item.date !== currentDate) {
+                    currentDate = item.date;
+                    html += `<div class="timeline-date">${currentDate}</div>`;
+                }
+
+                html += `
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-emoji">${item.emoji}</div>
+                            <div class="timeline-text">
+                                <div class="timeline-desc">${item.description}</div>
+                                <span class="timeline-cat">${item.category}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            timeline.innerHTML = html;
+        }
+
+        function renderProjectsPage() {
+            const projectsGrid = document.getElementById("projectsGrid");
+            projectsGrid.innerHTML = projectsData.map(project => `
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">${project.name}</div>
+                        <span class="project-status status-${project.status === '進行中' ? 'active' : project.status === '已完成' ? 'completed' : 'paused'}">${project.status}</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>進度</span>
+                            <span>${project.progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${project.progress}%"></div>
+                        </div>
+                    </div>
+                    <div class="project-desc">${project.description}</div>
+                    <div class="project-updated">更新於 ${project.updated}</div>
+                </div>
+            `).join("");
+        }
+
+        // ========================================
+        // EVENT LISTENERS
+        // ========================================
+
+        document.querySelectorAll(".nav-item").forEach(item => {
+            item.addEventListener("click", function() {
+                const pageId = this.dataset.page;
+                switchPage(pageId);
+            });
+        });
+
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll(".page").forEach(page => {
+                page.classList.remove("active");
+            });
+
+            // Remove active state from nav items
+            document.querySelectorAll(".nav-item").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add("active");
+
+            // Set active nav item
+            document.querySelector(`.nav-item[data-page="${pageId}"]`).classList.add("active");
+
+            // Update header
+            const headers = {
+                overview: { title: "總覽", subtitle: "歡迎回到你的 AI 工作台" },
+                skills: { title: "技能樹", subtitle: "檢視所有已安裝的技能與插件" },
+                timeline: { title: "進化記錄", subtitle: "追蹤你的成長與探險歷程" },
+                projects: { title: "專案", subtitle: "管理進行中的專案與目標" },
+            };
+
+            if (headers[pageId]) {
+                document.getElementById("pageTitle").textContent = headers[pageId].title;
+                document.getElementById("pageSubtitle").textContent = headers[pageId].subtitle;
+            }
+
+            // Render page-specific content
+            if (pageId === "overview") renderOverviewPage();
+            else if (pageId === "skills") renderSkillsPage();
+            else if (pageId === "timeline") renderTimelinePage();
+            else if (pageId === "projects") renderProjectsPage();
+        }
+
+        // Sidebar collapse
+        document.getElementById("collapseBtn").addEventListener("click", function() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("collapsed");
+            this.textContent = sidebar.classList.contains("collapsed") ? "展開菜單" : "收起菜單";
+        });
+
+        // Skill search
+        document.getElementById("skillSearch").addEventListener("input", function(e) {
+            const query = e.target.value.toLowerCase();
+            const filtered = skillsData.filter(skill => 
+                skill.name.toLowerCase().includes(query) || 
+                skill.description.toLowerCase().includes(query) ||
+                skill.category.toLowerCase().includes(query)
+            );
+            displaySkills(filtered);
+        });
+
+        // Timeline filters
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                
+                const filter = this.dataset.filter;
+                const timeline = document.getElementById("timeline");
+                
+                if (filter === "all") {
+                    renderTimelinePage();
+                } else {
+                    const filtered = timelineData.filter(item => item.filter === filter);
+                    let currentDate = "";
+                    let html = "";
+
+                    filtered.forEach(item => {
+                        if (item.date !== currentDate) {
+                            currentDate = item.date;
+                            html += `<div class="timeline-date">${currentDate}</div>`;
+                        }
+
+                        html += `
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <div class="timeline-emoji">${item.emoji}</div>
+                                    <div class="timeline-text">
+                                        <div class="timeline-desc">${item.description}</div>
+                                        <span class="timeline-cat">${item.category}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    timeline.innerHTML = html;
+                }
+            });
+        });
+
+        // Initial render
+        renderOverviewPage();
+    </script>
+</body>
+</html>

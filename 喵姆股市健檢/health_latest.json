@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-03-31 23:35:32",
+  "health_pct": 61,
+  "grade": "C",
+  "ok": 11,
+  "fail": 7,
+  "warn": 0,
+  "critical": [],
+  "sections": [
+    {
+      "name": "A. 資料新鮮度",
+      "items": [
+        {
+          "item": "daily_analysis.json",
+          "status": true,
+          "detail": "最後產生：2026-03-31 15:40:49（0 天前），33 檔股票"
+        },
+        {
+          "item": "market_history.json",
+          "status": false,
+          "detail": "最後更新：unknown，加權 34114.19（4.1%），健康分數 ?，共 6 筆歷史"
+        },
+        {
+          "item": "data/ 資料夾（36 檔）",
+          "status": true,
+          "detail": "最新：2382.json（0 天前），最舊：watchlist.json"
+        }
+      ]
+    },
+    {
+      "name": "B. 股票資料品質",
+      "items": [
+        {
+          "item": "價格歷史（33 檔）",
+          "status": true,
+          "detail": "無歷史：0 檔，歷史不足40根：0 檔"
+        },
+        {
+          "item": "評分有效性",
+          "status": true,
+          "detail": "0/33 檔評分無效"
+        },
+        {
+          "item": "AI 判定覆蓋率",
+          "status": false,
+          "detail": "0/33 檔有 AI 判定"
+        },
+        {
+          "item": "角色分析覆蓋率",
+          "status": true,
+          "detail": "33/33 檔有角色分析"
+        }
+      ]
+    },
+    {
+      "name": "C. 錯誤日誌",
+      "items": [
+        {
+          "item": "cron 最後成功",
+          "status": true,
+          "detail": "  \"success\": true,"
+        },
+        {
+          "item": "日誌錯誤（10 個檔案）",
+          "status": false,
+          "detail": "\n    - `run_day.log`：Error×1\n    - `run_reanalysis.log`：Error×13, monthly limit×1\n    - `run_rebuild.log`：Error×6, Traceback×6, No such file×6\n    - `output.log`：Error×7\n    - `run_night.log`：No such file×15\n    - `server.log`：Error×7\n    - `cron.log`：Error×1\n    - `ai_prediction.log`：Error×4"
+        }
+      ]
+    },
+    {
+      "name": "D. Git 狀態",
+      "items": [
+        {
+          "item": "未提交變更",
+          "status": false,
+          "detail": "72 個檔案有變更：.DS_Store, DEVLOG.md, daily_analysis.json, data/0050.json, data/0056.json"
+        },
+        {
+          "item": "未推送 commits",
+          "status": false,
+          "detail": "1 個 commit 未推送：e633742 Harden repo publishing and stop tracking ."
+        },
+        {
+          "item": "最後 commit",
+          "status": true,
+          "detail": "e633742 Harden repo publishing and stop tracking .env (4 days ago)"
+        }
+      ]
+    },
+    {
+      "name": "E. 前端完整性",
+      "items": [
+        {
+          "item": "index.html 大小",
+          "status": true,
+          "detail": "553 KB"
+        },
+        {
+          "item": "關鍵功能（7 項）",
+          "status": false,
+          "detail": "缺少：Kelly 公式(renderKellySection)"
+        },
+        {
+          "item": "NaN 防護",
+          "status": true,
+          "detail": "找到 206 處 NaN 防護"
+        }
+      ]
+    },
+    {
+      "name": "F. 開發記錄",
+      "items": [
+        {
+          "item": "DEVLOG.md",
+          "status": false,
+          "detail": "1 筆記錄，最後修改 11 天前"
+        }
+      ]
+    },
+    {
+      "name": "G. 環境設定",
+      "items": [
+        {
+          "item": ".env LINE Token",
+          "status": true,
+          "detail": "已設定"
+        },
+        {
+          "item": "Python3",
+          "status": true,
+          "detail": "Python 3.10.12"
+        }
+      ]
+    }
+  ]
+}

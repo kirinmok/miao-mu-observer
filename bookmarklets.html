@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喵姆 AI 接力站 — 書籤工具列</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#0f172a; color:#e2e8f0; min-height:100vh; padding:40px 20px; }
+  .container { max-width:680px; margin:0 auto; }
+  h1 { font-size:24px; text-align:center; margin-bottom:8px; }
+  .subtitle { text-align:center; color:#94a3b8; font-size:13px; margin-bottom:32px; }
+  .card { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:20px; margin-bottom:16px; }
+  .card h3 { font-size:15px; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .card p { font-size:12px; color:#94a3b8; line-height:1.6; margin-bottom:12px; }
+  .bookmarklet-link { display:inline-block; padding:10px 24px; border-radius:8px; text-decoration:none; font-size:13px; font-weight:700; cursor:grab; transition:transform 0.2s; }
+  .bookmarklet-link:hover { transform:scale(1.05); }
+  .ppx { background:#6366f1; color:white; }
+  .gemini { background:#3b82f6; color:white; }
+  .claude { background:#a78bfa; color:white; }
+  .gpt { background:#10b981; color:white; }
+  .how { background:#1e293b; border:1px solid #475569; border-radius:12px; padding:20px; margin-top:24px; }
+  .how h3 { font-size:14px; margin-bottom:12px; }
+  .how ol { padding-left:20px; font-size:12px; color:#94a3b8; line-height:2; }
+  .how ol b { color:#e2e8f0; }
+  .chain { display:flex; align-items:center; justify-content:center; gap:8px; margin:20px 0; flex-wrap:wrap; }
+  .chain-node { padding:8px 16px; border-radius:8px; font-size:12px; font-weight:700; }
+  .chain-arrow { color:#475569; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🔗 喵姆 AI 接力站 — 書籤工具</h1>
+  <p class="subtitle">將下方按鈕拖曳到書籤列，即可一鍵擷取各 AI 回覆</p>
+
+  <div class="chain">
+    <span class="chain-node ppx">① Perplexity</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-node gemini">② Gemini</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-node claude">③ Claude</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-node gpt">④ ChatGPT</span>
+    <span class="chain-arrow">→</span>
+    <span style="color:#22c55e;font-weight:700;font-size:13px">🏁 喵姆</span>
+  </div>
+
+  <div class="card">
+    <h3>🔍 Perplexity 擷取器</h3>
+    <p>在 Perplexity 搜尋結果頁面使用。擷取 AI 回答的完整文字，自動複製到剪貼簿。</p>
+    <a class="bookmarklet-link ppx" href="javascript:void(function(){try{var a=document.querySelectorAll('[class*=prose],.markdown-body,article,.answer-text,[data-testid*=answer]');var t='';for(var i=0;i<a.length;i++){var txt=a[i].innerText.trim();if(txt.length>100){t=txt;break;}}if(!t){var all=document.querySelectorAll('div,section');for(var j=0;j<all.length;j++){var el=all[j];if(el.innerText.length>200&&el.children.length>2){t=el.innerText.trim();break;}}}if(t){navigator.clipboard.writeText(t);alert('✅ Perplexity 結果已複製（'+t.length+'字）\n\n回到喵姆貼上即可！');}else{alert('❌ 找不到回覆內容，請確認頁面已載入完成');}}catch(e){alert('❌ 擷取失敗：'+e.message);}})();">📋 擷取 PPX</a>
+  </div>
+
+  <div class="card">
+    <h3>💎 Gemini 擷取器</h3>
+    <p>在 Gemini 對話頁面使用。擷取最後一則 AI 回覆，自動複製到剪貼簿。</p>
+    <a class="bookmarklet-link gemini" href="javascript:void(function(){try{var msgs=document.querySelectorAll('.model-response-text,.markdown-main-panel,[class*=response-container],[data-content-type=response],.message-content');var t='';for(var i=msgs.length-1;i>=0;i--){var txt=msgs[i].innerText.trim();if(txt.length>50){t=txt;break;}}if(!t){var all=document.querySelectorAll('[class*=message],[class*=turn]');for(var j=all.length-1;j>=0;j--){var el=all[j];if(el.innerText.length>100){t=el.innerText.trim();break;}}}if(t){navigator.clipboard.writeText(t);alert('✅ Gemini 回覆已複製（'+t.length+'字）\n\n回到喵姆貼上即可！');}else{alert('❌ 找不到回覆，請確認 Gemini 已產生回答');}}catch(e){alert('❌ 擷取失敗：'+e.message);}})();">📋 擷取 Gemini</a>
+  </div>
+
+  <div class="card">
+    <h3>🧠 Claude 擷取器</h3>
+    <p>在 Claude.ai 對話頁面使用。擷取最後一則 Claude 回覆，自動複製到剪貼簿。</p>
+    <a class="bookmarklet-link claude" href="javascript:void(function(){try{var msgs=document.querySelectorAll('[class*=assistant],[class*=claude],[data-is-streaming],.font-claude-message,[class*=prose]');var t='';for(var i=msgs.length-1;i>=0;i--){var txt=msgs[i].innerText.trim();if(txt.length>50){t=txt;break;}}if(!t){var divs=document.querySelectorAll('div[class]');for(var j=divs.length-1;j>=0;j--){var c=divs[j].className||'';if((c.indexOf('message')>=0||c.indexOf('response')>=0)&&divs[j].innerText.length>100){t=divs[j].innerText.trim();break;}}}if(t){navigator.clipboard.writeText(t);alert('✅ Claude 回覆已複製（'+t.length+'字）\n\n回到喵姆貼上即可！');}else{alert('❌ 找不到回覆，請確認 Claude 已回答完畢');}}catch(e){alert('❌ 擷取失敗：'+e.message);}})();">📋 擷取 Claude</a>
+  </div>
+
+  <div class="card">
+    <h3>🤖 ChatGPT 擷取器</h3>
+    <p>在 ChatGPT 對話頁面使用。擷取最後一則 GPT 回覆，自動複製到剪貼簿。</p>
+    <a class="bookmarklet-link gpt" href="javascript:void(function(){try{var msgs=document.querySelectorAll('[data-message-author-role=assistant] .markdown,.agent-turn .markdown,[class*=markdown]');var t='';for(var i=msgs.length-1;i>=0;i--){var txt=msgs[i].innerText.trim();if(txt.length>50){t=txt;break;}}if(!t){var articles=document.querySelectorAll('article,div[data-testid*=conversation]');for(var j=articles.length-1;j>=0;j--){if(articles[j].innerText.length>100){t=articles[j].innerText.trim();break;}}}if(t){navigator.clipboard.writeText(t);alert('✅ ChatGPT 回覆已複製（'+t.length+'字）\n\n回到喵姆貼上即可！');}else{alert('❌ 找不到回覆，請確認 ChatGPT 已回答完畢');}}catch(e){alert('❌ 擷取失敗：'+e.message);}})();">📋 擷取 GPT</a>
+  </div>
+
+  <div class="how">
+    <h3>📖 使用方式</h3>
+    <ol>
+      <li><b>拖曳</b>上方彩色按鈕到瀏覽器書籤列</li>
+      <li>在<b>喵姆</b>的 AI 接力站中，點擊「複製提問」並開啟對應 AI</li>
+      <li>貼上提問，等 AI 回答完畢</li>
+      <li>點擊書籤列上的<b>擷取按鈕</b>，AI 回覆自動複製</li>
+      <li>回到<b>喵姆</b>，貼入接力站的文字框，點「確認」</li>
+      <li>進入下一站，重複流程直到完成四站接力</li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>

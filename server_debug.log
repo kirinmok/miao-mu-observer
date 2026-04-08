@@ -1,0 +1,25 @@
+🚀 啟動 Webhook 監聽伺服器 (Port 5000)...
+ * Serving Flask app 'main'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.45.250.132:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 497-807-565
+ * Detected change in '/Users/kk/stock_analyzer/main.py', reloading
+🚀 啟動 Webhook 監聽伺服器 (Port 5000)...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 497-807-565
+ * Detected change in '/Users/kk/stock_analyzer/main.py', reloading
+🚀 啟動 Webhook 監聽伺服器 (Port 5000)...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 497-807-565
+/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

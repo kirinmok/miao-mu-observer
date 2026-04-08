@@ -2487,19 +2487,24 @@
   }
   window.checkSitePw=function(){
     var pw=document.getElementById('pw-input').value;
-    if(pw==='2026'){
-      sessionStorage.setItem('miao_auth','1');
-      var o=document.getElementById('pw-overlay');
-      o.style.opacity='0';o.style.transition='opacity 0.3s';
-      setTimeout(function(){o.style.display='none';},300);
-    } else {
-      var err=document.getElementById('pw-err');
-      var input=document.getElementById('pw-input');
-      err.style.display='block';input.value='';
-      input.style.borderColor='#f87171';
-      setTimeout(function(){input.style.borderColor='#334155';},1500);
-      input.focus();
-    }
+    if(!pw){return;}
+    var buf=new TextEncoder().encode(pw);
+    crypto.subtle.digest('SHA-256',buf).then(function(h){
+      var hash=Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+      if(hash==='158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab'){
+        sessionStorage.setItem('miao_auth','1');
+        var o=document.getElementById('pw-overlay');
+        o.style.opacity='0';o.style.transition='opacity 0.3s';
+        setTimeout(function(){o.style.display='none';},300);
+      } else {
+        var err=document.getElementById('pw-err');
+        var input=document.getElementById('pw-input');
+        err.style.display='block';input.value='';
+        input.style.borderColor='#f87171';
+        setTimeout(function(){input.style.borderColor='#334155';},1500);
+        input.focus();
+      }
+    });
   };
 })();
 </script>
@@ -8100,14 +8105,20 @@
       var finmindToken = '';
       try { finmindToken = localStorage.getItem('mm_finmind_token') || ''; } catch(e){}
 
-      var priceUrl = 'https://api.finmind.tw/api/v4/data?dataset=TaiwanStockPrice&data_id=' + code +
-        '&start_date=' + startDate + '&end_date=' + endDate +
-        (finmindToken ? '&token=' + finmindToken : '');
-      var infoUrl = 'https://api.finmind.tw/api/v4/data?dataset=TaiwanStockInfo';
+      var priceUrl = '/api/proxy/finmind';
+      var infoUrl = '/api/proxy/finmind';
 
       Promise.all([
-        fetch(priceUrl).then(function(r) { return r.json(); }),
-        fetch(infoUrl).then(function(r) { return r.json(); })
+        fetch(priceUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: finmindToken, dataset: 'TaiwanStockPrice', data_id: code, start_date: startDate, end_date: endDate })
+        }).then(function(r) { return r.json(); }),
+        fetch(infoUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: finmindToken, dataset: 'TaiwanStockInfo' })
+        }).then(function(r) { return r.json(); })
       ]).then(function(results) {
         var priceData = (results[0].data || []);
         var infoData = (results[1].data || []);
@@ -8193,12 +8204,14 @@
         '"summary_human":"一句話結論",' +
         '"role_outputs":[{"role_name":"角色名","score":7,"signal":"bullish","plain_text":"一句話分析","key_finding":"關鍵發現","mekak":"風險提醒"}]}';
 
-      var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey;
+      var url = '/api/proxy/gemini';
 
       fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          key: apiKey,
+          model: 'gemini-2.0-flash',
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { temperature: 0.3, maxOutputTokens: 2048, responseMimeType: 'application/json' }
         })
@@ -8609,7 +8622,7 @@
     // ═══════════ ADMIN PANEL ═══════════
     var adminUnlocked = false;
     var lastAnalysis = null; // 記住最近一次分析結果，登入後台回來時用
-    var ADMIN_HASH = '40c9a95e1b0e58d8e468d888bfe1d51b3ee8c2992bb2e1df644c874e30cd4977'; // sha256 of 'AIMYON'
+    var ADMIN_HASH = '40c9a95e1b0e58d8e468d888bfe1d51b3ee8c2992bb2e1df644c874e30cd4977';
     function sha256(str) {
       var buf = new TextEncoder().encode(str);
       return crypto.subtle.digest('SHA-256', buf).then(function (h) {
@@ -9042,10 +9055,11 @@
       try {
         var resp, data, text;
         if (engine === 'grok') {
-          resp = await fetch('https://api.x.ai/v1/chat/completions', {
+          resp = await fetch('/api/proxy/grok', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + grokKey },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+              key: grokKey,
               model: 'grok-4-1-fast',
               messages: [
                 { role: 'system', content: '你是一位專業台股分析師。只回傳 JSON，不要其他文字。' },
@@ -9062,11 +9076,13 @@
           text = data.choices[0].message.content;
         } else {
           // Gemini Flash（免費）
-          var geminiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + geminiKey;
+          var geminiUrl = '/api/proxy/gemini';
           resp = await fetch(geminiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+              key: geminiKey,
+              model: 'gemini-2.0-flash',
               contents: [{ parts: [{ text: '你是一位專業台股分析師。只回傳 JSON，不要其他文字。\n\n' + prompt }] }],
               generationConfig: { temperature: 0.3, maxOutputTokens: 2048, responseMimeType: 'application/json' }
             })
@@ -9232,10 +9248,11 @@
       try {
         var data = null;
         if (engine === 'grok') {
-          var resp = await fetch('https://api.x.ai/v1/chat/completions', {
+          var resp = await fetch('/api/proxy/grok', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + grokKey },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+              key: grokKey,
               model: 'grok-4-1-fast',
               messages: [
                 { role: 'system', content: '你是專業台股分析師，回覆只用 JSON，不加其他文字。' },
@@ -9249,10 +9266,12 @@
           txt = txt.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
           data = JSON.parse(txt);
         } else {
-          var resp2 = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + geminiKey, {
+          var resp2 = await fetch('/api/proxy/gemini', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+              key: geminiKey,
+              model: 'gemini-2.0-flash',
               contents: [{ parts: [{ text: prompt }] }],
               generationConfig: { temperature: 0.3 }
             })
@@ -10147,12 +10166,16 @@
         function tryModel() {
           var model = models[modelIdx];
           rawTA.value += '嘗試模型: ' + model + '…\n';
-          var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + apiKey;
+          var url = '/api/proxy/gemini';
+
+          var payloadWithKey = Object.assign({}, payload);
+          payloadWithKey.key = apiKey;
+          payloadWithKey.model = model;
 
           fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payloadWithKey)
           }).then(function (res) {
             rawTA.value += 'HTTP 狀態: ' + res.status + '\n';
             return res.json();

@@ -63,8 +63,8 @@ console.log('\n🔄 喵姆版本同步 → V' + V + '\n');
 updateFile('index.html', [
   {
     desc: '登入畫面標題',
-    from: /喵姆看盤 [Vv]\d+/g,
-    to: '喵姆看盤 V' + V
+    from: /喵姆 [Vv]\d+/g,
+    to: '喵姆 V' + V
   },
   {
     desc: 'Topbar Logo 版本',
@@ -91,8 +91,8 @@ updateFile('sw.js', [
 updateFile('CLAUDE.md', [
   {
     desc: '專案記憶檔標題',
-    from: /喵姆看盤 [Vv]\d+ — 專案記憶檔/,
-    to: '喵姆看盤 V' + V + ' — 專案記憶檔'
+    from: /喵姆 [Vv]\d+ — 專案記憶檔/,
+    to: '喵姆 V' + V + ' — 專案記憶檔'
   },
   {
     desc: '版本欄位',

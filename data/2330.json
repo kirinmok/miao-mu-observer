@@ -3,11 +3,11 @@
   "名稱": "台積電",
   "收盤價": 1950.0,
   "漲跌幅": 4.84,
-  "評分": 7.2,
+  "評分": 6.0,
   "建議": "訊號偏多",
   "建議類別": "buy",
-  "詳細理由": "可以考慮買進（分析結果很一致）。最強面向「籌碼結構」8.0/10，需注意「市場情緒」5.0/10。惡魔代言人評估：如果「籌碼結構」的正面信號是假的，你還會買嗎？",
-  "白話摘要": "可以考慮買進（分析結果很一致）。最強面向「籌碼結構」8.0/10，需注意「市場情緒」5.0/10。惡魔代言人評估：如果「籌碼結構」的正面信號是假的，你還會買嗎？",
+  "詳細理由": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」8.0/10，需注意「量能結構」2.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿",
+  "白話摘要": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」8.0/10，需注意「量能結構」2.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿",
   "成交量狀態": "",
   "停損參考": 1809.58,
   "目標價": 2242.5,
@@ -33,15 +33,15 @@
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-09 07:23",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:37",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
     "final_direction": "buy",
-    "confidence": "HIGH",
-    "summary_human": "可以考慮買進（分析結果很一致）。最強面向「籌碼結構」8.0/10，需注意「市場情緒」5.0/10。惡魔代言人評估：如果「籌碼結構」的正面信號是假的，你還會買嗎？",
-    "summary_professional": "可以考慮買進（分析結果很一致）。最強面向「籌碼結構」8.0/10，需注意「市場情緒」5.0/10。惡魔代言人評估：如果「籌碼結構」的正面信號是假的，你還會買嗎？",
-    "integration_reason": "現金流比 4.50｜AR超額 -14%｜業外佔比 0%",
+    "confidence": "MEDIUM",
+    "summary_human": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」8.0/10，需注意「量能結構」2.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿",
+    "summary_professional": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」8.0/10，需注意「量能結構」2.5/10。惡魔代言人評估：過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿",
+    "integration_reason": "OBV down｜量比 1.4x｜量價背離, 脆弱度 6/10｜1 個質疑",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -99,6 +99,26 @@
         "confidence": 75.0
       },
       {
+        "role_name": "量能結構",
+        "score": 2.5,
+        "signal": "bearish",
+        "plain_text": "OBV 下降趨勢，資金流出。量價背離！價格與資金流向矛盾",
+        "key_finding": "OBV down｜量比 1.4x｜量價背離",
+        "mekak": "價格走勢與資金流向不同步，這通常是趨勢即將反轉的前兆",
+        "raw_data": {
+          "obv_direction": "down",
+          "obv_slope": -21.42,
+          "price_vol_agree": false,
+          "vol_ratio": 1.36,
+          "vol_trend": "normal",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "none"
+        },
+        "is_fallback": false,
+        "confidence": 25.0
+      },
+      {
         "role_name": "市場情緒",
         "score": 5.0,
         "signal": "neutral",
@@ -114,19 +134,19 @@
       },
       {
         "role_name": "惡魔代言人",
-        "score": 6.0,
+        "score": 4.5,
         "signal": "neutral",
-        "plain_text": "如果「籌碼結構」的正面信號是假的，你還會買嗎？",
-        "key_finding": "脆弱度 5/10｜1 個質疑",
+        "plain_text": "過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿",
+        "key_finding": "脆弱度 6/10｜1 個質疑",
         "mekak": "無額外盲點",
         "raw_data": {
           "challenges": [
-            "如果「籌碼結構」的正面信號是假的，你還會買嗎？"
+            "過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿"
           ],
-          "vulnerability": 5.0
+          "vulnerability": 6.5
         },
         "is_fallback": false,
-        "confidence": 60.0
+        "confidence": 45.0
       },
       {
         "role_name": "產業結構",
@@ -160,14 +180,15 @@
       }
     ]
   },
-  "action_hint": "可積極佈局｜籌碼結構強勢，但估值偏貴｜停損守 1810",
+  "action_hint": "可小量試單｜訊號偏多但量能結構稍弱，但估值偏貴｜停損 1810",
   "triggers": [
-    "現金流比 4.50｜AR超額 -14%｜業外佔比 0%"
+    "OBV down｜量比 1.4x｜量價背離",
+    "脆弱度 6/10｜1 個質疑"
   ],
   "invalidation": "若股價跌破 1809.58，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
-  "devil_summary": "如果「籌碼結構」的正面信號是假的，你還會買嗎？",
-  "mekak_insight": "趨勢強度 強，關注 1809.58 支撐",
+  "devil_summary": "過度依賴「籌碼結構」的正面信號，而「量能結構」嚴重拖後腿",
+  "mekak_insight": "價格走勢與資金流向不同步，這通常是趨勢即將反轉的前兆",
   "price_history": [
     {
       "time": "2025-12-31",
@@ -1013,7 +1034,7 @@
     }
   ],
   "data_provenance": {
-    "generated_at": "2026-04-09 07:23:22",
+    "generated_at": "2026-04-09 08:37:14",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
     "price_days": 74,
@@ -1024,7 +1045,7 @@
     "pe_is_stale": false,
     "dividend_source": "TaiwanStockDividend",
     "dividend_years": 6,
-    "valid_dimensions": 4,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

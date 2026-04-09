@@ -3,43 +3,45 @@
   "名稱": "國泰金",
   "收盤價": 73.8,
   "漲跌幅": 2.64,
-  "評分": 5.6,
-  "建議": "觀望",
+  "評分": 5.3,
+  "建議": "訊號中性",
   "建議類別": "wait",
-  "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-  "白話摘要": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
+  "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」2.5/10。惡魔代言人評估：如果「量能結構」的負面信號只是暫時性的呢？",
+  "白話摘要": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」2.5/10。惡魔代言人評估：如果「量能結構」的負面信號只是暫時性的呢？",
   "成交量狀態": "",
-  "停損參考": 74.65,
-  "目標價": 73.64,
-  "風險報酬比": 1.0,
-  "本益比": 10.9,
+  "停損參考": 67.9,
+  "目標價": 84.87,
+  "風險報酬比": 1.88,
+  "本益比": 11.2,
   "本益比_is_stale": false,
-  "股價淨值比": 1.26,
+  "股價淨值比": 1.29,
   "殖利率": 4.74,
   "估值狀態": "✅估值合理",
-  "投信動向": "投信5日買超14,985,741張",
-  "外資動向": "外資5日賣超7,545,578張",
+  "投信動向": "投信5日買超14,886,230張",
+  "外資動向": "外資5日賣超3,785,066張",
+  "外資買賣超": -3785066,
+  "投信買賣超": 14886230,
   "營收表現": "營收季減15%（小幅衰退）",
   "monthly_revenue_growth": 0,
   "monthly_revenue_mom": 0.5,
   "consecutive_growth_months": 0,
-  "pe_percentile_5y": 0.49,
+  "pe_percentile_5y": 0.5,
   "pe_median_5y": 11.2,
   "pe_range_5y": "5.5~75.0",
-  "分析日期": "2026-04-08",
+  "分析日期": "2026-04-09",
   "is_stale": false,
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-08 15:37",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:38",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
     "final_direction": "wait",
     "confidence": "LOW",
-    "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-    "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-    "integration_reason": "外資-7545578張｜融資0張｜價+4.8%",
+    "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」2.5/10。惡魔代言人評估：如果「量能結構」的負面信號只是暫時性的呢？",
+    "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」2.5/10。惡魔代言人評估：如果「量能結構」的負面信號只是暫時性的呢？",
+    "integration_reason": "外資-3785066張｜融資0張｜價+4.8%, OBV down｜量比 1.3x｜量價背離",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -63,15 +65,17 @@
         "score": 4.0,
         "signal": "neutral",
         "plain_text": "逆勢上漲，觀察持續性",
-        "key_finding": "外資-7545578張｜融資0張｜價+4.8%",
-        "mekak": "外資淨買力密度 31.7%，堅定",
+        "key_finding": "外資-3785066張｜融資0張｜價+4.8%",
+        "mekak": "外資淨買力密度 15.9%，堅定",
         "raw_data": {
-          "density": 31.7,
+          "density": 15.9,
           "resonance": [
             "sell",
             "decrease",
             "up"
           ],
+          "foreign_net": -3785066,
+          "trust_net": 14886230,
           "major_holder_change": 0,
           "insider_net_sell": 0
         },
@@ -80,7 +84,7 @@
       },
       {
         "role_name": "技術面診斷",
-        "score": 5.0,
+        "score": 6.5,
         "signal": "neutral",
         "plain_text": "跌破季線",
         "key_finding": "RSI 53｜MACD 多｜空頭排列",
@@ -89,10 +93,30 @@
           "rsi": 53.33,
           "support": 74.65,
           "resistance": 73.64,
-          "divergences": 0
+          "divergences": 1
         },
         "is_fallback": false,
-        "confidence": 50.0
+        "confidence": 65.0
+      },
+      {
+        "role_name": "量能結構",
+        "score": 2.5,
+        "signal": "bearish",
+        "plain_text": "OBV 下降趨勢，資金流出。量價背離！價格與資金流向矛盾",
+        "key_finding": "OBV down｜量比 1.3x｜量價背離",
+        "mekak": "價格走勢與資金流向不同步，這通常是趨勢即將反轉的前兆",
+        "raw_data": {
+          "obv_direction": "down",
+          "obv_slope": -1.28,
+          "price_vol_agree": false,
+          "vol_ratio": 1.27,
+          "vol_trend": "normal",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "none"
+        },
+        "is_fallback": false,
+        "confidence": 25.0
       },
       {
         "role_name": "市場情緒",
@@ -112,12 +136,12 @@
         "role_name": "惡魔代言人",
         "score": 6.0,
         "signal": "neutral",
-        "plain_text": "如果「籌碼結構」的負面信號只是暫時性的呢？",
+        "plain_text": "如果「量能結構」的負面信號只是暫時性的呢？",
         "key_finding": "脆弱度 5/10｜1 個質疑",
         "mekak": "無額外盲點",
         "raw_data": {
           "challenges": [
-            "如果「籌碼結構」的負面信號只是暫時性的呢？"
+            "如果「量能結構」的負面信號只是暫時性的呢？"
           ],
           "vulnerability": 5.0
         },
@@ -156,13 +180,15 @@
       }
     ]
   },
+  "action_hint": "先觀望｜外資在賣｜目前沒有明確的進出場理由",
   "triggers": [
-    "外資-7545578張｜融資0張｜價+4.8%"
+    "外資-3785066張｜融資0張｜價+4.8%",
+    "OBV down｜量比 1.3x｜量價背離"
   ],
   "invalidation": "若股價跌破 74.65，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
-  "devil_summary": "如果「籌碼結構」的負面信號只是暫時性的呢？",
-  "mekak_insight": "外資淨買力密度 31.7%，堅定",
+  "devil_summary": "如果「量能結構」的負面信號只是暫時性的呢？",
+  "mekak_insight": "價格走勢與資金流向不同步，這通常是趨勢即將反轉的前兆",
   "price_history": [
     {
       "time": "2025-12-31",
@@ -645,19 +671,20 @@
       "volume": 28126441
     }
   ],
+  "foreign_history": [],
   "data_provenance": {
-    "generated_at": "2026-04-08 15:37:36",
+    "generated_at": "2026-04-09 08:38:51",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
-    "price_days": 75,
+    "price_days": 74,
     "financial_quarters": 2,
-    "chip_date": "2026-04-08",
+    "chip_date": "2026-04-09",
     "revenue_date": "2026-03-01",
     "pe_data_points": 1214,
     "pe_is_stale": false,
     "dividend_source": "TaiwanStockDividend",
     "dividend_years": 5,
-    "valid_dimensions": 4,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

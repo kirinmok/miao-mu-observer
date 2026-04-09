@@ -3,7 +3,7 @@
   "名稱": "南亞",
   "收盤價": 85.1,
   "漲跌幅": 5.71,
-  "評分": 6.1,
+  "評分": 6.2,
   "建議": "訊號中性",
   "建議類別": "wait",
   "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」5.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
@@ -33,15 +33,15 @@
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-09 07:23",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:37",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
     "final_direction": "wait",
     "confidence": "LOW",
     "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」5.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
     "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」5.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-    "integration_reason": "現金流比 1.63｜AR超額 +8%｜業外佔比 0%",
+    "integration_reason": "OBV flat｜量比 1.2x｜量價一致",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -97,6 +97,26 @@
         },
         "is_fallback": false,
         "confidence": 60.0
+      },
+      {
+        "role_name": "量能結構",
+        "score": 6.5,
+        "signal": "neutral",
+        "plain_text": "量價底背離（賣壓衰竭）",
+        "key_finding": "OBV flat｜量比 1.2x｜量價一致",
+        "mekak": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
+        "raw_data": {
+          "obv_direction": "flat",
+          "obv_slope": -0.37,
+          "price_vol_agree": true,
+          "vol_ratio": 1.22,
+          "vol_trend": "normal",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "bull_div"
+        },
+        "is_fallback": false,
+        "confidence": 65.0
       },
       {
         "role_name": "市場情緒",
@@ -162,12 +182,12 @@
   },
   "action_hint": "先觀望｜外資在賣｜營收衰退中｜估值偏貴｜目前沒有明確的進出場理由",
   "triggers": [
-    "現金流比 1.63｜AR超額 +8%｜業外佔比 0%"
+    "OBV flat｜量比 1.2x｜量價一致"
   ],
   "invalidation": "若股價跌破 76.39，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
   "devil_summary": "如果「籌碼結構」的負面信號只是暫時性的呢？",
-  "mekak_insight": "外資淨買力密度 5.3%，普通",
+  "mekak_insight": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
   "price_history": [
     {
       "time": "2025-12-31",
@@ -1013,7 +1033,7 @@
     }
   ],
   "data_provenance": {
-    "generated_at": "2026-04-09 07:23:38",
+    "generated_at": "2026-04-09 08:37:53",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
     "price_days": 74,
@@ -1024,7 +1044,7 @@
     "pe_is_stale": false,
     "dividend_source": "TaiwanStockDividend",
     "dividend_years": 5,
-    "valid_dimensions": 4,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

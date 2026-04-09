@@ -3,43 +3,45 @@
   "名稱": "技嘉",
   "收盤價": 244.5,
   "漲跌幅": 9.89,
-  "評分": 5.6,
-  "建議": "觀望",
-  "建議類別": "wait",
-  "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-  "白話摘要": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
+  "評分": 7.1,
+  "建議": "訊號偏多",
+  "建議類別": "buy",
+  "詳細理由": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+  "白話摘要": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
   "成交量狀態": "",
   "停損參考": 234.96,
   "目標價": 251.86,
   "風險報酬比": 0.77,
-  "本益比": 12.2,
-  "本益比_is_stale": false,
-  "股價淨值比": 2.52,
-  "殖利率": 4.09,
-  "估值狀態": "✅估值合理",
-  "投信動向": "投信5日買超28,010張",
-  "外資動向": "外資5日賣超2,668,805張",
+  "本益比": "",
+  "本益比_is_stale": true,
+  "股價淨值比": "",
+  "殖利率": "",
+  "估值狀態": "",
+  "投信動向": "投信5日買超30,359張",
+  "外資動向": "外資5日買超3,949,308張",
+  "外資買賣超": 3949308,
+  "投信買賣超": 30359,
   "營收表現": "營收季增12%（穩定成長）",
-  "monthly_revenue_growth": 47.4,
-  "monthly_revenue_mom": -0.6,
-  "consecutive_growth_months": 1,
-  "pe_percentile_5y": 0.38,
-  "pe_median_5y": 15.8,
-  "pe_range_5y": "3.7~51.4",
-  "分析日期": "2026-04-08",
+  "monthly_revenue_growth": 74.8,
+  "monthly_revenue_mom": 18.6,
+  "consecutive_growth_months": 2,
+  "pe_percentile_5y": "",
+  "pe_median_5y": "",
+  "pe_range_5y": "",
+  "分析日期": "2026-04-09",
   "is_stale": false,
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-08 15:39",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:38",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
-    "final_direction": "wait",
-    "confidence": "LOW",
-    "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-    "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」4.0/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-    "integration_reason": "外資-2668805張｜融資0張｜價+7.2%",
+    "final_direction": "buy",
+    "confidence": "MEDIUM",
+    "summary_human": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+    "summary_professional": "可以考慮買進（有一定根據但不完全確定）。最強面向「籌碼結構」9.0/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+    "integration_reason": "OBV up｜量比 1.7x｜量價一致",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -60,23 +62,25 @@
       },
       {
         "role_name": "籌碼結構",
-        "score": 4.0,
-        "signal": "neutral",
-        "plain_text": "逆勢上漲，觀察持續性",
-        "key_finding": "外資-2668805張｜融資0張｜價+7.2%",
-        "mekak": "外資淨買力密度 53.1%，堅定",
+        "score": 9.0,
+        "signal": "bullish",
+        "plain_text": "最健康上漲，大戶買散戶沒追",
+        "key_finding": "外資+3949308張｜融資0張｜價+7.2%",
+        "mekak": "外資淨買力密度 78.5%，堅定",
         "raw_data": {
-          "density": 53.07,
+          "density": 78.54,
           "resonance": [
-            "sell",
+            "buy",
             "decrease",
             "up"
           ],
+          "foreign_net": 3949308,
+          "trust_net": 30359,
           "major_holder_change": 0,
           "insider_net_sell": 0
         },
         "is_fallback": false,
-        "confidence": 40.0
+        "confidence": 90.0
       },
       {
         "role_name": "技術面診斷",
@@ -93,6 +97,26 @@
         },
         "is_fallback": false,
         "confidence": 50.0
+      },
+      {
+        "role_name": "量能結構",
+        "score": 8.0,
+        "signal": "bullish",
+        "plain_text": "OBV 上升趨勢，資金持續流入。量價底背離（賣壓衰竭）",
+        "key_finding": "OBV up｜量比 1.7x｜量價一致",
+        "mekak": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
+        "raw_data": {
+          "obv_direction": "up",
+          "obv_slope": 4.05,
+          "price_vol_agree": true,
+          "vol_ratio": 1.69,
+          "vol_trend": "normal",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "bull_div"
+        },
+        "is_fallback": false,
+        "confidence": 80.0
       },
       {
         "role_name": "市場情緒",
@@ -112,12 +136,12 @@
         "role_name": "惡魔代言人",
         "score": 6.0,
         "signal": "neutral",
-        "plain_text": "如果「籌碼結構」的負面信號只是暫時性的呢？",
+        "plain_text": "未找到明顯邏輯漏洞，結論暫時站得住腳",
         "key_finding": "脆弱度 5/10｜1 個質疑",
         "mekak": "無額外盲點",
         "raw_data": {
           "challenges": [
-            "如果「籌碼結構」的負面信號只是暫時性的呢？"
+            "未找到明顯邏輯漏洞，結論暫時站得住腳"
           ],
           "vulnerability": 5.0
         },
@@ -156,13 +180,14 @@
       }
     ]
   },
+  "action_hint": "可小量試單｜訊號偏多但技術面診斷稍弱｜停損 235",
   "triggers": [
-    "外資-2668805張｜融資0張｜價+7.2%"
+    "OBV up｜量比 1.7x｜量價一致"
   ],
   "invalidation": "若股價跌破 234.96，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
-  "devil_summary": "如果「籌碼結構」的負面信號只是暫時性的呢？",
-  "mekak_insight": "外資淨買力密度 53.1%，堅定",
+  "devil_summary": "未找到明顯邏輯漏洞，結論暫時站得住腳",
+  "mekak_insight": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
   "price_history": [
     {
       "time": "2025-12-31",
@@ -645,19 +670,20 @@
       "volume": 10714474
     }
   ],
+  "foreign_history": [],
   "data_provenance": {
-    "generated_at": "2026-04-08 15:39:08",
+    "generated_at": "2026-04-09 08:38:51",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
-    "price_days": 75,
+    "price_days": 74,
     "financial_quarters": 2,
-    "chip_date": "2026-04-08",
-    "revenue_date": "2026-03-01",
-    "pe_data_points": 1214,
-    "pe_is_stale": false,
-    "dividend_source": "TaiwanStockDividend",
-    "dividend_years": 5,
-    "valid_dimensions": 4,
+    "chip_date": "2026-04-09",
+    "revenue_date": "2026-04-01",
+    "pe_data_points": 0,
+    "pe_is_stale": true,
+    "dividend_source": "none",
+    "dividend_years": 0,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

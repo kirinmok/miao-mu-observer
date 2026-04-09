@@ -3,7 +3,7 @@
   "名稱": "聯發科",
   "收盤價": 1580.0,
   "漲跌幅": 7.48,
-  "評分": 5.2,
+  "評分": 5.0,
   "建議": "訊號中性",
   "建議類別": "wait",
   "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」3.5/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
@@ -33,9 +33,9 @@
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-09 07:24",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:38",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
     "final_direction": "wait",
     "confidence": "LOW",
@@ -94,6 +94,26 @@
           "support": 1650.58,
           "resistance": 1832.2,
           "divergences": 0
+        },
+        "is_fallback": false,
+        "confidence": 40.0
+      },
+      {
+        "role_name": "量能結構",
+        "score": 4.0,
+        "signal": "neutral",
+        "plain_text": "OBV 下降趨勢，資金流出。量能擴張中",
+        "key_finding": "OBV down｜量比 1.9x｜量價一致",
+        "mekak": "OBV 斜率 -4.7，量比 1.9x，量能健康",
+        "raw_data": {
+          "obv_direction": "down",
+          "obv_slope": -4.68,
+          "price_vol_agree": true,
+          "vol_ratio": 1.88,
+          "vol_trend": "expanding",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "none"
         },
         "is_fallback": false,
         "confidence": 40.0
@@ -1013,7 +1033,7 @@
     }
   ],
   "data_provenance": {
-    "generated_at": "2026-04-09 07:24:05",
+    "generated_at": "2026-04-09 08:38:10",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
     "price_days": 74,
@@ -1024,7 +1044,7 @@
     "pe_is_stale": false,
     "dividend_source": "TaiwanStockDividend",
     "dividend_years": 6,
-    "valid_dimensions": 4,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

@@ -3,11 +3,11 @@
   "名稱": "長榮",
   "收盤價": 202.0,
   "漲跌幅": -0.49,
-  "評分": 6.2,
+  "評分": 5.9,
   "建議": "訊號中性",
   "建議類別": "wait",
-  "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
-  "白話摘要": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+  "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」4.5/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+  "白話摘要": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」4.5/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
   "成交量狀態": "",
   "停損參考": 198.09,
   "目標價": 220.05,
@@ -33,15 +33,15 @@
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-09 07:23",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:38",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
     "final_direction": "wait",
     "confidence": "LOW",
-    "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
-    "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「技術面診斷」5.0/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
-    "integration_reason": "現金流比 11.27｜AR超額 +16%｜業外佔比 2%",
+    "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」4.5/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+    "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「量能結構」4.5/10。惡魔代言人評估：未找到明顯邏輯漏洞，結論暫時站得住腳",
+    "integration_reason": "OBV down｜量比 1.0x｜量價一致",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -97,6 +97,26 @@
         },
         "is_fallback": false,
         "confidence": 50.0
+      },
+      {
+        "role_name": "量能結構",
+        "score": 4.5,
+        "signal": "neutral",
+        "plain_text": "OBV 下降趨勢，資金流出。量能萎縮中。量價底背離（賣壓衰竭）",
+        "key_finding": "OBV down｜量比 1.0x｜量價一致",
+        "mekak": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
+        "raw_data": {
+          "obv_direction": "down",
+          "obv_slope": -6.47,
+          "price_vol_agree": true,
+          "vol_ratio": 0.98,
+          "vol_trend": "shrinking",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "bull_div"
+        },
+        "is_fallback": false,
+        "confidence": 45.0
       },
       {
         "role_name": "市場情緒",
@@ -162,12 +182,12 @@
   },
   "action_hint": "等待確認｜外資在賣｜營收衰退中｜風報比 4.6 不錯，但尚缺明確進場點",
   "triggers": [
-    "現金流比 11.27｜AR超額 +16%｜業外佔比 2%"
+    "OBV down｜量比 1.0x｜量價一致"
   ],
   "invalidation": "若股價跌破 198.09，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
   "devil_summary": "未找到明顯邏輯漏洞，結論暫時站得住腳",
-  "mekak_insight": "趨勢強度 中，關注 198.09 支撐",
+  "mekak_insight": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
   "price_history": [
     {
       "time": "2025-12-31",
@@ -1013,7 +1033,7 @@
     }
   ],
   "data_provenance": {
-    "generated_at": "2026-04-09 07:23:47",
+    "generated_at": "2026-04-09 08:38:01",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
     "price_days": 74,
@@ -1024,7 +1044,7 @@
     "pe_is_stale": false,
     "dividend_source": "TaiwanStockDividend",
     "dividend_years": 5,
-    "valid_dimensions": 4,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

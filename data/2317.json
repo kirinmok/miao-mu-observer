@@ -3,7 +3,7 @@
   "名稱": "鴻海",
   "收盤價": 201.5,
   "漲跌幅": 4.95,
-  "評分": 5.9,
+  "評分": 5.7,
   "建議": "訊號中性",
   "建議類別": "wait",
   "詳細理由": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」3.5/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
@@ -33,15 +33,15 @@
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-09 07:23",
-  "valid_dimension_count": 4,
-  "total_dimension_count": 7,
+  "update_time": "2026-04-09 08:37",
+  "valid_dimension_count": 5,
+  "total_dimension_count": 8,
   "role_analysis": {
     "final_direction": "wait",
     "confidence": "LOW",
     "summary_human": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」3.5/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
     "summary_professional": "建議先等等看（訊號混亂）。最強面向「財報真實性」7.5/10，需注意「籌碼結構」3.5/10。惡魔代言人評估：如果「籌碼結構」的負面信號只是暫時性的呢？",
-    "integration_reason": "外資-15757207張｜融資0張｜價+3.9%",
+    "integration_reason": "外資-15757207張｜融資0張｜價+3.9%, OBV down｜量比 1.1x｜量價一致",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -97,6 +97,26 @@
         },
         "is_fallback": false,
         "confidence": 65.0
+      },
+      {
+        "role_name": "量能結構",
+        "score": 5.0,
+        "signal": "neutral",
+        "plain_text": "OBV 下降趨勢，資金流出。量價底背離（賣壓衰竭）",
+        "key_finding": "OBV down｜量比 1.1x｜量價一致",
+        "mekak": "價跌但量縮，賣壓已衰竭，反彈條件成熟中",
+        "raw_data": {
+          "obv_direction": "down",
+          "obv_slope": -6.55,
+          "price_vol_agree": true,
+          "vol_ratio": 1.12,
+          "vol_trend": "normal",
+          "vol_explosion": false,
+          "vol_drought": false,
+          "vol_price_divergence": "bull_div"
+        },
+        "is_fallback": false,
+        "confidence": 50.0
       },
       {
         "role_name": "市場情緒",
@@ -162,7 +182,8 @@
   },
   "action_hint": "先觀望｜外資在賣｜營收強勁成長｜目前沒有明確的進出場理由",
   "triggers": [
-    "外資-15757207張｜融資0張｜價+3.9%"
+    "外資-15757207張｜融資0張｜價+3.9%",
+    "OBV down｜量比 1.1x｜量價一致"
   ],
   "invalidation": "若股價跌破 218.75，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
@@ -1013,7 +1034,7 @@
     }
   ],
   "data_provenance": {
-    "generated_at": "2026-04-09 07:23:30",
+    "generated_at": "2026-04-09 08:37:22",
     "updater_version": "stock_updater_v48_phase1",
     "price_date": "2026-04-08",
     "price_days": 74,
@@ -1024,7 +1045,7 @@
     "pe_is_stale": false,
     "dividend_source": "TaiwanStockDividend",
     "dividend_years": 5,
-    "valid_dimensions": 4,
+    "valid_dimensions": 5,
     "fallback_dimensions": [
       "市場情緒",
       "產業結構",

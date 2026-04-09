@@ -5776,7 +5776,7 @@
       var dimScores = [];
       if (stockData && stockData.role_analysis && stockData.role_analysis.role_outputs) {
         var roles = stockData.role_analysis.role_outputs;
-        var roleNames = ['技術面診斷', '籌碼結構', '財報真實性', '市場情勢', '惡魔代言人', '產業結構', '先行指標'];
+        var roleNames = ['技術面診斷', '籌碼結構', '財報真實性', '量能結構', '市場情勢', '惡魔代言人', '產業結構', '先行指標'];
         roleNames.forEach(function(rn) {
           var found = roles.find(function(r) { return r.role_name === rn; });
           if (found && typeof found.score === 'number') {
@@ -6824,8 +6824,8 @@
       h += '</div></div>';
 
       // v48: 新舊維度名稱都對應（engine v2 用中文名，前端保留舊名 fallback）
-      var colors = { '籌碼分析官': '#94a3b8', '籌碼結構': '#94a3b8', '技術分析官': '#34d399', '技術面診斷': '#34d399', '情境分析官': '#38bdf8', '市場情緒': '#38bdf8', '風險評估官': '#f87171', '財報真實性': '#fbbf24', '惡魔代言人': '#f472b6', '產業結構': '#a78bfa', '先行指標': '#2dd4bf' };
-      var friendlyNames = { '籌碼分析官': '大戶動向', '籌碼結構': '大戶動向', '技術分析官': '技術走勢', '技術面診斷': '技術走勢', '情境分析官': '市場環境', '市場情緒': '市場環境', '風險評估官': '風險評估', '財報真實性': '財報體質', '惡魔代言人': '反向觀點', '產業結構': '產業生態', '先行指標': '領先訊號' };
+      var colors = { '籌碼分析官': '#94a3b8', '籌碼結構': '#94a3b8', '技術分析官': '#34d399', '技術面診斷': '#34d399', '情境分析官': '#38bdf8', '市場情緒': '#38bdf8', '風險評估官': '#f87171', '財報真實性': '#fbbf24', '量能結構': '#60a5fa', '惡魔代言人': '#f472b6', '產業結構': '#a78bfa', '先行指標': '#2dd4bf' };
+      var friendlyNames = { '籌碼分析官': '大戶動向', '籌碼結構': '大戶動向', '技術分析官': '技術走勢', '技術面診斷': '技術走勢', '情境分析官': '市場環境', '市場情緒': '市場環境', '風險評估官': '風險評估', '財報真實性': '財報體質', '量能結構': '量能動態', '惡魔代言人': '反向觀點', '產業結構': '產業生態', '先行指標': '領先訊號' };
 
       for (var i = 0; i < ro.length; i++) {
         var r = ro[i];
@@ -6863,6 +6863,18 @@
           var md2 = rd.macd_diff || 0;
           if (md2 > 0) h += '<li>上漲動能正在<strong>加速</strong></li>';
           else h += '<li>上漲動能<strong>趨緩</strong>或已轉弱</li>';
+        } else if (r.role_name === '量能結構') {
+          var obDir = rd.obv_direction || 'flat';
+          var volR = rd.vol_ratio || 1;
+          var vpDiv = rd.vol_price_divergence || 'none';
+          if (obDir === 'up') h += '<li>OBV 趨勢<strong>向上</strong>，資金持續流入</li>';
+          else if (obDir === 'down') h += '<li>OBV 趨勢<strong>向下</strong>，資金正在流出</li>';
+          else h += '<li>OBV 無明顯方向，觀望氣氛濃</li>';
+          if (rd.vol_explosion) h += '<li>⚡ <strong>爆量</strong>！成交量異常放大（' + volR.toFixed(1) + '倍均量）</li>';
+          else if (rd.vol_drought) h += '<li>🏜️ <strong>量縮警告</strong>：連續低量，流動性不足</li>';
+          else h += '<li>成交量為均量的 ' + volR.toFixed(1) + ' 倍，屬正常範圍</li>';
+          if (vpDiv === 'bull_div') h += '<li>💡 量價<strong>底背離</strong>：價跌量縮，可能醞釀反彈</li>';
+          else if (vpDiv === 'bear_div') h += '<li>⚠ 量價<strong>頂背離</strong>：價漲量縮，上攻力道不足</li>';
         } else if (r.role_name === '情境分析官' || r.role_name === '市場情緒') { // v48
           // Enhanced: use SECTOR_MAP data if available
           var sectorInfo = SECTOR_MAP[currentStock['代號'] || currentCode] || {};
@@ -8325,7 +8337,7 @@
         '成交量：' + volStatus + '（今量 ' + latestVol + ' / 均量 ' + avgVol + '）\n' +
         '近5日K線：' + recent5 + '\n\n' +
         '請以 7 個角色分析（每角色給 score 0-10 和 signal bullish/bearish/neutral）：\n' +
-        '1. 財報真實性\n2. 籌碼結構\n3. 技術面診斷\n4. 市場情緒\n5. 惡魔代言人\n6. 產業結構\n7. 先行指標\n\n' +
+        '1. 財報真實性\n2. 籌碼結構\n3. 技術面診斷\n4. 量能結構\n5. 市場情緒\n6. 惡魔代言人\n7. 產業結構\n8. 先行指標\n\n' +
         '回傳 JSON（不要其他文字）：\n' +
         '{"final_direction":"漲/跌/盤整","confidence":"high/medium/low",' +
         '"summary_human":"一句話結論",' +
@@ -8603,7 +8615,7 @@
       // 角色 icon 對照表
       var roleIcons = {
         '財報真實性': '📋', '籌碼結構': '📡', '技術面診斷': '📊',
-        '市場情緒': '📰', '惡魔代言人': '😈', '產業結構': '🏭', '先行指標': '🔮',
+        '量能結構': '📊', '市場情緒': '📰', '惡魔代言人': '😈', '產業結構': '🏭', '先行指標': '🔮',
         '地緣政治顧問': '🌍'
       };
 

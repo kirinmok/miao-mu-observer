@@ -1,5 +1,5 @@
-// 喵姆 V49 Service Worker
-var CACHE_NAME = 'miaomu-v49b';
+// 喵姆 V50 Service Worker
+var CACHE_NAME = 'miaomu-v50a';
 var URLS_TO_CACHE = [
   '/miao-mu-report/',
   '/miao-mu-report/index.html',

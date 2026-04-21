@@ -991,8 +991,8 @@
       line-height: 1;
       min-width: 42px;
     }
-    .an-score-num.bull { color: var(--green); }
-    .an-score-num.bear { color: var(--red); }
+    .an-score-num.bull { color: var(--red); }
+    .an-score-num.bear { color: var(--green); }
     .an-score-num.neu  { color: var(--sub); }
     .an-score-bar {
       flex: 1;
@@ -5626,7 +5626,7 @@
       // 型態列表
       for (var pi2 = 0; pi2 < patterns.length; pi2++) {
         var p = patterns[pi2];
-        var pColor = p.type === 'bullish' ? 'var(--green)' : p.type === 'bearish' ? 'var(--red)' : 'var(--sub)';
+        var pColor = p.type === 'bullish' ? 'var(--red)' : p.type === 'bearish' ? 'var(--green)' : 'var(--sub)';
         var pLabel = p.type === 'bullish' ? '偏多' : p.type === 'bearish' ? '偏空' : '中性';
         html += '<div style="margin-bottom:8px;padding:8px;background:rgba(0,0,0,.2);border-radius:8px;border-left:3px solid ' + pColor + ';">';
         html += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">';
@@ -5937,9 +5937,9 @@
       h += '<div style="background:var(--surface);border-radius:6px;padding:8px;margin-bottom:10px;">';
       h += '<div style="font-size:10px;color:var(--sub);margin-bottom:6px;">三情境分布</div>';
       h += '<div style="display:flex;gap:6px;">';
-      h += '<div style="flex:1;text-align:center;"><div style="font-size:9px;color:var(--green);">🟢 漲</div><div style="font-size:11px;color:var(--text);">' + (result.scenarios.bull.prob * 100).toFixed(0) + '%</div><div style="font-size:9px;color:var(--green);">+' + (result.scenarios.bull.ret * 100).toFixed(1) + '%</div></div>';
+      h += '<div style="flex:1;text-align:center;"><div style="font-size:9px;color:var(--red);">🔴 漲</div><div style="font-size:11px;color:var(--text);">' + (result.scenarios.bull.prob * 100).toFixed(0) + '%</div><div style="font-size:9px;color:var(--red);">+' + (result.scenarios.bull.ret * 100).toFixed(1) + '%</div></div>';
       h += '<div style="flex:1;text-align:center;"><div style="font-size:9px;color:var(--amber);">⚫ 盤整</div><div style="font-size:11px;color:var(--text);">' + (result.scenarios.base.prob * 100).toFixed(0) + '%</div><div style="font-size:9px;color:var(--amber);">' + (result.scenarios.base.ret >= 0 ? '+' : '') + (result.scenarios.base.ret * 100).toFixed(1) + '%</div></div>';
-      h += '<div style="flex:1;text-align:center;"><div style="font-size:9px;color:var(--red);">🔴 跌</div><div style="font-size:11px;color:var(--text);">' + (result.scenarios.bear.prob * 100).toFixed(0) + '%</div><div style="font-size:9px;color:var(--red);">' + (result.scenarios.bear.ret * 100).toFixed(1) + '%</div></div>';
+      h += '<div style="flex:1;text-align:center;"><div style="font-size:9px;color:var(--green);">🟢 跌</div><div style="font-size:11px;color:var(--text);">' + (result.scenarios.bear.prob * 100).toFixed(0) + '%</div><div style="font-size:9px;color:var(--green);">' + (result.scenarios.bear.ret * 100).toFixed(1) + '%</div></div>';
       h += '</div></div>';
       
       // 機率校正裁決（大字）
@@ -9127,7 +9127,7 @@
       h += '<div style="background:var(--raised);padding:12px;border-radius:8px;">';
       h += '<div style="font-weight:700;margin-bottom:8px;color:var(--red);">📉 基期 (' + (data.scores?.base_depth||0) + '/15) + 🧠 情緒 (' + (data.scores?.sentiment||0) + '/10)</div>';
       h += '<div>現價: ' + data.price + ' ｜ 52W高: ' + data.high_52w + '</div>';
-      h += '<div>跌幅: <b style="color:var(--red);">' + (data.drop_pct||0).toFixed(1) + '%</b>';
+      h += '<div>跌幅: <b style="color:var(--green);">' + (data.drop_pct||0).toFixed(1) + '%</b>';
       var zone = data.drop_pct >= 30 && data.drop_pct < 45 ? ' 🎯甜蜜區' : data.drop_pct >= 45 ? ' ⚠️偏深' : '';
       h += zone + '</div>';
       h += '<div style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;">';

@@ -1473,5 +1473,257 @@
       },
       "generated_at": "2026-04-21 15:45:19"
     }
+  },
+  {
+    "updated_at": "2026-04-22 15:40:01",
+    "taiex": {
+      "close": 37878.47,
+      "change": 273.36,
+      "change_pct": 0.73,
+      "volume": 13032210317
+    },
+    "taiex_futures": {
+      "close": 37904.0,
+      "change_pct": 0.75
+    },
+    "breadth": {
+      "up": 735,
+      "down": 490,
+      "unchanged": 115,
+      "up_limit": 46,
+      "down_limit": 0
+    },
+    "regime": {
+      "regime": "正常波動",
+      "emoji": "📊",
+      "confidence": 0.8,
+      "action": "依既有策略操作"
+    },
+    "foreign_futures": {
+      "net_oi": -42555,
+      "trend": "空單增加",
+      "warning": false,
+      "history": [
+        {
+          "date": "2026-04-13",
+          "net": -35996,
+          "long": 15086,
+          "short": 51082
+        },
+        {
+          "date": "2026-04-14",
+          "net": -36664,
+          "long": 16327,
+          "short": 52991
+        },
+        {
+          "date": "2026-04-15",
+          "net": -36783,
+          "long": 16346,
+          "short": 53129
+        },
+        {
+          "date": "2026-04-16",
+          "net": -39683,
+          "long": 16924,
+          "short": 56607
+        },
+        {
+          "date": "2026-04-17",
+          "net": -41151,
+          "long": 18245,
+          "short": 59396
+        },
+        {
+          "date": "2026-04-18",
+          "net": -41151,
+          "long": 18245,
+          "short": 59396
+        },
+        {
+          "date": "2026-04-19",
+          "net": -41151,
+          "long": 18245,
+          "short": 59396
+        },
+        {
+          "date": "2026-04-20",
+          "net": -42618,
+          "long": 18280,
+          "short": 60898
+        },
+        {
+          "date": "2026-04-21",
+          "net": -41295,
+          "long": 20082,
+          "short": 61377
+        },
+        {
+          "date": "2026-04-22",
+          "net": -42555,
+          "long": 19557,
+          "short": 62112
+        }
+      ]
+    },
+    "news_sentiment": {
+      "score": 0,
+      "key_events": [],
+      "risk_factors": [],
+      "positive_factors": []
+    },
+    "portfolio_alerts": {
+      "stop_loss_count": 0,
+      "volume_anomaly_count": 0
+    },
+    "ai_narrative": {
+      "health_score": 42,
+      "health_grade": "C",
+      "verdict": "多空拉鋸中，方向不明確，外資期貨偏空壓制，建議持股觀望",
+      "action": {
+        "label": "持股觀望",
+        "emoji": "🟠",
+        "color": "hold"
+      },
+      "signal_cards": [
+        {
+          "id": "index",
+          "title": "大盤趨勢",
+          "icon": "📈",
+          "score": 75,
+          "status": "bullish",
+          "headline": "加權 37,878 (+0.73%)",
+          "detail": "指數小幅走高，盤面穩定，維持偏多操作"
+        },
+        {
+          "id": "breadth",
+          "title": "市場廣度",
+          "icon": "📊",
+          "score": 62,
+          "status": "bullish",
+          "headline": "漲 735 / 跌 490",
+          "detail": "漲多跌少，多方略勝，但分歧開始出現"
+        },
+        {
+          "id": "futures",
+          "title": "外資期貨",
+          "icon": "🏦",
+          "score": 0,
+          "status": "bearish",
+          "headline": "淨口數 -42,555",
+          "detail": "外資期貨大幅做空，對後市持悲觀態度。趨勢：空單增加"
+        },
+        {
+          "id": "sentiment",
+          "title": "新聞情緒",
+          "icon": "🌐",
+          "score": 50,
+          "status": "neutral",
+          "headline": "情緒分數 +0.0",
+          "detail": "新聞面中性偏正，無重大利空衝擊"
+        }
+      ],
+      "portfolio_actions": [
+        {
+          "code": "2317",
+          "name": "鴻海",
+          "stock_score": 5.6,
+          "change_pct": 1.69,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "0056",
+          "name": "元大高股息",
+          "stock_score": 5.4,
+          "change_pct": 1.21,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2603",
+          "name": "長榮",
+          "stock_score": 5.9,
+          "change_pct": 2.28,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2615",
+          "name": "萬海",
+          "stock_score": 5.1,
+          "change_pct": 0.41,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2609",
+          "name": "陽明",
+          "stock_score": 5.5,
+          "change_pct": 1.2,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2002",
+          "name": "中鋼",
+          "stock_score": 4.4,
+          "change_pct": -0.5,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2883",
+          "name": "開發金",
+          "stock_score": 4.5,
+          "change_pct": -0.48,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2891",
+          "name": "中信金",
+          "stock_score": 5.1,
+          "change_pct": -0.19,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "2882",
+          "name": "國泰金",
+          "stock_score": 5.1,
+          "change_pct": 1.21,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        },
+        {
+          "code": "1609",
+          "name": "大亞",
+          "stock_score": 5.1,
+          "change_pct": -0.73,
+          "action": "減碼",
+          "reason": "弱勢股在不確定環境中應減持",
+          "urgency": "medium"
+        }
+      ],
+      "narrative": "今日市場健康分數為 42 分（C），整體狀態歸類為「正常波動」。綜合四維度分析後，AI 建議本日操作方向為「持股觀望」。\n\n本日最顯著的信號來自「外資期貨」（分數 0），呈現負向態勢。外資期貨大幅做空，對後市持悲觀態度。趨勢：空單增加。\n\n交叉驗證：「大盤趨勢」偏多（75分）, 「市場廣度」偏多（62分）。訊號方向一致，增強判斷可信度。\n\n操作建議：🟠 持股觀望。依既有策略操作。",
+      "dimension_scores": {
+        "index": 75,
+        "breadth": 62,
+        "futures": 0,
+        "sentiment": 50,
+        "regime_penalty": 0
+      },
+      "generated_at": "2026-04-22 15:40:01"
+    }
   }
 ]

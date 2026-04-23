@@ -1725,5 +1725,257 @@
       },
       "generated_at": "2026-04-22 15:40:01"
     }
+  },
+  {
+    "updated_at": "2026-04-23 15:40:04",
+    "taiex": {
+      "close": 37714.15,
+      "change": -164.32,
+      "change_pct": -0.43,
+      "volume": 18945630788
+    },
+    "taiex_futures": {
+      "close": 38746.0,
+      "change_pct": 2.22
+    },
+    "breadth": {
+      "up": 633,
+      "down": 594,
+      "unchanged": 116,
+      "up_limit": 50,
+      "down_limit": 1
+    },
+    "regime": {
+      "regime": "正常波動",
+      "emoji": "📊",
+      "confidence": 0.8,
+      "action": "依既有策略操作"
+    },
+    "foreign_futures": {
+      "net_oi": -44027,
+      "trend": "連3日增空",
+      "warning": true,
+      "history": [
+        {
+          "date": "2026-04-14",
+          "net": -36664,
+          "long": 16327,
+          "short": 52991
+        },
+        {
+          "date": "2026-04-15",
+          "net": -36783,
+          "long": 16346,
+          "short": 53129
+        },
+        {
+          "date": "2026-04-16",
+          "net": -39683,
+          "long": 16924,
+          "short": 56607
+        },
+        {
+          "date": "2026-04-17",
+          "net": -41151,
+          "long": 18245,
+          "short": 59396
+        },
+        {
+          "date": "2026-04-18",
+          "net": -41151,
+          "long": 18245,
+          "short": 59396
+        },
+        {
+          "date": "2026-04-19",
+          "net": -41151,
+          "long": 18245,
+          "short": 59396
+        },
+        {
+          "date": "2026-04-20",
+          "net": -42618,
+          "long": 18280,
+          "short": 60898
+        },
+        {
+          "date": "2026-04-21",
+          "net": -41295,
+          "long": 20082,
+          "short": 61377
+        },
+        {
+          "date": "2026-04-22",
+          "net": -42555,
+          "long": 19557,
+          "short": 62112
+        },
+        {
+          "date": "2026-04-23",
+          "net": -44027,
+          "long": 18185,
+          "short": 62212
+        }
+      ]
+    },
+    "news_sentiment": {
+      "score": 0,
+      "key_events": [],
+      "risk_factors": [],
+      "positive_factors": []
+    },
+    "portfolio_alerts": {
+      "stop_loss_count": 0,
+      "volume_anomaly_count": 0
+    },
+    "ai_narrative": {
+      "health_score": 33,
+      "health_grade": "D",
+      "verdict": "市場偏弱，空方佔優，外資期貨偏空壓制，建議逐步減碼",
+      "action": {
+        "label": "逐步減碼",
+        "emoji": "🔴",
+        "color": "reduce"
+      },
+      "signal_cards": [
+        {
+          "id": "index",
+          "title": "大盤趨勢",
+          "icon": "📈",
+          "score": 51,
+          "status": "neutral",
+          "headline": "加權 37,714 (-0.43%)",
+          "detail": "小幅回檔整理，屬正常波動，不需過度擔心"
+        },
+        {
+          "id": "breadth",
+          "title": "市場廣度",
+          "icon": "📊",
+          "score": 52,
+          "status": "neutral",
+          "headline": "漲 633 / 跌 594",
+          "detail": "漲跌各半，多空拉鋸，盤面缺乏方向"
+        },
+        {
+          "id": "futures",
+          "title": "外資期貨",
+          "icon": "🏦",
+          "score": 0,
+          "status": "bearish",
+          "headline": "淨口數 -44,027",
+          "detail": "外資期貨大幅做空，對後市持悲觀態度。趨勢：連3日增空。⚠️ 已觸發預警門檻"
+        },
+        {
+          "id": "sentiment",
+          "title": "新聞情緒",
+          "icon": "🌐",
+          "score": 50,
+          "status": "neutral",
+          "headline": "情緒分數 +0.0",
+          "detail": "新聞面中性偏正，無重大利空衝擊"
+        }
+      ],
+      "portfolio_actions": [
+        {
+          "code": "0056",
+          "name": "元大高股息",
+          "stock_score": 5.8,
+          "change_pct": 1.52,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2615",
+          "name": "萬海",
+          "stock_score": 4.9,
+          "change_pct": 0.68,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2609",
+          "name": "陽明",
+          "stock_score": 5.0,
+          "change_pct": -0.39,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2002",
+          "name": "中鋼",
+          "stock_score": 4.0,
+          "change_pct": -1.01,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2883",
+          "name": "開發金",
+          "stock_score": 3.9,
+          "change_pct": 0.48,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2891",
+          "name": "中信金",
+          "stock_score": 5.1,
+          "change_pct": 0.94,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2882",
+          "name": "國泰金",
+          "stock_score": 5.9,
+          "change_pct": 0.53,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "1609",
+          "name": "大亞",
+          "stock_score": 5.1,
+          "change_pct": -1.03,
+          "action": "出清",
+          "reason": "弱勢股在空頭市場風險最大，建議止損",
+          "urgency": "high"
+        },
+        {
+          "code": "2330",
+          "name": "台積電",
+          "stock_score": 6.4,
+          "change_pct": 0.0,
+          "action": "減碼",
+          "reason": "環境不佳，中等股優先減碼保護資金",
+          "urgency": "medium"
+        },
+        {
+          "code": "2317",
+          "name": "鴻海",
+          "stock_score": 6.1,
+          "change_pct": 4.74,
+          "action": "減碼",
+          "reason": "環境不佳，中等股優先減碼保護資金",
+          "urgency": "medium"
+        }
+      ],
+      "narrative": "今日市場健康分數為 33 分（D），整體狀態歸類為「正常波動」。綜合四維度分析後，AI 建議本日操作方向為「逐步減碼」。\n\n本日最顯著的信號來自「外資期貨」（分數 0），呈現負向態勢。外資期貨大幅做空，對後市持悲觀態度。趨勢：連3日增空。⚠️ 已觸發預警門檻。\n\n交叉驗證：「市場廣度」中性（52分）, 「大盤趨勢」中性（51分）。訊號方向一致，增強判斷可信度。\n\n操作建議：🔴 逐步減碼。依既有策略操作。",
+      "dimension_scores": {
+        "index": 51,
+        "breadth": 52,
+        "futures": 0,
+        "sentiment": 50,
+        "regime_penalty": 0
+      },
+      "generated_at": "2026-04-23 15:40:04"
+    }
   }
 ]

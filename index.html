@@ -1525,6 +1525,32 @@
       opacity: .85;
     }
 
+    .cand-filter {
+      background: var(--raised);
+      color: var(--sub);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .cand-filter.active {
+      background: var(--cyan);
+      color: #0b0f14;
+      border-color: var(--cyan);
+    }
+    .cand-filter:hover:not(.active) { opacity: .75; }
+    .cand-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 1px 4px;
+      border-radius: 3px;
+      margin-left: 3px;
+      background: rgba(255,255,255,0.08);
+    }
+
     .admin-btn.danger {
       background: var(--red);
       color: #fff;
@@ -3308,7 +3334,17 @@
               <button class="admin-btn" onclick="loadCandidates()" style="padding:5px 14px;font-size:12px;">🔄 刷新</button>
             </div>
           </div>
-          <div style="font-size:12px;color:var(--sub);margin-bottom:14px;">三年財務槓桿計畫 · 900萬佈局 · 長線長抱 / 短線波段</div>
+          <div style="font-size:12px;color:var(--sub);margin-bottom:10px;">三年財務槓桿計畫 · 900萬佈局 · 長線長抱 / 短線波段</div>
+
+          <!-- 主題篩選 -->
+          <div id="candidatesFilterBar" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+            <button onclick="filterCandidates('')"    class="cand-filter active" data-tag="">全部</button>
+            <button onclick="filterCandidates('🛰️')" class="cand-filter"        data-tag="🛰️">🛰️ 衛星</button>
+            <button onclick="filterCandidates('🤖')" class="cand-filter"        data-tag="🤖">🤖 AI</button>
+            <button onclick="filterCandidates('💰')" class="cand-filter"        data-tag="💰">💰 高息</button>
+            <button onclick="filterCandidates('⚡')" class="cand-filter"        data-tag="⚡">⚡ 電力</button>
+            <button onclick="filterCandidates('🛡️')" class="cand-filter"       data-tag="🛡️">🛡️ 國防</button>
+          </div>
 
           <!-- 長線區 -->
           <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:#00B060;letter-spacing:0.05em;">🌲 長線持有（核心 + 穩健）</div>
@@ -3424,7 +3460,7 @@
 
     // ═══════════ INIT ═══════════
     // ═══════════ SERVICE WORKER 註冊 + 強制更新 ═══════════
-    var MM_VERSION = 'V53';
+    var MM_VERSION = 'V54';
 
     // ═══════════ 環境偵測：localhost 走 proxy，GitHub Pages 走直接呼叫 ═══════════
     var IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -9032,24 +9068,24 @@
 
     // ═══════════ 投資候選股 ═══════════
     var CANDIDATES_LONG = [
-      { code: '2330', name: '台積電',   note: '護城河最深，AI/CoWoS 核心長抱' },
-      { code: '2308', name: '台達電',   note: '電源管理龍頭，AI資料中心+衛星電源模組受益' },
-      { code: '2382', name: '廣達',     note: 'AI伺服器ODM龍頭，輝達供應鏈' },
-      { code: '2454', name: '聯發科',   note: 'AI手機SoC，估值合理' },
-      { code: '00919', name: '群益高息', note: '季配息約8%，利息對沖' },
-      { code: '0056', name: '元大高息', note: '月配息，低波動穩定收息' },
-      { code: '1503', name: '士電',     note: '電力設備，AI園區+衛星地面站配電受惠' },
-      { code: '1609', name: '大亞',     note: '電纜，台電強韌電網計畫' },
+      { code: '2330', name: '台積電',    tags: ['🤖'],       note: '護城河最深，AI/CoWoS 核心長抱' },
+      { code: '2308', name: '台達電',    tags: ['🛰️','🤖'], note: '電源管理龍頭，AI資料中心+衛星電源模組受益' },
+      { code: '2382', name: '廣達',      tags: ['🤖'],       note: 'AI伺服器ODM龍頭，輝達供應鏈' },
+      { code: '2454', name: '聯發科',    tags: ['🤖'],       note: 'AI手機SoC，估值合理' },
+      { code: '00919', name: '群益高息', tags: ['💰'],       note: '季配息約8%，利息對沖' },
+      { code: '0056', name: '元大高息',  tags: ['💰'],       note: '月配息，低波動穩定收息' },
+      { code: '1503', name: '士電',      tags: ['🛰️','🤖'], note: '電力設備，AI園區+衛星地面站配電受惠' },
+      { code: '1609', name: '大亞',      tags: ['⚡'],       note: '電纜，台電強韌電網計畫' },
     ];
     var CANDIDATES_SHORT = [
-      { code: '3491', name: '昇達科',   note: '低軌衛星濾波器，Starlink受益' },
-      { code: '6669', name: '緯穎',     note: 'AI伺服器高速成長，估值高波段' },
-      { code: '2634', name: '漢翔',     note: '國防預算題材，政治敏感波動大' },
-      { code: '3596', name: '智易',     note: '衛星終端，量能偏小注意流動性' },
-      { code: '5388', name: '中磊',     note: '衛星/5G，短線題材注意回調' },
-      { code: '6146', name: '迅得',     note: 'PCB設備，觀察訂單能見度' },
-      { code: '2313', name: '華通',     note: 'PCB大廠，AI/HPC基板+衛星高頻板受惠' },
-      { code: '3711', name: '日月光投控', note: '衛星晶片封測，先進封裝CoWoS卡位' },
+      { code: '3491', name: '昇達科',    tags: ['🛰️'],      note: '低軌衛星濾波器，Starlink受益' },
+      { code: '6669', name: '緯穎',      tags: ['🤖'],       note: 'AI伺服器高速成長，估值高波段' },
+      { code: '2634', name: '漢翔',      tags: ['🛡️'],      note: '國防預算題材，政治敏感波動大' },
+      { code: '3596', name: '智易',      tags: ['🛰️'],      note: '衛星終端，量能偏小注意流動性' },
+      { code: '5388', name: '中磊',      tags: ['🛰️'],      note: '衛星/5G，短線題材注意回調' },
+      { code: '6146', name: '迅得',      tags: ['🤖'],       note: 'PCB設備，觀察訂單能見度' },
+      { code: '2313', name: '華通',      tags: ['🛰️','🤖'], note: 'PCB大廠，AI/HPC基板+衛星高頻板受惠' },
+      { code: '3711', name: '日月光投控', tags: ['🛰️','🤖'], note: '衛星晶片封測，先進封裝CoWoS卡位' },
     ];
 
     function loadCandidates() {
@@ -9066,7 +9102,7 @@
             .then(function(d) {
               var p = d.data && d.data.Price ? d.data.Price : {};
               return {
-                code: s.code, name: s.name, note: s.note,
+                code: s.code, name: s.name, note: s.note, tags: s.tags || [],
                 close: p.ClosingPrice || p.TradePrice || '—',
                 chg: p.Change || 0,
                 open: p.OpeningPrice || 0,
@@ -9074,7 +9110,7 @@
               };
             })
             .catch(function() {
-              return { code: s.code, name: s.name, note: s.note, close: '—', chg: 0, open: 0, vol: 0 };
+              return { code: s.code, name: s.name, note: s.note, tags: s.tags || [], close: '—', chg: 0, open: 0, vol: 0 };
             });
         });
         Promise.all(promises).then(function(rows) {
@@ -9082,9 +9118,12 @@
             var pct = r.open > 0 ? (r.chg / r.open * 100).toFixed(2) : 0;
             var chgColor = r.chg > 0 ? '#00B060' : r.chg < 0 ? '#E03430' : 'var(--sub)';
             var volStr = r.vol > 0 ? Math.floor(r.vol / 1000) + '張' : '—';
-            return '<tr style="border-bottom:1px solid var(--border);cursor:pointer;" onclick="loadStock(\'' + r.code + '\');closeAdmin();">' +
+            var tags = r.tags || [];
+            var tagHtml = tags.map(function(t){ return '<span class="cand-tag">' + t + '</span>'; }).join('');
+            var tagAttr = tags.join(',');
+            return '<tr data-tags="' + tagAttr + '" style="border-bottom:1px solid var(--border);cursor:pointer;" onclick="loadStock(\'' + r.code + '\');closeAdmin();">' +
               '<td style="padding:7px 8px;color:' + g.color + ';font-weight:700;">' + r.code + '</td>' +
-              '<td style="padding:7px 8px;">' + r.name + '</td>' +
+              '<td style="padding:7px 8px;">' + r.name + tagHtml + '</td>' +
               '<td style="padding:7px 8px;text-align:right;font-weight:700;">' + r.close + '</td>' +
               '<td style="padding:7px 8px;text-align:right;color:' + chgColor + ';">' + (r.chg > 0 ? '+' : '') + r.chg + '</td>' +
               '<td style="padding:7px 8px;text-align:right;color:' + chgColor + ';">' + (pct > 0 ? '+' : '') + pct + '%</td>' +
@@ -9095,6 +9134,20 @@
           }).join('');
           document.getElementById('candidatesLastUpdate').textContent = '更新：' + new Date().toLocaleTimeString('zh-TW');
         });
+      });
+    }
+
+    function filterCandidates(tag) {
+      // 更新按鈕狀態
+      document.querySelectorAll('.cand-filter').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.tag === tag);
+      });
+      // 篩選所有 candidate 行
+      var rows = document.querySelectorAll('#candidatesLongBody tr, #candidatesShortBody tr');
+      rows.forEach(function(tr) {
+        if (!tag) { tr.style.display = ''; return; }
+        var rowTags = tr.dataset.tags || '';
+        tr.style.display = rowTags.indexOf(tag) !== -1 ? '' : 'none';
       });
     }
 

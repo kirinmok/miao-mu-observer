@@ -8401,6 +8401,10 @@
         var si = STOCK_INDEX.find(function(s) { return s.c === code; });
         document.getElementById('navName').innerHTML = (si ? '<span style="color:#fff;font-weight:800;">' + si.n + '</span> ' : '') + '<span style="opacity:0.6;font-size:0.85em;">' + code + '</span>';
         renderSidebar();
+        // 立即顯示 loading 狀態，不讓舊 ticker 卡在畫面
+        var nm = si ? si.n : code;
+        var verdictEl = document.getElementById('cmteVerdict');
+        if (verdictEl) verdictEl.innerHTML = '<span style="color:var(--amber);">⏳ ' + nm + '（' + code + '）分析中…</span>';
         fetch('data/' + code + '.json?t=' + Date.now())
           .then(function(r) { return r.ok ? r.json() : Promise.reject('not found'); })
           .then(function(d) {
@@ -8410,7 +8414,10 @@
             renderAll();
             runCommittee();
           })
-          .catch(function() { showToast('❌ 載入 ' + code + ' 失敗'); });
+          .catch(function() {
+            if (verdictEl) verdictEl.innerHTML = '<span style="color:var(--red);">❌ ' + code + ' 資料載入失敗</span>';
+            showToast('❌ 載入 ' + code + ' 失敗');
+          });
       }
     }
     function cmteNavStock(dir) {

@@ -2825,6 +2825,7 @@
         <button class="admin-tab" onclick="switchAdminTab(this,'tab-evolution')"><span class="tab-icon">🧠</span>AI 進化</button>
         <button class="admin-tab" onclick="switchAdminTab(this,'tab-hitrate')"><span class="tab-icon">📊</span>命中率</button>
         <button class="admin-tab" onclick="switchAdminTab(this,'tab-hunter')"><span class="tab-icon">🔍</span>AI獵股</button>
+        <button class="admin-tab" onclick="switchAdminTab(this,'tab-candidates');loadCandidates()"><span class="tab-icon">💰</span>投資候選</button>
       </div>
 
       <!-- TAB: 每日訊號 -->
@@ -3297,6 +3298,69 @@
         </div>
       </div>
 
+      <!-- TAB: 投資候選 -->
+      <div class="admin-section" id="tab-candidates">
+        <div class="admin-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <h3 style="margin:0;">💰 投資候選股追蹤</h3>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <span id="candidatesLastUpdate" style="font-size:11px;color:var(--sub);"></span>
+              <button class="admin-btn" onclick="loadCandidates()" style="padding:5px 14px;font-size:12px;">🔄 刷新</button>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--sub);margin-bottom:14px;">三年財務槓桿計畫 · 900萬佈局 · 長線長抱 / 短線波段</div>
+
+          <!-- 長線區 -->
+          <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:#00B060;letter-spacing:0.05em;">🌲 長線持有（核心 + 穩健）</div>
+          <div style="overflow-x:auto;margin-bottom:20px;">
+            <table style="width:100%;border-collapse:collapse;font-size:12px;" id="candidatesLongTable">
+              <thead>
+                <tr style="color:var(--sub);border-bottom:1px solid var(--border);">
+                  <th style="text-align:left;padding:6px 8px;">代號</th>
+                  <th style="text-align:left;padding:6px 8px;">名稱</th>
+                  <th style="text-align:right;padding:6px 8px;">收盤</th>
+                  <th style="text-align:right;padding:6px 8px;">漲跌</th>
+                  <th style="text-align:right;padding:6px 8px;">漲跌幅</th>
+                  <th style="text-align:right;padding:6px 8px;">成交量</th>
+                  <th style="text-align:left;padding:6px 8px;">策略備註</th>
+                  <th style="text-align:center;padding:6px 8px;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="candidatesLongBody">
+                <tr><td colspan="8" style="text-align:center;padding:20px;color:var(--dimmer);">載入中...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 短線區 -->
+          <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:#00A896;letter-spacing:0.05em;">⚡ 短線主題（波段操作）</div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:12px;" id="candidatesShortTable">
+              <thead>
+                <tr style="color:var(--sub);border-bottom:1px solid var(--border);">
+                  <th style="text-align:left;padding:6px 8px;">代號</th>
+                  <th style="text-align:left;padding:6px 8px;">名稱</th>
+                  <th style="text-align:right;padding:6px 8px;">收盤</th>
+                  <th style="text-align:right;padding:6px 8px;">漲跌</th>
+                  <th style="text-align:right;padding:6px 8px;">漲跌幅</th>
+                  <th style="text-align:right;padding:6px 8px;">成交量</th>
+                  <th style="text-align:left;padding:6px 8px;">策略備註</th>
+                  <th style="text-align:center;padding:6px 8px;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="candidatesShortBody">
+                <tr><td colspan="8" style="text-align:center;padding:20px;color:var(--dimmer);">載入中...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 停損提醒 -->
+          <div style="margin-top:16px;padding:10px 14px;background:rgba(224,52,48,0.1);border:1px solid rgba(224,52,48,0.3);border-radius:6px;font-size:11px;color:#E03430;">
+            ⚠ 借貸資金停損線：長線 -12%｜短線 -8%｜觸線強制出場，不商量
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -3360,7 +3424,7 @@
 
     // ═══════════ INIT ═══════════
     // ═══════════ SERVICE WORKER 註冊 + 強制更新 ═══════════
-    var MM_VERSION = 'V49';
+    var MM_VERSION = 'V52';
 
     // ═══════════ 環境偵測：localhost 走 proxy，GitHub Pages 走直接呼叫 ═══════════
     var IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -8957,6 +9021,73 @@
       if (tabId === 'tab-evolution') { populateAiPredStock(); refreshEvoPanel(); verifyPredictions(); }
       if (tabId === 'tab-hitrate') renderHitRatePanel();
       if (tabId === 'tab-hunter') loadHunterResults();
+    }
+
+    // ═══════════ 投資候選股 ═══════════
+    var CANDIDATES_LONG = [
+      { code: '2330', name: '台積電',   note: '護城河最深，AI/CoWoS 核心長抱' },
+      { code: '2308', name: '台達電',   note: '電源管理龍頭，AI資料中心受益' },
+      { code: '2382', name: '廣達',     note: 'AI伺服器ODM龍頭，輝達供應鏈' },
+      { code: '2454', name: '聯發科',   note: 'AI手機SoC，估值合理' },
+      { code: '00919', name: '群益高息', note: '季配息約8%，利息對沖' },
+      { code: '0056', name: '元大高息', note: '月配息，低波動穩定收息' },
+      { code: '1503', name: '士電',     note: '電力設備，AI園區建置受惠' },
+      { code: '1609', name: '大亞',     note: '電纜，台電強韌電網計畫' },
+    ];
+    var CANDIDATES_SHORT = [
+      { code: '3491', name: '昇達科',   note: '低軌衛星濾波器，Starlink受益' },
+      { code: '6669', name: '緯穎',     note: 'AI伺服器高速成長，估值高波段' },
+      { code: '2634', name: '漢翔',     note: '國防預算題材，政治敏感波動大' },
+      { code: '3596', name: '智易',     note: '衛星終端，量能偏小注意流動性' },
+      { code: '5388', name: '中磊',     note: '衛星/5G，短線題材注意回調' },
+      { code: '6146', name: '迅得',     note: 'PCB設備，觀察訂單能見度' },
+      { code: '2313', name: '華通',     note: 'PCB大廠，AI/HPC基板受惠' },
+    ];
+
+    function loadCandidates() {
+      var groups = [
+        { list: CANDIDATES_LONG,  tbody: 'candidatesLongBody',  color: '#00B060' },
+        { list: CANDIDATES_SHORT, tbody: 'candidatesShortBody', color: '#00A896' },
+      ];
+      groups.forEach(function(g) {
+        var tbody = document.getElementById(g.tbody);
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:16px;color:var(--dimmer);">⏳ 載入中...</td></tr>';
+        var promises = g.list.map(function(s) {
+          return fetch('/api/stock?code=' + s.code)
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+              var p = d.data && d.data.Price ? d.data.Price : {};
+              return {
+                code: s.code, name: s.name, note: s.note,
+                close: p.ClosingPrice || p.TradePrice || '—',
+                chg: p.Change || 0,
+                open: p.OpeningPrice || 0,
+                vol: p.TradeVolume || 0,
+              };
+            })
+            .catch(function() {
+              return { code: s.code, name: s.name, note: s.note, close: '—', chg: 0, open: 0, vol: 0 };
+            });
+        });
+        Promise.all(promises).then(function(rows) {
+          tbody.innerHTML = rows.map(function(r) {
+            var pct = r.open > 0 ? (r.chg / r.open * 100).toFixed(2) : 0;
+            var chgColor = r.chg > 0 ? '#00B060' : r.chg < 0 ? '#E03430' : 'var(--sub)';
+            var volStr = r.vol > 0 ? Math.floor(r.vol / 1000) + '張' : '—';
+            return '<tr style="border-bottom:1px solid var(--border);cursor:pointer;" onclick="loadStock(\'' + r.code + '\');closeAdmin();">' +
+              '<td style="padding:7px 8px;color:' + g.color + ';font-weight:700;">' + r.code + '</td>' +
+              '<td style="padding:7px 8px;">' + r.name + '</td>' +
+              '<td style="padding:7px 8px;text-align:right;font-weight:700;">' + r.close + '</td>' +
+              '<td style="padding:7px 8px;text-align:right;color:' + chgColor + ';">' + (r.chg > 0 ? '+' : '') + r.chg + '</td>' +
+              '<td style="padding:7px 8px;text-align:right;color:' + chgColor + ';">' + (pct > 0 ? '+' : '') + pct + '%</td>' +
+              '<td style="padding:7px 8px;text-align:right;color:var(--sub);">' + volStr + '</td>' +
+              '<td style="padding:7px 8px;color:var(--dimmer);font-size:11px;">' + r.note + '</td>' +
+              '<td style="padding:7px 8px;text-align:center;"><button onclick="event.stopPropagation();loadStock(\'' + r.code + '\');closeAdmin();" style="font-size:10px;padding:3px 8px;background:var(--raised);border:1px solid var(--border);border-radius:4px;color:var(--text);cursor:pointer;">查看</button></td>' +
+            '</tr>';
+          }).join('');
+          document.getElementById('candidatesLastUpdate').textContent = '更新：' + new Date().toLocaleTimeString('zh-TW');
+        });
+      });
     }
 
     // ═══════════ AI 獵股引擎 ═══════════

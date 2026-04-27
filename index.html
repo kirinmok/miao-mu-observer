@@ -3424,7 +3424,7 @@
 
     // ═══════════ INIT ═══════════
     // ═══════════ SERVICE WORKER 註冊 + 強制更新 ═══════════
-    var MM_VERSION = 'V52';
+    var MM_VERSION = 'V53';
 
     // ═══════════ 環境偵測：localhost 走 proxy，GitHub Pages 走直接呼叫 ═══════════
     var IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -9033,12 +9033,12 @@
     // ═══════════ 投資候選股 ═══════════
     var CANDIDATES_LONG = [
       { code: '2330', name: '台積電',   note: '護城河最深，AI/CoWoS 核心長抱' },
-      { code: '2308', name: '台達電',   note: '電源管理龍頭，AI資料中心受益' },
+      { code: '2308', name: '台達電',   note: '電源管理龍頭，AI資料中心+衛星電源模組受益' },
       { code: '2382', name: '廣達',     note: 'AI伺服器ODM龍頭，輝達供應鏈' },
       { code: '2454', name: '聯發科',   note: 'AI手機SoC，估值合理' },
       { code: '00919', name: '群益高息', note: '季配息約8%，利息對沖' },
       { code: '0056', name: '元大高息', note: '月配息，低波動穩定收息' },
-      { code: '1503', name: '士電',     note: '電力設備，AI園區建置受惠' },
+      { code: '1503', name: '士電',     note: '電力設備，AI園區+衛星地面站配電受惠' },
       { code: '1609', name: '大亞',     note: '電纜，台電強韌電網計畫' },
     ];
     var CANDIDATES_SHORT = [
@@ -9048,7 +9048,8 @@
       { code: '3596', name: '智易',     note: '衛星終端，量能偏小注意流動性' },
       { code: '5388', name: '中磊',     note: '衛星/5G，短線題材注意回調' },
       { code: '6146', name: '迅得',     note: 'PCB設備，觀察訂單能見度' },
-      { code: '2313', name: '華通',     note: 'PCB大廠，AI/HPC基板受惠' },
+      { code: '2313', name: '華通',     note: 'PCB大廠，AI/HPC基板+衛星高頻板受惠' },
+      { code: '3711', name: '日月光投控', note: '衛星晶片封測，先進封裝CoWoS卡位' },
     ];
 
     function loadCandidates() {

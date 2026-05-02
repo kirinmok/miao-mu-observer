@@ -8729,11 +8729,43 @@
             '<div style="margin-top:10px;font-size:11px;color:var(--sub);border-top:1px solid var(--border);padding-top:8px;">' +
             '⚡ V53.1 · ' + today + ' · Gemini 2.0 Flash</div>';
         } catch(e) {
-          el.innerHTML = '<span style="color:var(--red);">解析失敗：' + e.message + '</span>';
+          el.innerHTML = renderDecisionFallback(s, ra, ro, today, e.message);
         }
       }).catch(function(err) {
-        el.innerHTML = '<span style="color:var(--red);">❌ 請求失敗：' + (err.message || err) + '</span>';
+        el.innerHTML = renderDecisionFallback(s, ra, ro, today, err.message || String(err));
       });
+    }
+
+    function renderDecisionFallback(s, ra, ro, today, errMsg) {
+      var dir = ra.final_direction || '未知';
+      var summary = ra.summary_human || '（無摘要）';
+      var dirColor = dir.includes('多') || dir.includes('漲') ? 'var(--green)'
+                   : dir.includes('空') || dir.includes('跌') ? 'var(--red)' : 'var(--amber)';
+      var dirIcon = dir.includes('多') || dir.includes('漲') ? '▲'
+                  : dir.includes('空') || dir.includes('跌') ? '▼' : '◆';
+
+      var roHtml = '';
+      if (ro.length > 0) {
+        roHtml = ro.slice(0, 5).map(function(r) {
+          var sc = r.score || 0;
+          var scColor = sc >= 7 ? 'var(--green)' : sc >= 4 ? 'var(--amber)' : 'var(--red)';
+          return '<div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05);">' +
+            '<span style="color:#60a5fa;font-size:11px;">【' + r.role_name + '】</span> ' +
+            '<span style="color:' + scColor + ';font-size:11px;font-weight:700;">' + r.signal + '（' + sc + '/10）</span>' +
+            '<div style="color:var(--sub);font-size:11px;margin-top:2px;">' + (r.plain_text || '').slice(0, 60) + '…</div>' +
+            '</div>';
+        }).join('');
+      }
+
+      return '<div style="line-height:1.9;">' +
+        '<br><span style="color:#60a5fa;font-weight:700;">【最終裁決】</span>' +
+        '<span style="color:' + dirColor + ';font-weight:700;"> ' + dir + ' ' + dirIcon + '</span>' +
+        '<br><span style="color:#60a5fa;font-weight:700;">【委員會結論】</span><br>' +
+        '<span style="color:var(--text);">' + summary + '</span>' +
+        (roHtml ? '<br><br><span style="color:#60a5fa;font-weight:700;">【各角色】</span>' + roHtml : '') +
+        '</div>' +
+        '<div style="margin-top:10px;font-size:11px;color:var(--amber);border-top:1px solid var(--border);padding-top:8px;">' +
+        '⚠️ 離線模式（Gemini 配額耗盡）· 顯示預計算資料 · ' + today + '</div>';
     }
 
     function cmteRiskPill(label, level, text) {

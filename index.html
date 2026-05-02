@@ -2795,8 +2795,8 @@
               <div>
                 <div class="cmte-section-title">個人投資檔案</div>
                 <div class="cmte-grid2">
-                  <div><label style="font-size:12px;color:var(--sub);">可投資資金</label><input class="cmte-input" id="cCapital" type="number" value="500000"></div>
-                  <div><label style="font-size:12px;color:var(--sub);">每月可投入</label><input class="cmte-input" id="cMonthly" type="number" value="20000"></div>
+                  <div><label style="font-size:12px;color:var(--sub);">可投資資金（萬元）</label><input class="cmte-input" id="cCapital" type="number" value="50"></div>
+                  <div><label style="font-size:12px;color:var(--sub);">每月可投入（萬元）</label><input class="cmte-input" id="cMonthly" type="number" value="2"></div>
                   <div><label style="font-size:12px;color:var(--sub);">目標</label><select class="cmte-input" id="cGoal"><option value="growth">資產成長</option><option value="income">現金流</option><option value="balanced" selected>平衡型</option></select></div>
                   <div><label style="font-size:12px;color:var(--sub);">最大跌幅</label><select class="cmte-input" id="cDrawdown"><option>10%</option><option selected>15%</option><option>20%</option><option>30%</option></select></div>
                   <div><label style="font-size:12px;color:var(--sub);">大筆用錢</label><select class="cmte-input" id="cCashNeed"><option value="yes">是</option><option value="no" selected>否</option></select></div>
@@ -8945,7 +8945,7 @@
     function runCommittee() {
       var ticker = document.getElementById('cTicker').value.trim() || '2330';
       var buyAmount = +document.getElementById('cBuyAmount').value || 0;
-      var capital = +document.getElementById('cCapital').value || 1;
+      var capital = (+document.getElementById('cCapital').value * 10000) || 1; // 單位：萬
       var goal = document.getElementById('cGoal').value;
       var assetType = document.getElementById('cAssetType').value;
       var cashNeed = document.getElementById('cCashNeed').value;

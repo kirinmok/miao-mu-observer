@@ -2819,6 +2819,21 @@
         </details>
       </div>
 
+      <!-- V53.1 最終裁決層 -->
+      <div class="cmte-card" id="v53Card" style="border:1px solid rgba(96,165,250,0.3);background:rgba(96,165,250,0.05);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:16px;">⚡</span>
+            <span style="font-size:13px;font-weight:700;color:#60a5fa;letter-spacing:0.05em;">V53.1 最終裁決</span>
+            <span style="font-size:10px;color:var(--sub);background:rgba(96,165,250,0.15);padding:2px 6px;border-radius:4px;">DECISION ENGINE</span>
+          </div>
+          <button onclick="runDecisionV53()" style="padding:5px 14px;border-radius:8px;border:1px solid rgba(96,165,250,0.4);background:rgba(96,165,250,0.1);color:#60a5fa;font-size:12px;font-weight:700;cursor:pointer;">重新裁決</button>
+        </div>
+        <div id="v53Output" style="font-size:13px;color:var(--sub);line-height:1.8;">
+          點選「重新裁決」或啟動委員會後自動執行
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -8600,6 +8615,7 @@
           '<span style="opacity:0.6;font-size:0.85em;">' + code + '</span>' +
           '<span style="color:var(--amber);font-size:10px;margin-left:6px;">⚡快查</span>';
         runCommittee();
+        runDecisionV53();
         showToast('⚡ ' + tmpStock['名稱'] + ' AI 委員會分析完成');
       }).catch(function() {
         // Gemini 失敗仍然跑基本委員會
@@ -8628,6 +8644,96 @@
     function closeCommittee() {
       document.getElementById('cmteOverlay').classList.remove('show');
     }
+
+    // ═══ V53.1 最終裁決引擎 ═══
+    function runDecisionV53() {
+      var el = document.getElementById('v53Output');
+      var s = currentStock || {};
+      var ra = s.role_analysis || {};
+      var ro = ra.role_outputs || [];
+      var geminiKey = localStorage.getItem('mm_gemini_key_v2') || '';
+
+      if (!geminiKey) {
+        el.innerHTML = '<span style="color:var(--amber);">⚠️ 請先設定 Gemini API Key（後台 → API Key 管理）</span>';
+        return;
+      }
+      if (!s['名稱']) {
+        el.innerHTML = '<span style="color:var(--sub);">尚無股票資料，請先載入股票。</span>';
+        return;
+      }
+
+      el.innerHTML = '<span style="color:var(--sub);">⏳ V53.1 分析中…</span>';
+
+      // 組裝委員會摘要
+      var today = new Date().toISOString().slice(0, 10);
+      var roSummary = ro.length > 0
+        ? ro.map(function(r) {
+            return '【' + r.role_name + '】' + (r.signal || '?') + '（' + r.score + '/10）' +
+              '\n  分析：' + (r.plain_text || '') +
+              '\n  風險：' + (r.mekak || '');
+          }).join('\n\n')
+        : '（委員會尚未產生分析資料）';
+
+      var finalDir = ra.final_direction || '未知';
+      var summary = ra.summary_human || '';
+
+      var committeeSummary =
+        '=== V31 委員會結論 ===\n' +
+        '最終方向：' + finalDir + '\n' +
+        '一句話結論：' + summary + '\n\n' +
+        '=== 各角色分析 ===\n' + roSummary + '\n\n' +
+        '=== 基本數據 ===\n' +
+        '收盤價：' + (s['收盤價'] || '-') +
+        '｜漲跌幅：' + (s['漲跌幅'] !== undefined ? (s['漲跌幅'] >= 0 ? '+' : '') + s['漲跌幅'] + '%' : '-') +
+        '｜外資：' + (s['foreign_net_volume'] !== undefined ? (s['foreign_net_volume'] > 0 ? '+' : '') + s['foreign_net_volume'] + ' 張' : '-') +
+        '｜RSI：' + (s['rsi'] || '-');
+
+      var systemPrompt =
+        '# SYSTEM ROLE: MIAOMU V53.1 DECISION ENGINE\n' +
+        '你不是聊天 AI，你是「交易決策系統」。\n' +
+        '你的任務：依據 V31 委員會分析摘要，輸出最終可執行決策。\n\n' +
+        '# HARD RULES\n' +
+        '- 禁止捏造數據\n' +
+        '- 禁止假設未提供資訊\n' +
+        '- 禁止過度自信：沒有失效條件不得輸出強烈方向\n' +
+        '- 資料不足時明確標記\n\n' +
+        '# 輸出格式（嚴格依照，每欄一行）\n' +
+        '【資料新鮮度】\n【市場正在交易】\n【最大風險】\n【矛盾訊號】\n【高機率方向】\n【策略建議】\n【失效條件】\n【最終裁決】偏多/偏空/中性\n【原因】';
+
+      var userPrompt =
+        '以下是 V31 委員會的分析摘要：\n\n' +
+        '【標的】' + s['代號'] + ' ' + s['名稱'] + '\n' +
+        '【分析日期】' + today + '\n\n' +
+        committeeSummary + '\n\n' +
+        '請依照 V53.1 決策框架輸出最終裁決。';
+
+      fetchGemini(geminiKey, 'gemini-2.0-flash', {
+        contents: [
+          { role: 'user', parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }
+        ],
+        generationConfig: { temperature: 0.2, maxOutputTokens: 1024 }
+      }).then(function(r) { return r.json(); })
+      .then(function(result) {
+        try {
+          var text = result.candidates[0].content.parts[0].text;
+          // 將每個【欄位】轉成高亮格式
+          var html = text
+            .replace(/【([^】]+)】/g, '<br><span style="color:#60a5fa;font-weight:700;">【$1】</span>')
+            .replace(/偏多/g, '<span style="color:var(--green);">偏多 ▲</span>')
+            .replace(/偏空/g, '<span style="color:var(--red);">偏空 ▼</span>')
+            .replace(/中性/g, '<span style="color:var(--amber);">中性 ◆</span>')
+            .replace(/\n/g, '<br>');
+          el.innerHTML = '<div style="line-height:1.9;">' + html + '</div>' +
+            '<div style="margin-top:10px;font-size:11px;color:var(--sub);border-top:1px solid var(--border);padding-top:8px;">' +
+            '⚡ V53.1 · ' + today + ' · Gemini 2.0 Flash</div>';
+        } catch(e) {
+          el.innerHTML = '<span style="color:var(--red);">解析失敗：' + e.message + '</span>';
+        }
+      }).catch(function(err) {
+        el.innerHTML = '<span style="color:var(--red);">❌ 請求失敗：' + (err.message || err) + '</span>';
+      });
+    }
+
     function cmteRiskPill(label, level, text) {
       var cls = level === '安全' ? 'good' : level === '注意' ? 'warn' : 'bad';
       return '<div style="margin-bottom:10px;"><strong>' + label + '</strong> <span class="cmte-pill ' + cls + '">' + level + '</span><div style="font-size:11px;color:var(--sub);margin-top:4px;">' + text + '</div></div>';
@@ -11811,23 +11917,8 @@
       renderSignals();
       renderHoldingsDiag();
       cloudUpdateSyncInfo();
-      // 本機模式：自動從 serve.py 載入 API Key
-      if (IS_LOCAL && (!localStorage.getItem('mm_gemini_key_v2') || !localStorage.getItem('mm_grok_key'))) {
-        fetch('/api/keys').then(function(r){return r.json();}).then(function(d){
-          if (d.gemini && !localStorage.getItem('mm_gemini_key_v2')) {
-            localStorage.setItem('mm_gemini_key_v2', d.gemini);
-            var el = document.getElementById('visionApiKey'); if (el) el.value = d.gemini;
-            var st = document.getElementById('visionKeyStatus');
-            if (st) { st.textContent = '已設定'; st.style.background = 'rgba(16,185,129,.1)'; st.style.color = '#10b981'; }
-          }
-          if (d.grok && !localStorage.getItem('mm_grok_key')) {
-            localStorage.setItem('mm_grok_key', d.grok);
-            var el2 = document.getElementById('grokApiKey'); if (el2) el2.value = d.grok;
-            var st2 = document.getElementById('grokKeyStatus');
-            if (st2) { st2.textContent = '已設定'; st2.style.background = 'rgba(16,185,129,.1)'; st2.style.color = '#10b981'; }
-          }
-        }).catch(function(){});
-      }
+      // 安全：API Key 一律手動貼到後台。本機 AI 呼叫請走 /api/proxy/*，
+      // 不再透過 /api/keys 把後端環境變數丟回 browser。
     }
 
     // ── 每日訊號 ──

@@ -1,47 +1,47 @@
 {
   "代號": "3034",
   "名稱": "聯詠",
-  "收盤價": 416.5,
-  "漲跌幅": -0.36,
-  "評分": 6.6,
-  "建議": "訊號偏多",
-  "建議類別": "buy",
-  "詳細理由": "整體偏多，但建議分批進場。",
-  "白話摘要": "整體偏多，但建議分批進場。",
+  "收盤價": 408.5,
+  "漲跌幅": -0.97,
+  "評分": 5.8,
+  "建議": "訊號中性",
+  "建議類別": "wait",
+  "詳細理由": "訊號混沌，建議先觀望，不過資金面有在回流。",
+  "白話摘要": "訊號混沌，建議先觀望，不過資金面有在回流。",
   "成交量狀態": "",
-  "停損參考": 387.68,
-  "目標價": 429.41,
-  "風險報酬比": 0.45,
-  "本益比": 15.6,
+  "停損參考": 388.54,
+  "目標價": 430.86,
+  "風險報酬比": 1.12,
+  "本益比": 15.3,
   "本益比_is_stale": false,
-  "股價淨值比": 3.75,
-  "殖利率": 6.72,
+  "股價淨值比": 3.71,
+  "殖利率": 6.85,
   "估值狀態": "估值中高",
-  "投信動向": "投信5日買超1,005,140張",
-  "外資動向": "外資5日賣超2,816,520張",
-  "外資買賣超": -2816520,
-  "投信買賣超": 1005140,
+  "投信動向": "投信5日買超503,762張",
+  "外資動向": "外資5日賣超697,188張",
+  "外資買賣超": -697188,
+  "投信買賣超": 503762,
   "營收表現": "營收季減7%（小幅衰退）",
   "monthly_revenue_growth": -9.6,
   "monthly_revenue_mom": 20.0,
   "consecutive_growth_months": 0,
-  "pe_percentile_5y": 0.85,
+  "pe_percentile_5y": 0.82,
   "pe_median_5y": 13.4,
-  "pe_range_5y": "3.0~24.5",
-  "分析日期": "2026-04-27",
+  "pe_range_5y": "3.0~23.1",
+  "分析日期": "2026-04-29",
   "is_stale": false,
   "stale_warning": "",
   "data_source": "stock_updater_v48",
   "is_realtime": false,
-  "update_time": "2026-04-27 15:46",
+  "update_time": "2026-04-29 15:44",
   "valid_dimension_count": 5,
   "total_dimension_count": 8,
   "role_analysis": {
-    "final_direction": "buy",
-    "confidence": "MEDIUM",
-    "summary_human": "整體偏多，但建議分批進場。",
-    "summary_professional": "整體偏多，但建議分批進場。",
-    "integration_reason": "現金流比 3.69｜AR超額 +10%｜業外佔比 0%",
+    "final_direction": "wait",
+    "confidence": "LOW",
+    "summary_human": "訊號混沌，建議先觀望，不過資金面有在回流。",
+    "summary_professional": "訊號混沌，建議先觀望，不過資金面有在回流。",
+    "integration_reason": "外資-697188張｜融資0張｜價-5.5%",
     "conflict_intensity": 0,
     "role_outputs": [
       {
@@ -62,61 +62,61 @@
       },
       {
         "role_name": "籌碼結構",
-        "score": 6.5,
-        "signal": "bullish",
-        "plain_text": "籌碼沉澱，可能築底",
-        "key_finding": "外資-2816520張｜融資0張｜價+0.4%",
-        "mekak": "外資淨買力密度 44.3%，堅定",
+        "score": 4.0,
+        "signal": "neutral",
+        "plain_text": "正常回檔",
+        "key_finding": "外資-697188張｜融資0張｜價-5.5%",
+        "mekak": "外資淨買力密度 13.7%，堅定",
         "raw_data": {
-          "density": 44.3,
+          "density": 13.68,
           "resonance": [
             "sell",
             "decrease",
-            "flat"
+            "down"
           ],
-          "foreign_net": -2816520,
-          "trust_net": 1005140,
+          "foreign_net": -697188,
+          "trust_net": 503762,
           "major_holder_change": 0,
           "insider_net_sell": 0
         },
         "is_fallback": false,
-        "confidence": 65.0
+        "confidence": 40.0
       },
       {
         "role_name": "技術面診斷",
-        "score": 6.0,
+        "score": 5.0,
         "signal": "neutral",
         "plain_text": "站上季線",
-        "key_finding": "RSI 66｜MACD 多｜多頭排列",
-        "mekak": "趨勢強度 中，關注 387.68 支撐",
+        "key_finding": "RSI 55｜MACD 空｜多頭排列",
+        "mekak": "趨勢強度 中，關注 388.54 支撐",
         "raw_data": {
-          "rsi": 66.16,
-          "support": 387.68,
-          "resistance": 429.41,
+          "rsi": 54.89,
+          "support": 388.54,
+          "resistance": 430.86,
           "divergences": 0
         },
         "is_fallback": false,
-        "confidence": 60.0
+        "confidence": 50.0
       },
       {
         "role_name": "量能結構",
-        "score": 7.0,
-        "signal": "bullish",
-        "plain_text": "OBV 上升趨勢，資金持續流入。量能擴張中",
-        "key_finding": "OBV up｜量比 0.7x｜量價一致",
-        "mekak": "OBV 斜率 +5.2，量比 0.7x，量能健康",
+        "score": 6.5,
+        "signal": "neutral",
+        "plain_text": "OBV 上升趨勢，資金持續流入",
+        "key_finding": "OBV up｜量比 0.6x｜量價一致",
+        "mekak": "OBV 斜率 +4.7，量比 0.6x，量能健康",
         "raw_data": {
           "obv_direction": "up",
-          "obv_slope": 5.21,
+          "obv_slope": 4.7,
           "price_vol_agree": true,
-          "vol_ratio": 0.74,
-          "vol_trend": "expanding",
+          "vol_ratio": 0.6,
+          "vol_trend": "normal",
           "vol_explosion": false,
           "vol_drought": false,
           "vol_price_divergence": "none"
         },
         "is_fallback": false,
-        "confidence": 70.0
+        "confidence": 65.0
       },
       {
         "role_name": "市場情緒",
@@ -136,12 +136,12 @@
         "role_name": "惡魔代言人",
         "score": 6.0,
         "signal": "neutral",
-        "plain_text": "未找到明顯邏輯漏洞，結論暫時站得住腳",
+        "plain_text": "如果「籌碼結構」的負面信號只是暫時性的呢？",
         "key_finding": "脆弱度 5/10｜1 個質疑",
         "mekak": "無額外盲點",
         "raw_data": {
           "challenges": [
-            "未找到明顯邏輯漏洞，結論暫時站得住腳"
+            "如果「籌碼結構」的負面信號只是暫時性的呢？"
           ],
           "vulnerability": 5.0
         },
@@ -180,42 +180,26 @@
       }
     ]
   },
-  "action_hint": "可小量試單｜訊號偏多但技術面診斷稍弱｜停損 388",
+  "action_hint": "先觀望｜外資在賣｜目前沒有明確的進出場理由",
   "triggers": [
-    "現金流比 3.69｜AR超額 +10%｜業外佔比 0%"
+    "外資-697188張｜融資0張｜價-5.5%"
   ],
-  "invalidation": "若股價跌破 387.68，或任一否決條件觸發，裁決失效",
+  "invalidation": "若股價跌破 388.54，或任一否決條件觸發，裁決失效",
   "contrarian_view": "",
-  "devil_summary": "未找到明顯邏輯漏洞，結論暫時站得住腳",
-  "mekak_insight": "趨勢強度 中，關注 387.68 支撐",
-  "voice_script": "聯詠的分析結果出來了。整體偏多，但建議分批進場。建議等回檔到416.5元附近再進場，停損395.67元，目標458.15元，風報比1:2.0。若跌破 395.67，立即停損",
+  "devil_summary": "如果「籌碼結構」的負面信號只是暫時性的呢？",
+  "mekak_insight": "外資淨買力密度 13.7%，堅定",
+  "voice_script": "聯詠的分析結果出來了。訊號混沌，建議先觀望，不過資金面有在回流。建議先觀望，等待明確訊號。等待量能放大或跌近 396.25",
   "action_card": {
-    "one_liner": "整體偏多，但建議分批進場。",
-    "action": "等回檔再接",
-    "entry_price": 416.5,
-    "stop_loss": 395.67,
-    "target_price": 458.15,
-    "risk_reward": "1:2.0",
+    "one_liner": "訊號混沌，建議先觀望，不過資金面有在回流。",
+    "action": "先不要動",
+    "entry_price": 396.25,
+    "stop_loss": 379.91,
+    "target_price": 441.18,
+    "risk_reward": "1:2.7",
     "key_reason": "現金流比 3.69｜AR超額 +10%｜業外佔比 0%",
-    "watch_signal": "若跌破 395.67，立即停損"
+    "watch_signal": "等待量能放大或跌近 396.25"
   },
   "price_history": [
-    {
-      "time": "2026-01-20",
-      "open": 387.0,
-      "high": 395.0,
-      "low": 383.5,
-      "close": 392.0,
-      "volume": 4054170
-    },
-    {
-      "time": "2026-01-21",
-      "open": 389.0,
-      "high": 390.0,
-      "low": 377.5,
-      "close": 377.5,
-      "volume": 5343350
-    },
     {
       "time": "2026-01-22",
       "open": 382.0,
@@ -679,377 +663,393 @@
       "low": 412.0,
       "close": 416.5,
       "volume": 3445966
+    },
+    {
+      "time": "2026-04-28",
+      "open": 418.5,
+      "high": 420.0,
+      "low": 410.0,
+      "close": 412.5,
+      "volume": 3363158
+    },
+    {
+      "time": "2026-04-29",
+      "open": 414.0,
+      "high": 416.0,
+      "low": 406.5,
+      "close": 408.5,
+      "volume": 2454141
     }
   ],
   "foreign_history": [
     {
-      "time": "2026-01-19",
-      "foreign_net": 2305641,
-      "trust_net": -1192431,
-      "foreign_cumulative": 10590835
-    },
-    {
-      "time": "2026-01-20",
-      "foreign_net": 1180553,
-      "trust_net": -1027783,
-      "foreign_cumulative": 11771388
-    },
-    {
       "time": "2026-01-21",
       "foreign_net": -444284,
       "trust_net": -632525,
-      "foreign_cumulative": 11327104
+      "foreign_cumulative": 10408519
     },
     {
       "time": "2026-01-22",
       "foreign_net": 605075,
       "trust_net": -216925,
-      "foreign_cumulative": 11932179
+      "foreign_cumulative": 11013594
     },
     {
       "time": "2026-01-23",
       "foreign_net": 972286,
       "trust_net": -379326,
-      "foreign_cumulative": 12904465
+      "foreign_cumulative": 11985880
     },
     {
       "time": "2026-01-26",
       "foreign_net": 676143,
       "trust_net": -501995,
-      "foreign_cumulative": 13580608
+      "foreign_cumulative": 12662023
     },
     {
       "time": "2026-01-27",
       "foreign_net": 1207995,
       "trust_net": -775912,
-      "foreign_cumulative": 14788603
+      "foreign_cumulative": 13870018
     },
     {
       "time": "2026-01-28",
       "foreign_net": 216168,
       "trust_net": -402924,
-      "foreign_cumulative": 15004771
+      "foreign_cumulative": 14086186
     },
     {
       "time": "2026-01-29",
       "foreign_net": -563121,
       "trust_net": -175925,
-      "foreign_cumulative": 14441650
+      "foreign_cumulative": 13523065
     },
     {
       "time": "2026-01-30",
       "foreign_net": -1415299,
       "trust_net": 3596,
-      "foreign_cumulative": 13026351
+      "foreign_cumulative": 12107766
     },
     {
       "time": "2026-02-02",
       "foreign_net": -904144,
       "trust_net": 39043,
-      "foreign_cumulative": 12122207
+      "foreign_cumulative": 11203622
     },
     {
       "time": "2026-02-03",
       "foreign_net": -18170,
       "trust_net": 69711,
-      "foreign_cumulative": 12104037
+      "foreign_cumulative": 11185452
     },
     {
       "time": "2026-02-04",
       "foreign_net": -1638531,
       "trust_net": -7066,
-      "foreign_cumulative": 10465506
+      "foreign_cumulative": 9546921
     },
     {
       "time": "2026-02-05",
       "foreign_net": -1075776,
       "trust_net": 55189,
-      "foreign_cumulative": 9389730
+      "foreign_cumulative": 8471145
     },
     {
       "time": "2026-02-06",
       "foreign_net": 59745,
       "trust_net": 70742,
-      "foreign_cumulative": 9449475
+      "foreign_cumulative": 8530890
     },
     {
       "time": "2026-02-09",
       "foreign_net": 1076367,
       "trust_net": -34133,
-      "foreign_cumulative": 10525842
+      "foreign_cumulative": 9607257
     },
     {
       "time": "2026-02-10",
       "foreign_net": 915411,
       "trust_net": -14962,
-      "foreign_cumulative": 11441253
+      "foreign_cumulative": 10522668
     },
     {
       "time": "2026-02-11",
       "foreign_net": 123986,
       "trust_net": -57000,
-      "foreign_cumulative": 11565239
+      "foreign_cumulative": 10646654
     },
     {
       "time": "2026-02-23",
       "foreign_net": 187462,
       "trust_net": -162211,
-      "foreign_cumulative": 11752701
+      "foreign_cumulative": 10834116
     },
     {
       "time": "2026-02-24",
       "foreign_net": 1123872,
       "trust_net": 17340,
-      "foreign_cumulative": 12876573
+      "foreign_cumulative": 11957988
     },
     {
       "time": "2026-02-25",
       "foreign_net": 353253,
       "trust_net": -224496,
-      "foreign_cumulative": 13229826
+      "foreign_cumulative": 12311241
     },
     {
       "time": "2026-02-26",
       "foreign_net": 1539442,
       "trust_net": -513282,
-      "foreign_cumulative": 14769268
+      "foreign_cumulative": 13850683
     },
     {
       "time": "2026-03-02",
       "foreign_net": -359280,
       "trust_net": -119269,
-      "foreign_cumulative": 14409988
+      "foreign_cumulative": 13491403
     },
     {
       "time": "2026-03-03",
       "foreign_net": -937039,
       "trust_net": -56839,
-      "foreign_cumulative": 13472949
+      "foreign_cumulative": 12554364
     },
     {
       "time": "2026-03-04",
       "foreign_net": -55633,
       "trust_net": -5812,
-      "foreign_cumulative": 13417316
+      "foreign_cumulative": 12498731
     },
     {
       "time": "2026-03-05",
       "foreign_net": -372235,
       "trust_net": 55159,
-      "foreign_cumulative": 13045081
+      "foreign_cumulative": 12126496
     },
     {
       "time": "2026-03-06",
       "foreign_net": 127412,
       "trust_net": -17842,
-      "foreign_cumulative": 13172493
+      "foreign_cumulative": 12253908
     },
     {
       "time": "2026-03-09",
       "foreign_net": 701105,
       "trust_net": 127128,
-      "foreign_cumulative": 13873598
+      "foreign_cumulative": 12955013
     },
     {
       "time": "2026-03-10",
       "foreign_net": 557488,
       "trust_net": -36247,
-      "foreign_cumulative": 14431086
+      "foreign_cumulative": 13512501
     },
     {
       "time": "2026-03-11",
       "foreign_net": 405124,
       "trust_net": -45925,
-      "foreign_cumulative": 14836210
+      "foreign_cumulative": 13917625
     },
     {
       "time": "2026-03-12",
       "foreign_net": 547466,
       "trust_net": -120850,
-      "foreign_cumulative": 15383676
+      "foreign_cumulative": 14465091
     },
     {
       "time": "2026-03-13",
       "foreign_net": 180929,
       "trust_net": -2850,
-      "foreign_cumulative": 15564605
+      "foreign_cumulative": 14646020
     },
     {
       "time": "2026-03-16",
       "foreign_net": -1253228,
       "trust_net": -65959,
-      "foreign_cumulative": 14311377
+      "foreign_cumulative": 13392792
     },
     {
       "time": "2026-03-17",
       "foreign_net": 1169838,
       "trust_net": -27963,
-      "foreign_cumulative": 15481215
+      "foreign_cumulative": 14562630
     },
     {
       "time": "2026-03-18",
       "foreign_net": 566226,
       "trust_net": -97872,
-      "foreign_cumulative": 16047441
+      "foreign_cumulative": 15128856
     },
     {
       "time": "2026-03-19",
       "foreign_net": 18578,
       "trust_net": -414000,
-      "foreign_cumulative": 16066019
+      "foreign_cumulative": 15147434
     },
     {
       "time": "2026-03-20",
       "foreign_net": 15488044,
       "trust_net": -13507896,
-      "foreign_cumulative": 31554063
+      "foreign_cumulative": 30635478
     },
     {
       "time": "2026-03-23",
       "foreign_net": -779442,
       "trust_net": 7768,
-      "foreign_cumulative": 30774621
+      "foreign_cumulative": 29856036
     },
     {
       "time": "2026-03-24",
       "foreign_net": -456899,
       "trust_net": -13160,
-      "foreign_cumulative": 30317722
+      "foreign_cumulative": 29399137
     },
     {
       "time": "2026-03-25",
       "foreign_net": 278723,
       "trust_net": -28205,
-      "foreign_cumulative": 30596445
+      "foreign_cumulative": 29677860
     },
     {
       "time": "2026-03-26",
       "foreign_net": 3232592,
       "trust_net": -11114,
-      "foreign_cumulative": 33829037
+      "foreign_cumulative": 32910452
     },
     {
       "time": "2026-03-27",
       "foreign_net": 2849277,
       "trust_net": -32898,
-      "foreign_cumulative": 36678314
+      "foreign_cumulative": 35759729
     },
     {
       "time": "2026-03-30",
       "foreign_net": -173723,
       "trust_net": 1576,
-      "foreign_cumulative": 36504591
+      "foreign_cumulative": 35586006
     },
     {
       "time": "2026-03-31",
       "foreign_net": -1070619,
       "trust_net": 348,
-      "foreign_cumulative": 35433972
+      "foreign_cumulative": 34515387
     },
     {
       "time": "2026-04-01",
       "foreign_net": 861032,
       "trust_net": 53214,
-      "foreign_cumulative": 36295004
+      "foreign_cumulative": 35376419
     },
     {
       "time": "2026-04-02",
       "foreign_net": -489728,
       "trust_net": 15080,
-      "foreign_cumulative": 35805276
+      "foreign_cumulative": 34886691
     },
     {
       "time": "2026-04-07",
       "foreign_net": 182913,
       "trust_net": 84086,
-      "foreign_cumulative": 35988189
+      "foreign_cumulative": 35069604
     },
     {
       "time": "2026-04-08",
       "foreign_net": 445998,
       "trust_net": -44371,
-      "foreign_cumulative": 36434187
+      "foreign_cumulative": 35515602
     },
     {
       "time": "2026-04-09",
       "foreign_net": 936130,
       "trust_net": -88470,
-      "foreign_cumulative": 37370317
+      "foreign_cumulative": 36451732
     },
     {
       "time": "2026-04-10",
       "foreign_net": -478288,
       "trust_net": -75737,
-      "foreign_cumulative": 36892029
+      "foreign_cumulative": 35973444
     },
     {
       "time": "2026-04-13",
       "foreign_net": -209414,
       "trust_net": -28353,
-      "foreign_cumulative": 36682615
+      "foreign_cumulative": 35764030
     },
     {
       "time": "2026-04-14",
       "foreign_net": 590721,
       "trust_net": -137285,
-      "foreign_cumulative": 37273336
+      "foreign_cumulative": 36354751
     },
     {
       "time": "2026-04-15",
       "foreign_net": 1246502,
       "trust_net": -125680,
-      "foreign_cumulative": 38519838
+      "foreign_cumulative": 37601253
     },
     {
       "time": "2026-04-16",
       "foreign_net": 559215,
       "trust_net": -54268,
-      "foreign_cumulative": 39079053
+      "foreign_cumulative": 38160468
     },
     {
       "time": "2026-04-17",
       "foreign_net": 791447,
       "trust_net": -369580,
-      "foreign_cumulative": 39870500
+      "foreign_cumulative": 38951915
     },
     {
       "time": "2026-04-20",
       "foreign_net": -1085247,
       "trust_net": -490969,
-      "foreign_cumulative": 38785253
+      "foreign_cumulative": 37866668
     },
     {
       "time": "2026-04-21",
       "foreign_net": -853238,
       "trust_net": 249040,
-      "foreign_cumulative": 37932015
+      "foreign_cumulative": 37013430
     },
     {
       "time": "2026-04-22",
       "foreign_net": 1244941,
       "trust_net": 253203,
-      "foreign_cumulative": 39176956
+      "foreign_cumulative": 38258371
     },
     {
       "time": "2026-04-23",
       "foreign_net": -2633486,
       "trust_net": 632307,
-      "foreign_cumulative": 36543470
+      "foreign_cumulative": 35624885
     },
     {
       "time": "2026-04-24",
       "foreign_net": 510510,
       "trust_net": 361559,
-      "foreign_cumulative": 37053980
+      "foreign_cumulative": 36135395
+    },
+    {
+      "time": "2026-04-27",
+      "foreign_net": 149288,
+      "trust_net": -325060,
+      "foreign_cumulative": 36284683
+    },
+    {
+      "time": "2026-04-28",
+      "foreign_net": 31559,
+      "trust_net": -418247,
+      "foreign_cumulative": 36316242
     }
   ],
   "data_provenance": {
-    "generated_at": "2026-04-27 15:46:23",
+    "generated_at": "2026-04-29 15:44:24",
     "updater_version": "stock_updater_v48_phase1",
-    "price_date": "2026-04-27",
-    "price_days": 75,
+    "price_date": "2026-04-29",
+    "price_days": 76,
     "financial_quarters": 2,
-    "chip_date": "2026-04-27",
+    "chip_date": "2026-04-29",
     "revenue_date": "2026-04-01",
     "pe_data_points": 1214,
     "pe_is_stale": false,

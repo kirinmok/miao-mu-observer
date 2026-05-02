@@ -8715,6 +8715,8 @@
       }).then(function(r) { return r.json(); })
       .then(function(result) {
         try {
+          if (result.error) throw new Error('API錯誤：' + result.error.message);
+          if (!result.candidates || !result.candidates[0]) throw new Error('Gemini 無回應（API key 失效或配額用盡）');
           var text = result.candidates[0].content.parts[0].text;
           // 將每個【欄位】轉成高亮格式
           var html = text
@@ -9222,7 +9224,7 @@
         Promise.all(promises).then(function(rows) {
           tbody.innerHTML = rows.map(function(r) {
             var pct = r.open > 0 ? (r.chg / r.open * 100).toFixed(2) : 0;
-            var chgColor = r.chg > 0 ? '#00B060' : r.chg < 0 ? '#E03430' : 'var(--sub)';
+            var chgColor = r.chg > 0 ? '#E03430' : r.chg < 0 ? '#00B060' : 'var(--sub)';
             var volStr = r.vol > 0 ? Math.floor(r.vol / 1000) + '張' : '—';
             var tags = r.tags || [];
             var tagHtml = tags.map(function(t){ return '<span class="cand-tag">' + t + '</span>'; }).join('');
@@ -9235,7 +9237,7 @@
               '<td style="padding:7px 8px;text-align:right;color:' + chgColor + ';">' + (pct > 0 ? '+' : '') + pct + '%</td>' +
               '<td style="padding:7px 8px;text-align:right;color:var(--sub);">' + volStr + '</td>' +
               '<td style="padding:7px 8px;color:var(--dimmer);font-size:11px;">' + r.note + '</td>' +
-              '<td style="padding:7px 8px;text-align:center;"><button onclick="event.stopPropagation();loadStock(\'' + r.code + '\');closeAdmin();" style="font-size:10px;padding:3px 8px;background:var(--raised);border:1px solid var(--border);border-radius:4px;color:var(--text);cursor:pointer;">查看</button></td>' +
+              '<td style="padding:7px 8px;text-align:center;"><button onclick="event.stopPropagation();loadStock(\'' + r.code + '\');" style="font-size:10px;padding:3px 8px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);border-radius:4px;color:#60a5fa;cursor:pointer;">查看 ↗</button></td>' +
             '</tr>';
           }).join('');
           document.getElementById('candidatesLastUpdate').textContent = '更新：' + new Date().toLocaleTimeString('zh-TW');
@@ -9478,7 +9480,7 @@
         var pct = ((mp - ac) / ac * 100).toFixed(1);
         calcPL = (plVal >= 0 ? '+' : '') + plVal.toLocaleString();
         plPct = (plVal >= 0 ? '+' : '') + pct + '%';
-        plColor = plVal >= 0 ? 'var(--green)' : 'var(--red)';
+        plColor = plVal >= 0 ? 'var(--red)' : 'var(--green)';
       }
       return '<tr id="brow' + i + '">'
         + '<td><input class="admin-input" style="width:65px;margin:0;padding:4px 6px;text-align:center;" value="' + (code || '') + '" data-field="code"></td>'
@@ -12060,11 +12062,11 @@
               var tp2Val = it.price ? Math.round(it.price * 1.10) : '';
               if (it.tp) { tp1Val = Math.round(it.tp); tp1Pct = it.price ? ((it.tp - it.price)/it.price*100).toFixed(1) : ''; }
               h += '<div class="signal-targets">';
-              h += '<span class="st-item" style="color:var(--green);">停利1 $' + tp1Val + ' <span style="opacity:.6">(' + (tp1Pct > 0 ? '+' : '') + tp1Pct + '%)</span></span>';
+              h += '<span class="st-item" style="color:var(--red);">停利1 $' + tp1Val + ' <span style="opacity:.6">(' + (tp1Pct > 0 ? '+' : '') + tp1Pct + '%)</span></span>';
               if (it.tp) {
-                h += '<span class="st-item" style="color:var(--green);">停利2 $' + tp2Val + ' <span style="opacity:.6">(+' + ((tp2Val/it.price-1)*100).toFixed(1) + '%)</span></span>';
+                h += '<span class="st-item" style="color:var(--red);">停利2 $' + tp2Val + ' <span style="opacity:.6">(+' + ((tp2Val/it.price-1)*100).toFixed(1) + '%)</span></span>';
               }
-              h += '<span class="st-item" style="color:var(--red);">停損 $' + Math.round(it.sl) + ' <span style="opacity:.6">(' + slPct + '%)</span></span>';
+              h += '<span class="st-item" style="color:var(--green);">停損 $' + Math.round(it.sl) + ' <span style="opacity:.6">(' + slPct + '%)</span></span>';
               h += '</div>';
             }
             // Summary line
@@ -12132,7 +12134,7 @@
           var cost = h.cost || 0;
           var pl = cost > 0 ? ((price - cost) / cost * 100).toFixed(1) : '0.0';
           var plN = parseFloat(pl);
-          var plColor = plN >= 0 ? 'var(--green)' : 'var(--red)';
+          var plColor = plN >= 0 ? 'var(--red)' : 'var(--green)';
           var cat = d['建議類別'] || 'wait';
           var catIcon = cat === 'buy' || cat === 'strong_buy' ? '🟢' : cat === 'sell' || cat === 'strong_sell' ? '🔴' : '⏸';
           var sl = d['stop_loss_price'];
@@ -12170,7 +12172,7 @@
       var totalAssets = cash + totalMarket;
       var totalPL = totalMarket - totalCost;
       var plPct = totalCost > 0 ? (totalPL / totalCost * 100).toFixed(1) : '0.0';
-      var plColor = totalPL >= 0 ? 'var(--green)' : 'var(--red)';
+      var plColor = totalPL >= 0 ? 'var(--red)' : 'var(--green)';
 
       // ═══ 數字摘要 ═══
       var h = '';
@@ -12244,7 +12246,7 @@
         perStock.forEach(function(ps) {
           var isPos = ps.pl >= 0;
           var barPct = Math.max(2, Math.abs(ps.pl) / maxAbs * 100);
-          var barColor = isPos ? '#22c55e' : '#ef4444';
+          var barColor = isPos ? '#ef4444' : '#22c55e';
           var plStr = (isPos ? '+' : '') + (Math.abs(ps.pl) >= 10000 ? (ps.pl / 10000).toFixed(1) + '萬' : Math.round(ps.pl).toLocaleString());
           var nameLabel = ps.code + ' ' + (ps.name.length > 3 ? ps.name.substring(0, 3) + '..' : ps.name);
 
@@ -12294,7 +12296,7 @@
         var sl = parseFloat(item.stopLoss) || 0;
         var pl = mp > 0 && cost > 0 ? Math.round((mp - cost) * shares) : 0;
         var plPct = cost > 0 && mp > 0 ? ((mp - cost) / cost * 100).toFixed(1) : '—';
-        var plColor = pl >= 0 ? 'var(--green)' : 'var(--red)';
+        var plColor = pl >= 0 ? 'var(--red)' : 'var(--green)';
         // Auto-fill if still empty
         if (!item.target || !item.stopLoss) {
           autoFillHoldingDefaults(item);
@@ -12388,7 +12390,7 @@
           var sl2 = parseFloat(item.stopLoss) || 0;
           var pl2 = mp2 > 0 && cost2 > 0 ? Math.round((mp2 - cost2) * shares2) : 0;
           var plPct2 = cost2 > 0 && mp2 > 0 ? ((mp2 - cost2) / cost2 * 100).toFixed(1) : '—';
-          var plColor2 = pl2 >= 0 ? 'var(--green)' : 'var(--red)';
+          var plColor2 = pl2 >= 0 ? 'var(--red)' : 'var(--green)';
           var dps2 = parseFloat(item.dividendPerShare) || 0;
           var divTotal2 = dps2 > 0 ? Math.round(dps2 * shares2) : 0;
           // 狀態

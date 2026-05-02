@@ -11760,7 +11760,7 @@
           var dirIcon = dir === '漲' ? '🔴' : (dir === '跌' ? '🟢' : '⚪');
           var conf = p.confidence || 0;
           var confPct = typeof conf === 'number' && conf <= 1 ? Math.round(conf * 100) : Math.round(conf);
-          var confColor = confPct >= 70 ? 'var(--green)' : (confPct >= 50 ? 'var(--amber)' : 'var(--dimmer)');
+          var confColor = confPct >= 70 ? 'var(--amber)' : (confPct >= 50 ? 'var(--sub)' : 'var(--dimmer)');
           var reason = p.reason || '';
           var name = nameMap[code] || code;
           h += '<tr style="border-bottom:1px solid var(--border);">';

@@ -1,174 +1,179 @@
 {
-  "date": "2026-04-27",
-  "analysis_date": "2026-04-23",
-  "generated_at": "2026-04-27 15:45:09",
-  "stock_count": 33,
+  "date": "2026-05-02",
+  "analysis_date": "2026-04-29",
+  "generated_at": "2026-05-02 20:24:08",
+  "stock_count": 34,
   "predictions": {
     "2330": {
-      "direction": "漲",
-      "confidence": 0.7,
-      "reason": "整體偏多，分批進場，外資連賣趨緩"
+      "direction": "盤整",
+      "confidence": 0.5,
+      "reason": "訊號混沌，外資賣超，但資金面有回流跡象。"
     },
     "2317": {
       "direction": "漲",
-      "confidence": 0.75,
-      "reason": "籌碼強勁，量價齊揚，但留意爆量"
+      "confidence": 0.7,
+      "reason": "整體偏多，籌碼結構強勁，營收強勁成長。"
     },
     "0050": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，多空交雜，觀望為宜"
+      "reason": "訊號混沌，RSI過高，資金面有回流。"
     },
     "0056": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，量能強勁，留意爆量"
+      "reason": "訊號混沌，資金面有回流，資料不足。"
     },
     "00919": {
       "direction": "盤整",
-      "confidence": 0.5,
-      "reason": "訊號混沌，籌碼佳，資金回流"
+      "confidence": 0.55,
+      "reason": "訊號混沌，籌碼結構強勁，資金面有回流。"
     },
     "1303": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，資金回流，觀望為宜"
+      "reason": "訊號混沌，籌碼結構強勁，估值偏高。"
     },
     "2603": {
       "direction": "盤整",
-      "confidence": 0.5,
-      "reason": "訊號混沌，量能偏弱，觀望為宜"
+      "confidence": 0.45,
+      "reason": "訊號混沌，量能結構拉警報，營收小幅衰退。"
     },
     "2615": {
       "direction": "盤整",
-      "confidence": 0.45,
-      "reason": "訊號混沌，技術面弱，觀望為宜"
+      "confidence": 0.5,
+      "reason": "訊號混沌，籌碼結構強勁，量價一致。"
     },
     "2609": {
       "direction": "盤整",
-      "confidence": 0.45,
-      "reason": "訊號混沌，籌碼弱，觀望為宜"
+      "confidence": 0.4,
+      "reason": "訊號混沌，外資賣超，營收小幅衰退。"
     },
     "2002": {
       "direction": "跌",
-      "confidence": 0.7,
-      "reason": "趨勢轉弱，財報異常，建議出場"
+      "confidence": 0.65,
+      "reason": "趨勢轉弱，財報真實性拉警報，外資賣超。"
     },
     "2883": {
       "direction": "跌",
-      "confidence": 0.7,
-      "reason": "趨勢轉弱，財報異常，建議出場"
+      "confidence": 0.6,
+      "reason": "趨勢轉弱，財報真實性拉警報，量能結構弱。"
     },
     "2891": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，籌碼強，觀望為宜"
+      "reason": "訊號混沌，籌碼結構強勁，量價背離。"
     },
     "2882": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，資金回流，觀望為宜"
+      "reason": "訊號混沌，爆量警示，外資賣超。"
     },
     "2303": {
-      "direction": "漲",
-      "confidence": 0.7,
-      "reason": "整體偏多，分批進場，籌碼強勁"
+      "direction": "盤整",
+      "confidence": 0.5,
+      "reason": "訊號混沌，資金面有回流，估值偏高。"
     },
     "3711": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，資金回流，觀望為宜"
+      "reason": "訊號混沌，外資賣超，資金面有回流。"
     },
     "2454": {
       "direction": "漲",
       "confidence": 0.7,
-      "reason": "整體偏多，分批進場，籌碼強勁"
+      "reason": "整體偏多，籌碼結構強勁，RSI過高。"
     },
     "1609": {
-      "direction": "盤整",
-      "confidence": 0.5,
-      "reason": "訊號混沌，財報異常，觀望為宜"
+      "direction": "跌",
+      "confidence": 0.6,
+      "reason": "趨勢轉弱，財報真實性拉警報。"
     },
     "3090": {
       "direction": "盤整",
-      "confidence": 0.5,
-      "reason": "訊號混沌，資金回流，觀望為宜"
+      "confidence": 0.45,
+      "reason": "訊號混沌，財報真實性拉警報，營收衰退。"
     },
     "3293": {
       "direction": "盤整",
-      "confidence": 0.5,
-      "reason": "訊號混沌，籌碼佳，觀望為宜"
+      "confidence": 0.45,
+      "reason": "訊號混沌，量能結構拉警報，量價背離。"
     },
     "8011": {
-      "direction": "漲",
-      "confidence": 0.65,
-      "reason": "整體偏多，分批進場，現金流強"
+      "direction": "盤整",
+      "confidence": 0.4,
+      "reason": "訊號混沌，技術面診斷拉警報，外資賣超。"
     },
     "2376": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，資金回流，觀望為宜"
+      "reason": "訊號混沌，技術面診斷偏空，資金面回流。"
     },
     "2379": {
-      "direction": "漲",
-      "confidence": 0.7,
-      "reason": "整體偏多，分批進場，籌碼強勁"
+      "direction": "盤整",
+      "confidence": 0.5,
+      "reason": "訊號混沌，資金面有回流，營收小幅衰退。"
     },
     "3034": {
-      "direction": "漲",
-      "confidence": 0.7,
-      "reason": "整體偏多，分批進場，籌碼強勁"
+      "direction": "盤整",
+      "confidence": 0.45,
+      "reason": "訊號混沌，外資賣超，營收小幅衰退。"
     },
     "7749": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，籌碼佳，留意爆量"
+      "reason": "訊號混沌，資金面有回流，市場情緒中性。"
     },
     "3035": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，籌碼佳，留意爆量"
+      "reason": "訊號混沌，資金面有回流，營收小幅衰退。"
     },
     "6197": {
       "direction": "漲",
-      "confidence": 0.8,
-      "reason": "多方訊號明確，積極佈局，留意爆量"
+      "confidence": 0.65,
+      "reason": "整體偏多，量能結構強勁，爆量警示。"
     },
     "3680": {
-      "direction": "盤整",
-      "confidence": 0.5,
-      "reason": "訊號混沌，資金回流，觀望為宜"
+      "direction": "漲",
+      "confidence": 0.65,
+      "reason": "整體偏多，營收強勁成長，分批進場。"
     },
     "3088": {
       "direction": "漲",
       "confidence": 0.7,
-      "reason": "整體偏多，分批進場，籌碼強勁"
+      "reason": "整體偏多，籌碼結構強勁，技術面佳。"
     },
     "6579": {
       "direction": "盤整",
       "confidence": 0.45,
-      "reason": "訊號混沌，財報異常，觀望為宜"
+      "reason": "訊號混沌，財報真實性拉警報，資金面回流。"
     },
     "00881": {
       "direction": "盤整",
       "confidence": 0.5,
-      "reason": "訊號混沌，留意爆量，觀望為宜"
+      "reason": "訊號混沌，資金面有回流，RSI過高。"
     },
     "3234": {
       "direction": "盤整",
       "confidence": 0.4,
-      "reason": "訊號混沌，財報異常，觀望為宜"
+      "reason": "訊號混沌，財報真實性拉警報，量縮觀望。"
     },
     "2356": {
-      "direction": "漲",
-      "confidence": 0.7,
-      "reason": "整體偏多，分批進場，籌碼強勁"
+      "direction": "盤整",
+      "confidence": 0.5,
+      "reason": "訊號混沌，資金面有回流，技術面中性。"
     },
     "2382": {
+      "direction": "跌",
+      "confidence": 0.6,
+      "reason": "趨勢轉弱，財報真實性拉警報，投信賣超。"
+    },
+    "2313": {
       "direction": "盤整",
-      "confidence": 0.45,
-      "reason": "訊號混沌，財報異常，觀望為宜"
+      "confidence": 0.4,
+      "reason": "訊號混沌，OBV下降，量價一致。"
     }
   },
-  "market_view": "大盤技術性修正，持股觀望，選股重於選市。"
+  "market_view": "大盤信心不足，建議保守操作，逐步減碼。"
 }
